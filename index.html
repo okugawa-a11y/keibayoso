@@ -1,0 +1,3666 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style>
+</head>
+<body><title>ターフノート</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --paper:      #F4F6F5;
+    --surface:    #FFFFFF;
+    --ink:        #17191A;
+    --ink-2:      #4A514E;
+    --ink-3:      #6B7370;
+    --rule:       #D6DCD8;
+    --rule-soft:  #E6EAE7;
+    --turf:       #2C5741;
+    --turf-soft:  #EAF0EC;
+    --vermilion:  #C4382C;
+    --vermilion-soft: #FBEEEC;
+
+    --serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP", "MS PMincho", serif;
+    --sans: "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", "Meiryo", system-ui, sans-serif;
+    --cond: "Roboto Condensed", "Arial Narrow", var(--sans);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #101413;
+      --surface:    #171C1A;
+      --ink:        #E6E9E7;
+      --ink-2:      #AAB3AF;
+      --ink-3:      #838C88;
+      --rule:       #2B3331;
+      --rule-soft:  #222927;
+      --turf:       #6FA98A;
+      --turf-soft:  #1A2621;
+      --vermilion:  #E0685C;
+      --vermilion-soft: #2A1917;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #101413;
+    --surface:    #171C1A;
+    --ink:        #E6E9E7;
+    --ink-2:      #AAB3AF;
+    --ink-3:      #838C88;
+    --rule:       #2B3331;
+    --rule-soft:  #222927;
+    --turf:       #6FA98A;
+    --turf-soft:  #1A2621;
+    --vermilion:  #E0685C;
+    --vermilion-soft: #2A1917;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.75;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 18px 72px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    padding: 34px 0 18px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--turf);
+    margin: 0 0 6px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 7vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: .02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .meet {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink-2);
+    margin: 8px 0 0;
+  }
+
+  .stamp {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 14px 0 0;
+    font-family: var(--cond);
+    font-size: 12.5px;
+    letter-spacing: .04em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .stamp b { color: var(--ink-2); font-weight: 500; }
+
+  /* ---------- notice ---------- */
+
+  .notice {
+    margin: 20px 0 0;
+    padding: 13px 15px;
+    background: var(--vermilion-soft);
+    border-left: 3px solid var(--vermilion);
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .notice strong { color: var(--vermilion); font-weight: 700; }
+
+  /* ---------- race nav ---------- */
+
+  nav.jump {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    padding: 10px 0;
+    margin: 22px 0 0;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    scrollbar-width: none;
+  }
+  nav.jump::-webkit-scrollbar { display: none; }
+
+  nav.jump a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 5px 11px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  nav.jump a:hover { border-color: var(--turf); color: var(--turf); }
+  nav.jump a:focus-visible { outline: 2px solid var(--turf); outline-offset: 2px; }
+  nav.jump .d {
+    font-family: var(--cond);
+    font-size: 11px;
+    letter-spacing: .06em;
+    color: var(--ink-3);
+  }
+
+  /* ---------- race ---------- */
+
+  .race { padding: 36px 0 0; }
+
+  .race-head { border-bottom: 1px solid var(--ink); padding-bottom: 12px; }
+
+  .grade {
+    display: inline-block;
+    font-family: var(--cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    padding: 2px 7px;
+    border: 1px solid var(--turf);
+    color: var(--turf);
+    vertical-align: 3px;
+    margin-left: 9px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.45rem, 5.5vw, 1.85rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: .02em;
+  }
+
+  .cond {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 9px 0 0;
+    font-family: var(--cond);
+    font-size: 13px;
+    letter-spacing: .03em;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .cond span { white-space: nowrap; }
+  .cond .sep { color: var(--rule); }
+
+  /* ---------- pace note ---------- */
+
+  .pace {
+    margin: 16px 0 4px;
+    padding: 11px 0 11px 14px;
+    border-left: 2px solid var(--turf);
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .pace b {
+    font-family: var(--cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--turf);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ---------- horses ---------- */
+
+  .horses { margin: 6px 0 0; }
+
+  .horse {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    gap: 0 12px;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .horse:first-child { border-top: none; }
+
+  .horse.honmei {
+    padding-left: 12px;
+    margin-left: -14px;
+    border-left: 2px solid var(--vermilion);
+  }
+
+  .mark {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--ink-3);
+    text-align: center;
+  }
+  .horse.honmei .mark { color: var(--vermilion); }
+  .horse.taikou .mark,
+  .horse.anaba .mark { color: var(--ink); }
+
+  .name {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    letter-spacing: .01em;
+  }
+
+  .spec {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    margin: 3px 0 0;
+    font-family: var(--cond);
+    font-size: 13px;
+    letter-spacing: .03em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .spec .odds { color: var(--ink-2); }
+  .spec .odds em { font-style: normal; font-weight: 700; }
+
+  .why {
+    grid-column: 2;
+    margin: 7px 0 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--ink-2);
+  }
+  .why strong { color: var(--ink); font-weight: 700; }
+
+  .num {
+    font-family: var(--cond);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .01em;
+    color: var(--ink);
+  }
+
+  /* ---------- day / venue index ---------- */
+
+  .dayband {
+    margin: 48px 0 0;
+    padding: 0 0 9px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .dayband h2 { font-size: clamp(1.35rem, 5vw, 1.7rem); }
+  .dayband p {
+    margin: 5px 0 0;
+    font-family: var(--cond);
+    font-size: 12.5px;
+    letter-spacing: .06em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .venue {
+    margin: 28px 0 0;
+    padding-bottom: 5px;
+    font-family: var(--cond);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--turf);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  details.rc { border-bottom: 1px solid var(--rule-soft); }
+  details.rc > summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 0 10px;
+    align-items: baseline;
+    padding: 13px 2px;
+  }
+  details.rc > summary::-webkit-details-marker { display: none; }
+  details.rc > summary:focus-visible { outline: 2px solid var(--turf); outline-offset: 2px; }
+  details.rc[open] > summary { border-bottom: 1px dashed var(--rule); }
+
+  .rno {
+    font-family: var(--cond);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--turf);
+    font-variant-numeric: tabular-nums;
+  }
+  .rtitle { font-size: 15px; font-weight: 700; line-height: 1.4; }
+  .rsub {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--cond);
+    font-size: 12.5px;
+    letter-spacing: .03em;
+    color: var(--ink-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .rsub .pick { color: var(--vermilion); font-weight: 700; }
+
+  details.rc .body { padding: 2px 0 20px; }
+  details.rc .body .pace { margin-top: 14px; }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    margin: 52px 0 0;
+    padding: 22px 0 0;
+    border-top: 2px solid var(--ink);
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--ink-3);
+  }
+  footer h3 {
+    font-family: var(--cond);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--turf);
+    margin: 0 0 6px;
+  }
+  footer p { margin: 0 0 16px; }
+  footer .disclaim {
+    padding: 13px 15px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    color: var(--ink-2);
+    margin-bottom: 0;
+  }
+  footer code {
+    font-family: var(--cond);
+    font-size: 12.5px;
+    background: var(--turf-soft);
+    color: var(--turf);
+    padding: 1px 6px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  @media (max-width: 380px) {
+    .horse { grid-template-columns: 24px 1fr; gap: 0 9px; }
+    .mark { font-size: 19px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Weekend Stakes</p>
+    <h1>ターフノート</h1>
+    <p class="meet">2026年9月5日（土）・6日（日）&nbsp; 中山4回1〜2日目 / 阪神4回1〜2日目 / 札幌2回5〜6日目</p>
+    <div class="stamp">
+      <span><b>取得</b> 2026.09.04 16:10（土曜全レース枠順確定）</span>
+      <span class="sep">/</span>
+      <span><b>出典</b> netkeiba（有料会員）</span>
+      <span class="sep">/</span>
+      <span><b>掲載</b> 38R</span>
+    </div>
+  </header>
+
+  <p class="notice">
+    <strong>土曜（9/5）全レースの枠順が確定しました。</strong>9月4日（金）16:10に netkeiba から取得。
+    <strong>これで土曜の全<span class="num">36</span>レース（中山・阪神・札幌の1R〜12R）が出そろいました。</strong>
+    枠番・馬番・確定騎手・確定頭数を入れて書き起こしてあります。
+    今回の範囲は<strong>11R・12Rの6レース</strong>です。
+    <br>
+    <strong>11Rの3鞍</strong>——中山11R 京成杯AH（G3・芝1600外・<span class="num">16</span>頭）／
+    阪神11R エニフS（L・ダ1400・<span class="num">12</span>頭）／札幌11R 札幌2歳S（G3・芝1800・<span class="num">9</span>頭）——は
+    金曜10:15にすでに枠順が確定していた3レースで、今回あらためて出馬表を取り直し、
+    <strong>枠番・馬番・確定騎手・確定頭数がいずれも金曜10:15時点と同一であることを確認しました。</strong>
+    内容の変更はありません。詳しい根拠はページ上部の重賞欄にあり、日付順の一覧にも案内を置いています。
+    <br>
+    <strong>12Rの3鞍は今回が初掲載です。</strong>
+    中山12R（ダ1200・<span class="num">14</span>頭）／阪神12R（ダ1400・<span class="num">12</span>頭）／札幌12R（牝馬限定・ダ1700・<span class="num">13</span>頭）で、
+    いずれも<strong>3歳以上1勝クラス・定量</strong>。出走全<span class="num">39</span>頭の全出走歴をあらためて取得し、
+    コース別・距離別・馬場別の成績を着差・上がり3F・通過順・斤量で裏づけて◎○▲△を組み立てています。
+    展開の項では<span class="num">14</span>頭・<span class="num">12</span>頭・<span class="num">13</span>頭それぞれの確定頭数で逃げ馬を名指しし、
+    内枠・外枠の有利不利まで書きました。
+    <strong>枠順が評価に効いたのは阪神12Rのエイシンマールス</strong>で、阪神ダ1400を<span class="num">[0-2-1-1]</span>と得意にする馬ですが、
+    芝スタートで外が有利なコースの<span class="num">2</span>枠<span class="num">2</span>番に入り、砂を被る位置で先行争いに巻き込まれる形になるため
+    ◎からは外して○に置いています。
+    <br>
+    <strong>日曜（9/6）の枠順はまだ確定していません。土曜10:15</strong>に発表され、そのタイミングで反映します。
+    金曜10:15の時点で枠順・確定騎手ともに未発表だった<strong>日曜・札幌11Rの丹頂S</strong>も、そこで掲載します。
+    予想オッズは枠順発表直後で再計算前（全馬 <span class="num">---.-</span> 表示）のため今回もオッズ欄は外し、
+    代わりに枠番・馬番を入れています。<strong>馬体重は各レースの発走約30分前</strong>から、当日オッズとあわせて反映します。
+  </p>
+
+  <nav class="jump">
+    <a href="#keisei"><span class="d">9/5</span> 京成杯AH</a>
+    <a href="#enif"><span class="d">9/5</span> エニフS</a>
+    <a href="#sapporo"><span class="d">9/5</span> 札幌2歳S</a>
+    <a href="#shion"><span class="d">9/6</span> 紫苑S</a>
+    <a href="#centaur"><span class="d">9/6</span> セントウルS</a>
+    <a href="#sat-nakayama"><span class="d">9/5</span> 中山</a>
+    <a href="#sat-hanshin"><span class="d">9/5</span> 阪神</a>
+    <a href="#sat-sapporo"><span class="d">9/5</span> 札幌</a>
+  </nav>
+
+  <!-- ============ 京成杯AH ============ -->
+  <section class="race" id="keisei">
+    <div class="race-head">
+      <h2>京成杯オータムハンデ<span class="grade">G3</span></h2>
+      <div class="cond">
+        <span>9/5（土）15:45</span><span class="sep">|</span>
+        <span>中山 芝1600m 外</span><span class="sep">|</span>
+        <span>ハンデ</span><span class="sep">|</span>
+        <span>16頭確定</span>
+      </div>
+    </div>
+
+    <div class="pace">
+      <b>展開</b>
+      逃げ・先行馬が<strong>外に固まった</strong>。メタルスピード（<span class="num">7</span>枠<span class="num">13</span>番／全<span class="num">40</span>走で逃げ<span class="num">7</span>・先行<span class="num">20</span>）、
+      クランフォード（<span class="num">6</span>枠<span class="num">11</span>番／関屋記念を<span class="num">1-1</span>で<span class="num">2</span>着）、
+      ディールメーカー（<span class="num">6</span>枠<span class="num">12</span>番／ラジオNIKKEI賞<span class="num">1-1-1-1</span>）、
+      テレサ（<span class="num">8</span>枠<span class="num">15</span>番）の4頭が外から先手を主張する形。
+      中山芝1600m外回りは1コーナーまで約<span class="num">240</span>mしかなく、この4頭は外を回らされて脚を使う。
+      内で唯一前に行けるのがミナデオロ（<span class="num">1</span>枠<span class="num">2</span>番）で、ロスなく<span class="num">2</span>〜<span class="num">3</span>番手を取れる。
+      前半が締まる分、差しは利く。ただし直線<span class="num">310</span>mでは後方一気までは届きにくく、<strong>好位差しが最も有利な隊列</strong>。
+      木曜時点で前に行くと見ていたブラウンラチェットは<strong>除外</strong>となった。
+    </div>
+
+    <div class="horses">
+      <div class="horse honmei">
+        <div class="mark">◎</div>
+        <div>
+          <p class="name">レザベーション</p>
+          <p class="spec"><span>5枠9番</span><span>牡3</span><span>55.0kg</span><span>原優介</span></p>
+        </div>
+        <p class="why">
+          NZT（中山芝1600m外）勝ち、NHKマイルC<span class="num">6</span>着<span class="num">0.5</span>差。
+          いずれも<strong>2-2の先行策</strong>で、この舞台のコース実績が明確。
+          <strong>3歳55kgは古馬58kg勢に対する実質的なアドバンテージ</strong>で、ハンデ戦の3歳馬は例年このレースで走る。
+          <strong>枠は<span class="num">9</span>番。</strong>16頭立ての真ん中で、外<span class="num">4</span>頭の先手争いに巻き込まれずに好位が取れる。
+          NZTを<span class="num">3</span>番枠から<span class="num">2-2-2</span>で勝った形をほぼそのまま再現できる位置で、今回の隊列とは噛み合う。
+          中<span class="num">16</span>週の休み明けが唯一の不安。
+        </p>
+      </div>
+
+      <div class="horse taikou">
+        <div class="mark">○</div>
+        <div>
+          <p class="name">ディールメーカー</p>
+          <p class="spec"><span>6枠12番</span><span>牡3</span><span>54.0kg</span><span>横山武史</span></p>
+        </div>
+        <p class="why">
+          ラジオNIKKEI賞を<strong>1-1-1-1の逃げ</strong>で<span class="num">2</span>着<span class="num">0.2</span>差。
+          中山芝1600m外で1勝クラス勝ち、NZT<span class="num">4</span>着。
+          <strong>54kgは16頭中の最軽量</strong>で、ハンデの利は最も大きい。
+          ただし<span class="num">12</span>番枠を引き、外にメタルスピード・テレサを置く形になった。
+          楽にハナは取れず、NZTで<span class="num">14</span>番枠から<span class="num">3-3-3</span>と好位に控えた形が現実的なところ。
+          その形でも<span class="num">4</span>着<span class="num">0.3</span>差にまとめており、対抗は動かさない。
+        </p>
+      </div>
+
+      <div class="horse anaba">
+        <div class="mark">▲</div>
+        <div>
+          <p class="name">ミナデオロ</p>
+          <p class="spec"><span>1枠2番</span><span>牡5</span><span>56.0kg</span><span>M.ミシェル</span></p>
+        </div>
+        <p class="why">
+          <strong>枠順を見て単穴に引き上げた。</strong>全<span class="num">17</span>走で逃げ<span class="num">2</span>・先行<span class="num">10</span>、平均序盤位置<span class="num">0.23</span>の生粋の先行馬で、
+          <strong>今回の隊列で内から前を取れる唯一の馬</strong>。外<span class="num">4</span>頭が先手を争って脚を使う分、<span class="num">2</span>番枠のロスのなさが効く。
+          前走・中京記念（G3）は<span class="num">2-2-2</span>から<span class="num">5</span>着<span class="num">0.2</span>差、その前の花のみちS（3勝クラス）は
+          <strong>58.0kgを背負って<span class="num">1-1</span>で押し切り</strong>。今回<span class="num">56.0</span>kgは<span class="num">2</span>kg減。
+          中山芝1600mは未経験で、そこだけが割引材料。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ファンダム</p>
+          <p class="spec"><span>3枠6番</span><span>牡4</span><span>57.0kg</span><span>戸崎圭太</span></p>
+        </div>
+        <p class="why">
+          中山芝1600mは<span class="num">[2-0-1-0]</span>で崩れたことがない（新馬・ジュニアC勝ち、ニューイヤーS<span class="num">3</span>着<span class="num">0.1</span>差）。
+          しらさぎS<span class="num">4</span>着<span class="num">0.1</span>差。<span class="num">6</span>番枠は好位差しに理想的な位置。
+          堅実に走るが、勝ち切るための決め手を欠く。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">フォルテアンジェロ</p>
+          <p class="spec"><span>2枠4番</span><span>牡3</span><span>55.0kg</span><span>D.レーン</span></p>
+        </div>
+        <p class="why">
+          <strong>単穴から連下に下げた。</strong>能力評価は変えていない——皐月賞<span class="num">5</span>着は<span class="num">17-16-15-13</span>から上がり<span class="num">33.4</span>、
+          ホープフルS<span class="num">2</span>着<span class="num">0.1</span>差で、中山2000mの実績は出走馬中で最上位。
+          下げたのは<strong>枠と脚質が噛み合わなかった</strong>ため。全<span class="num">5</span>走の平均序盤位置<span class="num">0.58</span>と後方から運ぶ馬が
+          <span class="num">2</span>枠<span class="num">4</span>番に入り、16頭立ての内でじっと待つ形になる。
+          中山マイルの直線<span class="num">310</span>mで内から進路を作るのは容易ではない。
+          <strong>マイルが初挑戦</strong>という課題も残ったままで、前が総崩れになる展開待ちの一頭。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">エコロブルーム</p>
+          <p class="spec"><span>4枠7番</span><span>牡5</span><span>58.0kg</span><span>武豊</span></p>
+        </div>
+        <p class="why">
+          前走・安土城S（L）を<span class="num">17</span>番枠から<span class="num">2-2</span>で押し切り。<span class="num">7</span>番枠は好位を取りやすく、枠の利はある。
+          ただし<strong>トップハンデ58.0kg</strong>が課題で、中山マイルのNZT勝ちは2024年とやや古い。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ヴァルキリーバース</p>
+          <p class="spec"><span>5枠10番</span><span>牝4</span><span>55.5kg</span><span>C.ルメール</span></p>
+        </div>
+        <p class="why">
+          東風S（中山マイル<span class="num">1:32.0</span>）を<span class="num">5</span>番枠から<span class="num">5-5-4</span>で勝っており、好位差しの形は今回の隊列に合う。
+          ただし<strong>前走・府中牝馬S<span class="num">14</span>着<span class="num">2.5</span>差</strong>の内容が悪すぎる。立て直せているかが全て。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ エニフS ============ -->
+  <section class="race" id="enif">
+    <div class="race-head">
+      <h2>エニフステークス<span class="grade">L</span></h2>
+      <div class="cond">
+        <span>9/5（土）15:30</span><span class="sep">|</span>
+        <span>阪神 ダート1400m</span><span class="sep">|</span>
+        <span>ハンデ</span><span class="sep">|</span>
+        <span>12頭確定</span>
+      </div>
+    </div>
+
+    <div class="pace">
+      <b>展開</b>
+      明確な逃げ馬はマニバドラ（<span class="num">5</span>枠<span class="num">5</span>番／全<span class="num">21</span>走で逃げ<span class="num">8</span>、平均序盤位置<span class="num">0.18</span>）ただ1頭で、
+      <strong>単騎逃げの公算が大きい</strong>。グランキングオー（<span class="num">6</span>枠<span class="num">7</span>番）・ゴッドブルービー（<span class="num">4</span>枠<span class="num">4</span>番）・
+      リジル（<span class="num">8</span>枠<span class="num">11</span>番）が続く隊列。
+      阪神ダ1400mはスタートが芝部分からで外枠のほうが芝を長く走れるが、<span class="num">12</span>頭立てなら差は小さい。
+      12頭・単騎逃げなら前半は締まらず、<strong>追込一手の馬には忙しい流れ</strong>になる。
+    </div>
+
+    <div class="horses">
+      <div class="horse honmei">
+        <div class="mark">◎</div>
+        <div>
+          <p class="name">ルークススペイ</p>
+          <p class="spec"><span>7枠10番</span><span>牡4</span><span>56.0kg</span><span>川田将雅</span></p>
+        </div>
+        <p class="why">
+          <strong>阪神ダ1400mが<span class="num">[2-1-0-1]</span></strong>と、この舞台の実績が出走馬中で最も濃い。
+          天満橋S（3勝クラス）を<span class="num">16</span>番枠から<span class="num">6-7</span>で差し切って<span class="num">1:22.4</span>、
+          前走・天保山S（OP）は<span class="num">4-4</span>の先行から<span class="num">6</span>着<span class="num">0.8</span>差。
+          前にも後ろにも置ける自在さがあり、<span class="num">10</span>番枠から単騎逃げの<span class="num">3</span>〜<span class="num">4</span>番手を取れる。
+        </p>
+      </div>
+
+      <div class="horse taikou">
+        <div class="mark">○</div>
+        <div>
+          <p class="name">ノーブルロジャー</p>
+          <p class="spec"><span>2枠2番</span><span>牡5</span><span>58.0kg</span><span>岩田望来</span></p>
+        </div>
+        <p class="why">
+          コーラルS（L・阪神ダ1400）<span class="num">4</span>着<span class="num">0.6</span>差<span class="num">1:23.0</span>、天保山S<span class="num">5</span>着<span class="num">0.8</span>差、欅S<span class="num">3</span>着。
+          <strong>この3走はいずれも<span class="num">59.0</span>kgを背負っての着順</strong>で、今回<span class="num">58.0</span>kgは<span class="num">1</span>kg減。
+          近走は<span class="num">12-12</span>・<span class="num">14-13</span>と後方から運んでおり、<span class="num">2</span>番枠で包まれるとロスが出る点だけ割引。
+        </p>
+      </div>
+
+      <div class="horse anaba">
+        <div class="mark">▲</div>
+        <div>
+          <p class="name">ペイシャケイプ</p>
+          <p class="spec"><span>5枠6番</span><span>牡4</span><span>56.0kg</span><span>横山典弘</span></p>
+        </div>
+        <p class="why">
+          平均序盤位置<span class="num">0.90</span>の完全な追込型。欅S（OP）は<span class="num">16-16</span>から上がり<span class="num">34.4</span>で<span class="num">2</span>着、
+          鎌倉S（3勝クラス）は<span class="num">14-14</span>から差し切り。<strong>末脚だけなら出走馬中で最上位</strong>。
+          ただし単騎逃げで流れが緩むと届かず、阪神ダ1400mも鳴門S<span class="num">6</span>着<span class="num">0.7</span>差にとどまる。展開次第の一頭。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">マニバドラ</p>
+          <p class="spec"><span>5枠5番</span><span>牡6</span><span>57.0kg</span><span>西村淳也</span></p>
+        </div>
+        <p class="why">
+          唯一の逃げ馬で、京葉S（L）は<span class="num">3-3</span>から<span class="num">3</span>着<span class="num">0.2</span>差。単騎で行ければ粘り込む形。
+          ただし主戦場は1200mで、<strong>1400mは距離延長</strong>。前走・福島テレビ賞<span class="num">16</span>着<span class="num">2.3</span>差の大敗も気になる。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ゴッドブルービー</p>
+          <p class="spec"><span>4枠4番</span><span>牡6</span><span>55.0kg</span><span>松山弘平</span></p>
+        </div>
+        <p class="why">
+          薩摩S（3勝クラス）勝ち、阿蘇S（OP）<span class="num">5</span>着<span class="num">0.7</span>差。<span class="num">55.0</span>kgの軽ハンデは魅力。
+          ただし勝ち鞍はダ1700mに偏っており、1400mは東大路S<span class="num">6</span>着<span class="num">0.7</span>差止まり。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 札幌2歳S ============ -->
+  <section class="race" id="sapporo">
+    <div class="race-head">
+      <h2>札幌2歳ステークス<span class="grade">G3</span></h2>
+      <div class="cond">
+        <span>9/5（土）15:20</span><span class="sep">|</span>
+        <span>札幌 芝1800m</span><span class="sep">|</span>
+        <span>馬齢</span><span class="sep">|</span>
+        <span>9頭確定</span>
+      </div>
+    </div>
+
+    <div class="pace">
+      <b>展開</b>
+      <strong>木曜に本命としていたノヴァヴェローチェが回避し、<span class="num">12</span>頭登録から<span class="num">9</span>頭立てになった。</strong>
+      逃げ馬はコスモハナミズキ（<span class="num">4</span>枠<span class="num">4</span>番）<strong>1頭だけ</strong>で、
+      同馬は<span class="num">3</span>走のうち<span class="num">2</span>走で<span class="num">1-1</span>のハナを取っている。<strong>単騎逃げが濃厚</strong>。
+      札幌芝1800m（Cコース）はスタンド前発走で1コーナーまで約<span class="num">185</span>mしかなく、外枠は位置取りでロスが出る。
+      <span class="num">9</span>頭立て・単騎逃げ・短い1角までの距離という3つが重なり、<strong>内〜中の先行勢がそのまま残る隊列</strong>を想定する。
+      後方から運ぶ馬には最も向かない形。
+    </div>
+
+    <div class="horses">
+      <div class="horse honmei">
+        <div class="mark">◎</div>
+        <div>
+          <p class="name">ショウナンガレオン</p>
+          <p class="spec"><span>2枠2番</span><span>牡2</span><span>55.0kg</span><span>鮫島克駿</span></p>
+        </div>
+        <p class="why">
+          <strong>対抗から本命に上げた。</strong>ノヴァヴェローチェの回避で、実績最上位が繰り上がった形。
+          函館芝1800mの新馬を<span class="num">3-3-2-2</span>、上がり<span class="num">34.5</span>で<span class="num">0.4</span>秒差の完勝、時計<span class="num">1:47.6</span>は洋芝の2歳戦としては優秀。
+          <span class="num">2</span>番枠は1コーナーまでが短いこのコースで最も無駄がなく、先行力とも噛み合う。
+          ただし木曜に書いた懸念はそのまま残る——<strong>実績は<span class="num">5</span>頭立ての1走のみ</strong>で、揉まれる競馬は未経験。
+          頭数が<span class="num">9</span>頭に減ったことは、この馬にとってはむしろ追い風。
+        </p>
+      </div>
+
+      <div class="horse taikou">
+        <div class="mark">○</div>
+        <div>
+          <p class="name">ハヤブサカツオー</p>
+          <p class="spec"><span>6枠6番</span><span>牡2</span><span>55.0kg</span><span>吉田隼人</span></p>
+        </div>
+        <p class="why">
+          <strong>新規に対抗へ。</strong><span class="num">8</span>月<span class="num">16</span>日の<strong>札幌芝1800m</strong>の新馬を<span class="num">12</span>頭立てで<span class="num">3</span>着<span class="num">0.3</span>差、
+          通過は<span class="num">5-4-2-2</span>で、向正面から<span class="num">2</span>番手まで押し上げて粘っている。
+          <strong>同一コース・同一距離を実際に走った経験</strong>は、ノヴァヴェローチェ不在のいま出走馬中で最も価値がある。
+          <span class="num">6</span>番枠から先行できる脚質は、単騎逃げが緩む今回の隊列と合う。馬体<span class="num">520</span>kgの大型で、洋芝の力が要る馬場も苦にしない。
+        </p>
+      </div>
+
+      <div class="horse anaba">
+        <div class="mark">▲</div>
+        <div>
+          <p class="name">イドム</p>
+          <p class="spec"><span>7枠7番</span><span>牡2</span><span>55.0kg</span><span>松本大輝</span></p>
+        </div>
+        <p class="why">
+          <strong>札幌芝1800mを<span class="num">2</span>回走っており、舞台経験は出走馬中で最多。</strong>
+          前走の未勝利は<span class="num">4-3-3-3</span>から<span class="num">2</span>着<span class="num">0.3</span>差、新馬も<span class="num">5-4-5-4</span>で<span class="num">5</span>着<span class="num">0.5</span>差と、
+          いずれも前々で運んで大きくは崩れていない。前走は馬体<span class="num">+10</span>kgの<span class="num">436</span>kgで成長分もうかがえる。
+          未勝利のままオープンに出てくる立場で格は最も低いが、<strong>コース経験と先行力の2点で、この隊列なら侮れない</strong>。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">コスモハナミズキ</p>
+          <p class="spec"><span>4枠4番</span><span>牝2</span><span>55.0kg</span><span>佐々木大輔</span></p>
+        </div>
+        <p class="why">
+          <strong>連下のまま据え置くが、評価の中身は上がった。</strong>唯一の逃げ馬が<span class="num">4</span>番枠に入り、単騎逃げがほぼ確定したため。
+          コスモス賞（札幌芝1800m・OP）は<span class="num">1-1-2-1</span>で<span class="num">3</span>着<span class="num">1.0</span>差と離されたが、
+          福島の未勝利は<span class="num">1-1-1-1</span>で押し切っている。<span class="num">9</span>頭立てで誰も競りかけて来ないなら、残す形はある。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">テンカタイヘイ</p>
+          <p class="spec"><span>8枠8番</span><span>牡2</span><span>55.0kg</span><span>丹内祐次</span></p>
+        </div>
+        <p class="why">
+          <strong>単穴から連下に下げた。</strong>能力の見立ては変えていない——
+          <strong>重馬場・<span class="num">14</span>頭立て</strong>の函館新馬を<span class="num">8-10-10-8</span>から上がり<span class="num">36.6</span>で差し切っており、
+          多頭数とタフな馬場を捌いた経験は依然としてこの面子で貴重。
+          下げたのは<strong>枠と展開の両方が向かなくなった</strong>ため。後方から運ぶ馬が<span class="num">8</span>枠<span class="num">8</span>番に入り、
+          1コーナーまで<span class="num">185</span>mでは外を回るロスが確定する。そのうえ<span class="num">9</span>頭立ての単騎逃げでは前が止まらない。
+          洋芝を知る丹内騎手の手綱は心強いが、差し損ねる形が最も濃い。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 紫苑S ============ -->
+  <section class="race" id="shion">
+    <div class="race-head">
+      <h2>紫苑ステークス<span class="grade">G2</span></h2>
+      <div class="cond">
+        <span>9/6（日）15:45</span><span class="sep">|</span>
+        <span>中山 芝2000m</span><span class="sep">|</span>
+        <span>3歳牝馬・馬齢</span><span class="sep">|</span>
+        <span>11頭確定</span><span class="sep">|</span>
+        <span>秋華賞トライアル（3着まで優先出走権）</span>
+      </div>
+    </div>
+
+    <div class="pace">
+      <b>展開</b>
+      前に行く馬は<span class="num">3</span>頭。リアライズルミナス（<span class="num">3</span>枠<span class="num">3</span>番／前走・燕特別を<span class="num">1-1-1-1</span>）、
+      ナイスプレーアスク（<span class="num">7</span>枠<span class="num">8</span>番／全<span class="num">7</span>走で逃げ<span class="num">3</span>、前走を<span class="num">1-1-1-1</span>で勝利）、
+      ベンヴェヌータ（<span class="num">8</span>枠<span class="num">11</span>番／平均序盤位置<span class="num">0.15</span>）。
+      中山芝2000mは1コーナーまで約<span class="num">405</span>mあるので、<span class="num">11</span>頭立てなら外枠でも位置は取れるが、
+      最もロスなく前に行けるのは<span class="num">3</span>番枠のリアライズルミナス。
+      <span class="num">11</span>頭立てのトライアルで先手を強く主張する理由もなく、<strong>流れは落ち着き、位置取りがそのまま結果に出る</strong>形。
+      後方待機の馬（ジワタネホ<span class="num">1</span>番＝平均序盤位置<span class="num">0.94</span>、サムシングスイート<span class="num">2</span>番＝<span class="num">0.71</span>）には最も向かない。
+    </div>
+
+    <div class="horses">
+      <div class="horse honmei">
+        <div class="mark">◎</div>
+        <div>
+          <p class="name">ドリームコア</p>
+          <p class="spec"><span>7枠9番</span><span>牝3</span><span>55.0kg</span><span>C.ルメール</span></p>
+        </div>
+        <p class="why">
+          <strong>オークス2着（同着・<span class="num">0.0</span>差）</strong>、クイーンC勝ち。能力が一枚抜けている。
+          オークスは<span class="num">4-4-3-3</span>から上がり<span class="num">34.3</span>と立ち回りも上手い。
+          <strong>枠は<span class="num">9</span>番。</strong><span class="num">11</span>頭立ての中山2000mで、好位差しには最も乗りやすい位置に入った。
+          前に行く<span class="num">3</span>頭を見ながら運べて、直線で外に持ち出す進路も作れる。本命は動かさない。
+          中<span class="num">14</span>週の休み明けと中山初コースが唯一の穴。
+        </p>
+      </div>
+
+      <div class="horse taikou">
+        <div class="mark">○</div>
+        <div>
+          <p class="name">リアライズルミナス</p>
+          <p class="spec"><span>3枠3番</span><span>牝3</span><span>55.0kg</span><span>津村明秀</span></p>
+        </div>
+        <p class="why">
+          <strong>オークス4着はドリームコアと<span class="num">0.1</span>差</strong>、フローラS<span class="num">3</span>着<span class="num">0.3</span>差。
+          前走の燕特別は<span class="num">1-1-1-1</span>で<span class="num">3</span>着<span class="num">0.1</span>差。
+          <strong>枠順を見て評価はさらに上がった</strong>——<span class="num">3</span>番枠は、先手を主張する<span class="num">3</span>頭のなかで最もロスなく前を取れる位置。
+          外の<span class="num">8</span>番・<span class="num">11</span>番が動く前にすんなり先頭あるいは<span class="num">2</span>番手を確保できる。
+          流れが落ち着く<span class="num">11</span>頭立てで、秋華賞の権利を確実に取りに来る立場。
+        </p>
+      </div>
+
+      <div class="horse anaba">
+        <div class="mark">▲</div>
+        <div>
+          <p class="name">ベンヴェヌータ</p>
+          <p class="spec"><span>8枠11番</span><span>牝3</span><span>55.0kg</span><span>石橋脩</span></p>
+        </div>
+        <p class="why">
+          <strong>連下から単穴に引き上げた。</strong>理由は枠と展開の噛み合いが読めたこと。
+          <strong>中山芝2000mは<span class="num">[2-0-0-0]</span></strong>で、ミモザ賞を<span class="num">1-1-1-1</span>で逃げ切って2戦2勝。
+          平均序盤位置<span class="num">0.15</span>と、出走馬中で最も前に行ける馬である。
+          <span class="num">8</span>枠<span class="num">11</span>番は一見不利だが、中山2000mは1コーナーまで<span class="num">405</span>mあり、
+          <span class="num">11</span>頭立てなら大外からでも無理なく好位は取れる。位置取りがものを言う流れで、舞台実績が全勝という点を買う。
+          中<span class="num">23</span>週の休み明けと一気の相手強化が課題。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ジッピーチューン</p>
+          <p class="spec"><span>8枠10番</span><span>牝3</span><span>55.0kg</span><span>北村友一</span></p>
+        </div>
+        <p class="why">
+          <strong>単穴から連下に下げた。</strong>桜花賞<span class="num">3</span>着<span class="num">0.5</span>差は<span class="num">17-17</span>の最後方から上がり<span class="num">33.7</span>の豪脚で、
+          能力の評価は変えていない。下げたのは<strong>後方一気の脚質が、この枠とこの頭数で最も報われにくい</strong>ため。
+          <span class="num">8</span>枠<span class="num">10</span>番から後方に置いて外を回る形になり、流れが落ち着く<span class="num">11</span>頭立てでは差が詰まらない。
+          <strong>中<span class="num">21</span>週の休み明けと2000m初挑戦</strong>という課題も残ったまま。前が総崩れなら台頭する。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">サムシングスイート</p>
+          <p class="spec"><span>2枠2番</span><span>牝3</span><span>55.0kg</span><span>団野大成</span></p>
+        </div>
+        <p class="why">
+          前走・中京の1勝クラス（芝2000m）を上がり<span class="num">33.7</span>で勝利。スイートピーS<span class="num">4</span>着<span class="num">0.6</span>差。
+          平均序盤位置<span class="num">0.71</span>と後方寄りで、<span class="num">2</span>番枠だと進路の選択肢が限られる。上がり勝負に振れたときだけ。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ セントウルS ============ -->
+  <section class="race" id="centaur">
+    <div class="race-head">
+      <h2>セントウルステークス<span class="grade">G2</span></h2>
+      <div class="cond">
+        <span>9/6（日）15:30</span><span class="sep">|</span>
+        <span>阪神 芝1200m</span><span class="sep">|</span>
+        <span>別定</span><span class="sep">|</span>
+        <span>17頭登録 → 16頭確定</span>
+      </div>
+    </div>
+
+    <div class="pace">
+      <b>展開</b>
+      <strong>前に行く馬が内〜中に固まった。</strong>クラスペディア（<span class="num">1</span>枠<span class="num">2</span>番／平均序盤位置<span class="num">0.19</span>）、
+      フリッカージャブ（<span class="num">2</span>枠<span class="num">3</span>番／<span class="num">0.11</span>）、メイショウヨゾラ（<span class="num">4</span>枠<span class="num">7</span>番／全<span class="num">16</span>走で逃げ<span class="num">8</span>）、
+      ピューロマジック（<span class="num">5</span>枠<span class="num">9</span>番／全<span class="num">20</span>走で逃げ<span class="num">13</span>）の<span class="num">4</span>頭。
+      阪神芝1200mは向正面のポケット発走から3コーナーまで下りが続き、もともと前半が速くなるコース。
+      そこへ先行馬が<span class="num">4</span>頭も内に詰まったので、<strong>前半はかなり流れる</strong>と見る。
+      ハナはピューロマジックが<span class="num">9</span>番枠から主張して単騎、フリッカージャブが<span class="num">3</span>番枠の内ラチ沿いで<span class="num">2</span>番手。
+      差し勢は<span class="num">13</span>〜<span class="num">16</span>番の外に置かれており、外を回っても脚が溜まるぶん、<strong>終いは確実に届く形</strong>。
+      スプリンターズSへの前哨戦。
+    </div>
+
+    <div class="horses">
+      <div class="horse honmei">
+        <div class="mark">◎</div>
+        <div>
+          <p class="name">フリッカージャブ</p>
+          <p class="spec"><span>2枠3番</span><span>牡4</span><span>57.0kg</span><span>松山弘平</span></p>
+        </div>
+        <p class="why">
+          北九州記念（重馬場）を<span class="num">2-1</span>で勝ち、鞍馬Sの<strong><span class="num">1:06.4</span>は破格の時計</strong>、オーシャンS<span class="num">6</span>着<span class="num">0.3</span>差。
+          1200mでの安定感が出走馬中で最上位で、近<span class="num">5</span>走<span class="num">4</span>勝の充実期。
+          <strong>枠は<span class="num">3</span>番。</strong>平均序盤位置<span class="num">0.11</span>の馬が最内寄りに入り、
+          ピューロマジックを行かせて内ラチ沿いの<span class="num">2</span>番手という、近2走の勝ちパターンをそのまま踏める。
+          前が速くなっても、内で脚を溜められる位置は最も有利。本命は動かさない。
+        </p>
+      </div>
+
+      <div class="horse taikou">
+        <div class="mark">○</div>
+        <div>
+          <p class="name">ダイヤモンドノット</p>
+          <p class="spec"><span>3枠5番</span><span>牡3</span><span>55.0kg</span><span>川田将雅</span></p>
+        </div>
+        <p class="why">
+          朝日杯FS<span class="num">2</span>着<span class="num">0.1</span>差、ファルコンS勝ち、NHKマイルC<span class="num">5</span>着<span class="num">0.5</span>差。格は最上位で3歳55kgも有利。
+          <span class="num">5</span>番枠は先行勢の直後を取れる位置で、枠に不満はない。
+          ただし<strong>1200mは<span class="num">2</span>歳新馬の<span class="num">1</span>走のみ</strong>（<span class="num">3</span>着<span class="num">0.3</span>差）で、以降は1400〜1600m。
+          先行馬<span class="num">4</span>頭が飛ばす流れでの距離短縮が最大の関門。克服すれば勝ち負け、忙しければ取りこぼす。
+        </p>
+      </div>
+
+      <div class="horse anaba">
+        <div class="mark">▲</div>
+        <div>
+          <p class="name">ピューロマジック</p>
+          <p class="spec"><span>5枠9番</span><span>牝5</span><span>55.0kg</span><span>岩田望来</span></p>
+        </div>
+        <p class="why">
+          アイビスSD勝ち（<span class="num">0:53.5</span>）、函館SS勝ちと重賞2勝で、いずれも<span class="num">1</span>番手からの押し切り。
+          <span class="num">9</span>番枠は、内の<span class="num">3</span>頭に絡まれずハナを主張できる位置で、<strong>単騎逃げの形は作りやすくなった</strong>。
+          ただし<strong>逃げ切るか大敗かの両極端</strong>で、高松宮記念<span class="num">13</span>着<span class="num">1.4</span>差・オーシャンS<span class="num">16</span>着<span class="num">1.3</span>差も同じ馬。
+          阪神芝1200mは<span class="num">[0-2-0-0]</span>で勝ち切れていない点も引っかかる。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ママコチャ</p>
+          <p class="spec"><span>1枠1番</span><span>牝7</span><span>56.0kg</span><span>武豊</span></p>
+        </div>
+        <p class="why">
+          <strong>昨年のこのレースを<span class="num">3</span>番枠から<span class="num">4-3</span>で運んで<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">1:07.5</span>）。</strong>
+          今年は最内<span class="num">1</span>番枠で、先行タイプ（平均序盤位置<span class="num">0.33</span>）にとってはロスなく同じ形を再現できる。
+          2023年スプリンターズS勝ち馬で、オーシャンS<span class="num">4</span>着<span class="num">0.1</span>差も残る。
+          ただし近走は<strong>ダート路線</strong>（さきたま杯<span class="num">5</span>着、東京スプリント<span class="num">5</span>着）で、7歳での芝復帰という不確定要素は大きい。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">タマモイカロス</p>
+          <p class="spec"><span>8枠16番</span><span>牡3</span><span>55.0kg</span><span>池添謙一</span></p>
+        </div>
+        <p class="why">
+          <strong>枠順を見て新たに加えた。</strong><strong>阪神芝1200mは<span class="num">[1-0-0-0]</span></strong>——
+          マーガレットS（L）を<span class="num">7-7</span>から上がり<span class="num">33.3</span>、<span class="num">1:08.0</span>で勝っている。
+          葵S（G3）<span class="num">3</span>着<span class="num">0.2</span>差、CBC賞は<span class="num">17</span>番枠から<span class="num">11-11</span>で<span class="num">6</span>着<span class="num">0.6</span>差。
+          平均序盤位置<span class="num">0.49</span>の差し脚質が<strong>大外<span class="num">16</span>番</strong>に入り、内で<span class="num">4</span>頭が競り合う流れを外から眺めて進める。
+          <strong>前が速くなるほど台頭する枠と脚質</strong>で、3歳55kgの斤量利もある。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ファストネットワーク</p>
+          <p class="spec"><span>4枠8番</span><span>セ6</span><span>57.0kg</span><span>D.レーン</span></p>
+        </div>
+        <p class="why">
+          香港・シャティンでチェアマンズスプリントプライズ<span class="num">4</span>着、センテナリースプリントC<span class="num">3</span>着の国際G1級。
+          能力は上位だが<strong>中<span class="num">18</span>週の休み明けかつ初来日</strong>で、状態と輸送が読めない。
+          日本での通過順のデータがなく、<span class="num">8</span>番枠でどう運ぶかも未知数。
+        </p>
+      </div>
+
+      <div class="horse">
+        <div class="mark">△</div>
+        <div>
+          <p class="name">ヨシノイースター</p>
+          <p class="spec"><span>6枠11番</span><span>牡8</span><span>57.0kg</span><span>田辺裕信</span></p>
+        </div>
+        <p class="why">
+          北九州記念<span class="num">3</span>着<span class="num">0.1</span>差、安土城S<span class="num">4</span>着<span class="num">0.2</span>差。昨年のセントウルSも<span class="num">7</span>着<span class="num">0.4</span>差にまとめている。
+          阪神芝1200mは<span class="num">[1-2-0-3]</span>。<span class="num">11</span>番枠は中団を取りやすく、8歳だが崩れない。人気を落とすなら押さえておきたい。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9/5（土）全レース ============ -->
+  <section class="dayband" id="d-sat">
+    <h2>9月5日（土）</h2>
+    <p>中山4回1日目 / 阪神4回1日目 / 札幌2回5日目 &nbsp;—&nbsp; 枠順確定（金 16:10 取得）</p>
+  </section>
+
+  <!-- ---- 中山 ---- -->
+  <p class="venue" id="sat-nakayama">中山</p>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">1R</span>
+      <span>
+        <span class="rtitle">3歳以上障害オープン</span>
+        <span class="rsub">10:05 / 障3200m / 別定 / 8頭 &nbsp;·&nbsp; <span class="pick">◎コンテナワールド</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げるのは<strong>コンテナワールド</strong>（<span class="num">4</span>枠<span class="num">4</span>番）。中山新春ジャンプSと京都の障害OPを
+        いずれも<span class="num">1-1-1-1</span>で勝っており、<span class="num">8</span>頭立てなら楽に主導権を握れる。
+        バニーラビット（<span class="num">1</span>枠<span class="num">1</span>番／前走<span class="num">2-2-1-1</span>）と
+        サングラデーション（<span class="num">7</span>枠<span class="num">7</span>番／同<span class="num">2-2-1-1</span>）が続く隊列。
+        障害戦は最初の障害までの距離が長く枠の有利不利は平地ほど大きくないが、少頭数のぶん外を回るロスは避けたい。
+        差しに構えるメイショウアツイタ（<span class="num">3</span>枠<span class="num">3</span>番）とヒットアンドロール（<span class="num">6</span>枠<span class="num">6</span>番）は、
+        前が止まらないと届かない形。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">コンテナワールド</p>
+            <p class="spec"><span>4枠4番</span><span>牡5</span><span>59.0kg</span><span>▲井上敏樹</span></p>
+          </div>
+          <p class="why">
+            中山の障<span class="num">3200</span>mは<span class="num">[1-0-1-1]</span>。
+            2026/01/05 中山新春ジャンプS（OP）を<span class="num">1-1-1-1</span>で<span class="num">1</span>着<span class="num">0.4</span>差、
+            4月の中山OPも<span class="num">3-3-3-3</span>から<span class="num">3</span>着<span class="num">0.3</span>差。
+            5月の京都障害OPは<span class="num">1-1-1-1</span>で<span class="num">1</span>着<span class="num">0.2</span>差と、<strong>逃げて止まらない形が固まった</strong>。
+            前走ソレイユジャンプS（小倉障<span class="num">3390</span>m）も<span class="num">4-3-2-2</span>から<span class="num">4</span>着<span class="num">0.7</span>差で崩れていない。
+            斤<span class="num">59.0</span>kgはOP勝ちによる加増だが、▲井上の<span class="num">3</span>kg減で相殺されている。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">メイショウアツイタ</p>
+            <p class="spec"><span>3枠3番</span><span>牡8</span><span>60.0kg</span><span>難波剛健</span></p>
+          </div>
+          <p class="why">
+            2026/05 京都ハイジャンプ（JGII）<span class="num">3</span>着<span class="num">1.2</span>差、
+            2026/03 阪神スプリングJ（JGII）<span class="num">4</span>着<span class="num">0.4</span>差と、<strong>重賞で通用する格は出走馬中で最上位</strong>。
+            中山も2025/09 清秋ジャンプS（OP）<span class="num">4</span>着<span class="num">0.5</span>差、2025/01 中山新春ジャンプS<span class="num">6</span>着<span class="num">2.5</span>差、
+            2025/12 中山大障害（JGI）<span class="num">7</span>着<span class="num">3.3</span>差と走っている。
+            ただし通算<span class="num">35</span>戦で<span class="num">1</span>勝、8歳で勝ち味に遅く、勝ち切る形が見えないぶん対抗まで。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">サングラデーション</p>
+            <p class="spec"><span>7枠7番</span><span>セ6</span><span>60.0kg</span><span>上野翔</span></p>
+          </div>
+          <p class="why">
+            障害転向後は<span class="num">3</span>戦<span class="num">[1-1-1-0]</span>と崩れていない。
+            前走2026/07/25 新潟の障害OPは<span class="num">2-2-1-1</span>から<span class="num">2</span>着<span class="num">0.8</span>差で、
+            上がり<span class="num">12.8</span>はメンバー最速。飛越が安定してきた。
+            <strong>中山の障害コースは未経験</strong>で、襷コースを走ったことがない点だけが割引材料。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ヒットアンドロール</p>
+            <p class="spec"><span>6枠6番</span><span>牡5</span><span>60.0kg</span><span>大江原圭</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/08 中京の障害OPで<span class="num">2</span>着<span class="num">0.2</span>差、<span class="num">7-6-5-5</span>から上がり<span class="num">13.3</span>の差し。
+            2026/01/12に中山障<span class="num">2880</span>mで<span class="num">1</span>着<span class="num">0.2</span>差があり中山経験はあるが、
+            障<span class="num">3200</span>mは今年4月に<span class="num">6</span>着<span class="num">1.3</span>差。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">2R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">10:40 / 芝1600m 外 / 馬齢 / 16頭 &nbsp;·&nbsp; <span class="pick">◎バンオンタイム</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げ候補はセルリア（<span class="num">8</span>枠<span class="num">16</span>番／直近2走とも<span class="num">1-1</span>）とラグアイリータ（<span class="num">3</span>枠<span class="num">6</span>番／東京芝1800を<span class="num">1-1-1</span>）。
+        中山芝1600m外回りは1コーナーまで約<span class="num">240</span>mしかなく、<strong>大外<span class="num">16</span>番から先手を主張すると脚を使う</strong>。
+        内から前を取れるラグアイリータが主導権を握る形が現実的で、<strong>ペースは締まらない</strong>。
+        バンオンタイム（<span class="num">1</span>枠<span class="num">2</span>番）とココナッツコースト（<span class="num">4</span>枠<span class="num">8</span>番）は内で好位を取れる枠。
+        ヘクトルテソーロ（<span class="num">7</span>枠<span class="num">14</span>番）の追込は直線<span class="num">310</span>mでは届きにくい。
+        なお<strong>マーガレット（<span class="num">2</span>枠<span class="num">4</span>番／武豊）は未出走馬</strong>で、出走歴がなく判断材料がない。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">バンオンタイム</p>
+            <p class="spec"><span>1枠2番</span><span>牝3</span><span>55.0kg</span><span>D.レーン</span></p>
+          </div>
+          <p class="why">
+            <span class="num">9</span>戦して<span class="num">2</span>着<span class="num">3</span>回・<span class="num">3</span>着<span class="num">3</span>回、<strong>掲示板を外したことが一度もない</strong>。
+            前走・新潟芝1800は<span class="num">18</span>頭立て1番人気で<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">3-3</span>、上がり<span class="num">34.6</span>）。
+            中山も2025/12/21の芝1800を重馬場で<span class="num">2</span>着<span class="num">0.0</span>差（<span class="num">3-3-4-6</span>、上がり<span class="num">34.7</span>）と走っている。
+            <span class="num">1</span>枠<span class="num">2</span>番はロスなく好位が取れる枠で、取りこぼしを重ねてきた馬にはこれ以上ない位置。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ココナッツコースト</p>
+            <p class="spec"><span>4枠8番</span><span>牝3</span><span>55.0kg</span><span>C.ルメール</span></p>
+          </div>
+          <p class="why">
+            中山芝1600m外の新馬で<span class="num">2</span>着<span class="num">0.0</span>差（<span class="num">2-2-2</span>、上がり<span class="num">35.7</span>）。
+            <strong>この舞台で連対している唯一の1頭</strong>。以降2走はいずれも新潟芝1600で1番人気に支持され
+            <span class="num">4</span>着<span class="num">0.2</span>差・<span class="num">5</span>着<span class="num">0.2</span>差と、着差では負けていない。
+            <span class="num">8</span>番枠は先行して内を回れる位置。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ブルームコード</p>
+            <p class="spec"><span>6枠12番</span><span>牝3</span><span>55.0kg</span><span>戸崎圭太</span></p>
+          </div>
+          <p class="why">
+            2026/01/18 中山芝1600m外で<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">5-6-6</span>、上がり<span class="num">35.2</span>）。
+            前走・新潟芝1600は<span class="num">4</span>着<span class="num">0.1</span>差（<span class="num">2-2</span>、上がり<span class="num">34.1</span>）で馬体<span class="num">+16</span>kg。
+            <span class="num">3</span>戦すべて<span class="num">0.1</span>差以内にまとめており、崩れる要素が少ない。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ヘクトルテソーロ</p>
+            <p class="spec"><span>7枠14番</span><span>牡3</span><span>57.0kg</span><span>木幡巧也</span></p>
+          </div>
+          <p class="why">
+            前走・新潟芝1600で<span class="num">18</span>頭立て<span class="num">3</span>着<span class="num">0.1</span>差。<span class="num">12-14</span>から上がり<span class="num">33.1</span>はメンバー最速。
+            中山マイルの直線<span class="num">310</span>mで同じ脚が使えるかどうか。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">セルリア</p>
+            <p class="spec"><span>8枠16番</span><span>牝3</span><span>53.0kg</span><span>◇今村聖奈</span></p>
+          </div>
+          <p class="why">
+            前走・新潟芝1600を12番人気で逃げて<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">1-1</span>、上がり<span class="num">33.6</span>）。
+            ただし<strong>大外<span class="num">16</span>番</strong>では同じ形を取りづらく、控えると中山マイルの<span class="num">10</span>着<span class="num">1.6</span>差が蘇る。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">3R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">11:10 / ダート1800m / 馬齢 / 10頭 &nbsp;·&nbsp; <span class="pick">◎ユイノキャッツアイ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げ候補はブロンクス（<span class="num">1</span>枠<span class="num">1</span>番／前走・福島芝2000を<span class="num">1-1-1-1</span>）。
+        中山ダ1800mはスタンド前発走で1コーナーまで約<span class="num">375</span>mあり、<span class="num">10</span>頭立てなら位置取りの争いは激しくならない。
+        続くのはハイビスカス（<span class="num">5</span>枠<span class="num">5</span>番／札幌ダ1700を<span class="num">2-2-2-3</span>）、
+        ユイノキャッツアイ（<span class="num">8</span>枠<span class="num">9</span>番／ダート2走とも<span class="num">4-4</span>）、
+        ニシノアナベル（<span class="num">7</span>枠<span class="num">7</span>番／芝1800を<span class="num">2-2</span>）。
+        <strong><span class="num">10</span>頭中ダートを走ったことがあるのは<span class="num">4</span>頭だけ</strong>で、芝からの替わり組は道中の位置が読めない。
+        前半は締まらず、<strong>先行して残す形</strong>を軸に見る。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ユイノキャッツアイ</p>
+            <p class="spec"><span>8枠9番</span><span>牡2</span><span>55.0kg</span><span>木幡初也</span></p>
+          </div>
+          <p class="why">
+            <strong>ダート<span class="num">2</span>戦がいずれも掲示板</strong>——2026/07/19 福島ダ1150で2番人気<span class="num">3</span>着<span class="num">0.9</span>差（<span class="num">4-4</span>、上がり<span class="num">38.0</span>、馬体<span class="num">484</span>kg<span class="num">+4</span>）、
+            2026/06/14 東京ダ1400で<span class="num">14</span>頭立て<span class="num">4</span>着<span class="num">1.6</span>差（<span class="num">4-4</span>）。
+            どちらも<span class="num">4</span>番手から運んでおり、この面子では位置を取れる数少ない1頭。
+            <span class="num">1150</span>→<span class="num">1800</span>mの大幅延長だけが未知数だが、外枠でも1角まで<span class="num">375</span>mあるこのコースなら不利にはならない。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ハイビスカス</p>
+            <p class="spec"><span>5枠5番</span><span>牝2</span><span>55.0kg</span><span>大野拓弥</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/09 札幌ダ1700で<span class="num">12</span>頭立て<span class="num">4</span>着<span class="num">2.8</span>差（<span class="num">2-2-2-3</span>）。
+            <strong>今回に近い距離のダートを先行して経験している唯一の馬</strong>で、<span class="num">5</span>番枠から同じ形を取れる。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ニシノアナベル</p>
+            <p class="spec"><span>7枠7番</span><span>牝2</span><span>55.0kg</span><span>野中悠太郎</span></p>
+          </div>
+          <p class="why">
+            2026/08/08 新潟芝1800の新馬で<span class="num">12</span>頭立て<span class="num">7</span>着<span class="num">1.4</span>差（<span class="num">2-2</span>、上がり<span class="num">35.0</span>）。
+            芝で前々を進めた点を買う。ダートは初めてで、そこは割り引く。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">サスケソルトバーン</p>
+            <p class="spec"><span>3枠3番</span><span>牡2</span><span>52.0kg</span><span>▲佐藤翔馬</span></p>
+          </div>
+          <p class="why">
+            新潟ダ1800の新馬で<span class="num">8</span>着<span class="num">3.5</span>差。内容は乏しいが<strong>同距離のダートを一度使っている</strong>点と、▲佐藤の<span class="num">3</span>kg減が効く。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">4R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">11:40 / 芝1800m / 馬齢 / 11頭 &nbsp;·&nbsp; <span class="pick">◎コスモプルー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げるのはロジグローリー（<span class="num">6</span>枠<span class="num">6</span>番／新潟芝2000の新馬を<span class="num">1-1-1-1</span>）で、
+        ほかに先手を主張する馬がおらず<strong>単騎逃げが濃厚</strong>。
+        中山芝1800mは1コーナーまで約<span class="num">205</span>mしかない内回りで、<strong>外枠は最初のコーナーまでに脚を使わされる</strong>。
+        <span class="num">11</span>頭立て・単騎逃げなら前半は流れず、<strong>内で好位を取れた馬がそのまま残る</strong>隊列。
+        直線<span class="num">310</span>mでは後方からの追い込みは間に合いにくく、
+        グルドロッティン（<span class="num">8</span>枠<span class="num">10</span>番）とマイネルクロカータ（<span class="num">8</span>枠<span class="num">11</span>番）の大外<span class="num">2</span>頭は枠のぶん割引が要る。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">コスモプルー</p>
+            <p class="spec"><span>1枠1番</span><span>牝2</span><span>55.0kg</span><span>津村明秀</span></p>
+          </div>
+          <p class="why">
+            2026/08/08 新潟芝1800の新馬で<span class="num">12</span>頭立て<span class="num">2</span>着<span class="num">0.4</span>差（<span class="num">4-4</span>、上がり<span class="num">33.7</span>、<span class="num">1:47.6</span>）。
+            <strong>好位から上がり<span class="num">33.7</span>を使えた</strong>点が、この面子では最も上質な内容である。
+            走破時計<span class="num">1:47.6</span>も同世代の芝1800では上位の数字。
+            <span class="num">1</span>枠<span class="num">1</span>番は、1コーナーまで<span class="num">205</span>mの中山内回りでロスがまったく出ない位置。
+            単騎逃げの直後を取れる枠と脚質が噛み合った。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">グルドロッティン</p>
+            <p class="spec"><span>8枠10番</span><span>牡2</span><span>55.0kg</span><span>C.ルメール</span></p>
+          </div>
+          <p class="why">
+            2026/07/04 福島芝1800の新馬を3番人気で<span class="num">2</span>着<span class="num">0.2</span>差（<span class="num">14</span>頭、<span class="num">4-4-3-2</span>、上がり<span class="num">35.7</span>）。
+            <strong><span class="num">14</span>頭立ての小回りを先行して詰めた内容</strong>は中山向き。
+            大外<span class="num">10</span>番と中<span class="num">9</span>週が割引材料で、対抗まで。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">コウサイリクリ</p>
+            <p class="spec"><span>5枠5番</span><span>牝2</span><span>55.0kg</span><span>柴田大知</span></p>
+          </div>
+          <p class="why">
+            2026/08/15 新潟芝1800の新馬で<span class="num">2</span>着<span class="num">0.3</span>差（<span class="num">12</span>頭、上がり<span class="num">33.9</span>）。
+            ただし通過は<span class="num">9-8</span>と後方寄りで、<strong>直線<span class="num">310</span>mの中山では新潟の脚をそのままは使えない</strong>。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ソウカイウォーリア</p>
+            <p class="spec"><span>7枠8番</span><span>牡2</span><span>55.0kg</span><span>戸崎圭太</span></p>
+          </div>
+          <p class="why">
+            東京芝1600の新馬で<span class="num">8</span>頭立て3番人気<span class="num">3</span>着<span class="num">0.6</span>差（<span class="num">6-6</span>、上がり<span class="num">34.2</span>）。
+            2026/06/14以来の<strong>中<span class="num">12</span>週</strong>で、実戦間隔が開いた点だけ不安。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">5R</span>
+      <span>
+        <span class="rtitle">2歳新馬</span>
+        <span class="rsub">12:30 / 芝2000m / 馬齢 / 11頭 &nbsp;·&nbsp; <span class="pick">◎インヴィディア</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>全馬が未出走の新馬戦で、通過順のデータが一頭ぶんもない。</strong>逃げ馬を名指しすることはできない。
+        書けるのはコースの形だけである。中山芝2000mは正面スタンド前からのスタートで、
+        <strong>最初の<span class="num">1</span>コーナーまで約<span class="num">405</span>m</strong>ある。
+        枠なりでも位置は取り直せる距離なので、内枠絶対という条件ではない。
+        効くのは内回りの<strong>直線<span class="num">310</span>m</strong>のほうで、
+        <span class="num">11</span>頭立てのこの頭数なら隊列は一列で流れ、外を回した馬はそのぶん確実に届かなくなる。
+        カエンフォース（<span class="num">8</span>枠<span class="num">10</span>番）とスカイミラー（<span class="num">8</span>枠<span class="num">11</span>番）は
+        枠に加えて追い切り評価も「目立たず」で、二重に手が出ない。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">インヴィディア</p>
+            <p class="spec"><span>7枠8番</span><span>牡2</span><span>55.0kg</span><span>石橋脩</span></p>
+          </div>
+          <p class="why">
+            2026/09/02 美浦Wで<span class="num">5</span>F<span class="num">84.4</span>→<span class="num">3</span>F<span class="num">37.2</span>→<span class="num">1</span>F<span class="num">11.7</span>を、
+            <strong>馬也のまま</strong>。<span class="num">3</span>頭併せの真ん中から
+            内のグリーンエナジー（馬也）に<span class="num">0.2</span>秒先着、外のロードベラヴィータ（強め）に<span class="num">0.6</span>秒先着。
+            <strong><span class="num">3</span>F<span class="num">37.2</span>はこの<span class="num">11</span>頭で最速で、しかも追わずに出している</strong>のが他との差である。
+            短評も「<span class="num">3</span>頭併せの真ん中からあっさりと抜け出した。動きに迫力があって素質は高い」。
+            2025年セレクトセール<span class="num">6,820</span>万円、父アドマイヤマーズ×母父Frankel。
+            <span class="num">7</span>枠<span class="num">8</span>番は大外ではなく、<span class="num">1</span>コーナーまで<span class="num">405</span>mあれば位置は取れる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ルフトシュピール</p>
+            <p class="spec"><span>3枠3番</span><span>牝2</span><span>55.0kg</span><span>津村明秀</span></p>
+          </div>
+          <p class="why">
+            同日の<strong>美浦芝コースで一番時計</strong>。<span class="num">5</span>F<span class="num">65.4</span>→<span class="num">3</span>F<span class="num">37.6</span>→<span class="num">1</span>F<span class="num">12.1</span>をG強で、
+            内のフェスタベラに<span class="num">1</span>F併せ<span class="num">0.2</span>秒先着、外のギャニミードとは併入。
+            <strong>母レッドアネモスはクイーンS（G3）の勝ち馬</strong>、父キタサンブラック。木村厩舎の社台レースホース。
+            <span class="num">3</span>枠<span class="num">3</span>番は直線<span class="num">310</span>mの内回りで最短距離を通せる枠。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ローザドーロ</p>
+            <p class="spec"><span>5枠5番</span><span>牡2</span><span>55.0kg</span><span>D.レーン</span></p>
+          </div>
+          <p class="why">
+            美浦Wで<span class="num">5</span>F<span class="num">85.8</span>→<span class="num">3</span>F<span class="num">38.1</span>→<strong>ラスト<span class="num">1</span>F<span class="num">11.5</span>はこの<span class="num">11</span>頭で最速</strong>。
+            強めの相手に<span class="num">0.2</span>秒遅れているが、「追うごとに伸びの威力が増し、今週は粘り強く伸び切った」という中身。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ヴェトロテンペスタ</p>
+            <p class="spec"><span>6枠6番</span><span>牝2</span><span>55.0kg</span><span>C.ルメール</span></p>
+          </div>
+          <p class="why">
+            父コントレイル、サンデーレーシング×ノーザンファーム、C.ルメール。
+            美浦Wで<span class="num">5</span>F<span class="num">83.9</span>→<span class="num">3</span>F<span class="num">38.2</span>→<span class="num">1</span>F<span class="num">11.8</span>を馬也で併入。
+            ただし短評は「先週の遅れを挽回」「<strong>何とか間に合った</strong>」で、仕上がりでは上位<span class="num">3</span>頭に一歩譲る。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">6R</span>
+      <span>
+        <span class="rtitle">2歳新馬</span>
+        <span class="rsub">13:00 / ダ1200m / 馬齢 / 14頭 &nbsp;·&nbsp; <span class="pick">◎アルビオンライズ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>全馬が未出走で通過順のデータがない。</strong>逃げ馬は名指しできない。
+        ただしこのコースの枠の効き方は、新馬でも読める。
+        中山ダ1200mは<strong>スタートが芝の上にあり、外枠ほど芝を長く走ってから砂に入る</strong>。
+        <span class="num">14</span>頭立てのほぼフルゲートで、<strong><span class="num">7</span>〜<span class="num">8</span>枠が明確に有利、<span class="num">1</span>〜<span class="num">2</span>枠は不利</strong>という
+        分かりやすい形になる。テンで置かれると直線<span class="num">308</span>mでは挽回できず、
+        内枠は加えて砂を被り続けることになる。
+        ルスデルカミーノ（<span class="num">8</span>枠<span class="num">13</span>番）が枠の恩恵を最も受け、
+        アルビオンライズ（<span class="num">1</span>枠<span class="num">1</span>番）は逆に最も割を食う位置に入った。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">アルビオンライズ</p>
+            <p class="spec"><span>1枠1番</span><span>牡2</span><span>55.0kg</span><span>M.ミシェル</span></p>
+          </div>
+          <p class="why">
+            2026/09/02 美浦Wで<span class="num">5</span>F<span class="num">82.6</span>→<span class="num">3</span>F<span class="num">36.8</span>→<span class="num">1</span>F<span class="num">11.3</span>を<strong>馬也のまま併入</strong>。
+            <strong><span class="num">3</span>F<span class="num">36.8</span>・<span class="num">1</span>F<span class="num">11.3</span>はこの<span class="num">14</span>頭でいずれも最速</strong>で、追わずにこの数字が出ている。
+            短評も「スピードがあって、直線の加速にも全くブレがなかった。うまく仕上がった」。父ミッキーアイル、社台レースホース。
+            <strong>ただし<span class="num">1</span>枠<span class="num">1</span>番は、芝スタートの中山ダ1200では最も条件の悪い枠である。</strong>
+            砂を被る位置に入り、テンで置かれれば直線<span class="num">308</span>mでは間に合わない。
+            枠は明確な減点だが、それを踏まえてもなお追い切りの中身が抜けているとみて本命に採る。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ルスデルカミーノ</p>
+            <p class="spec"><span>8枠13番</span><span>牡2</span><span>55.0kg</span><span>大野拓弥</span></p>
+          </div>
+          <p class="why">
+            美浦坂路で<span class="num">4</span>F<span class="num">52.1</span>→<span class="num">3</span>F<span class="num">38.4</span>→<span class="num">2</span>F<span class="num">25.7</span>→<span class="num">1</span>F<span class="num">13.0</span>。
+            <strong><span class="num">4</span>F<span class="num">52.1</span>はこのレースの坂路組で最速</strong>で、
+            中のアルレーヴ（強め）と併入、外のヴィヴァクラウンに<span class="num">0.4</span>秒先着。
+            2024年セレクトセール<span class="num">3,300</span>万円、父ドレフォン×母父ロードカナロア。
+            <strong>芝スタートの中山ダ1200で<span class="num">8</span>枠<span class="num">13</span>番は最も枠の恩恵を受ける位置</strong>で、
+            ◎とは枠の評価が正反対に振れている。この一点で本命に近い。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ポッドビート</p>
+            <p class="spec"><span>6枠10番</span><span>牡2</span><span>55.0kg</span><span>武豊</span></p>
+          </div>
+          <p class="why">
+            米国産で父Nashville（父父Speightstown）×母父Competitive Edgeという<strong>ダート短距離に振り切った配合</strong>。
+            美浦坂路<span class="num">4</span>F<span class="num">53.5</span>→<span class="num">1</span>F<span class="num">12.3</span>を強めで併入し、
+            短評は「力強い動きで見た目にも迫力のあるつくり」。鞍上は武豊。口向きの課題を残す点だけ割引。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">7R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">13:30 / ダ1800m / 馬齢 / 16頭 &nbsp;·&nbsp; <span class="pick">◎デルマザオウ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">16</span>頭のフルゲート。中山ダ<span class="num">1800</span>mは<strong>スタンド前発走で最初のコーナーまで約<span class="num">375</span>m</strong>あり、
+        外枠は序盤で押して位置を取りに行く必要がある。
+        通過<span class="num">1-1-1-1</span>の逃げを<span class="num">2</span>度打っているマイネルゼーロス（<span class="num">6</span>枠<span class="num">12</span>番）が唯一の逃げ馬で、
+        ほかにハナを主張しそうな馬は見当たらない。<strong>単騎逃げならペースは落ち着き、前が止まりにくい形</strong>。
+        <span class="num">2</span>〜<span class="num">4</span>番手にデルマザオウ（<span class="num">2</span>枠<span class="num">3</span>番）、ホウオウファミリー（<span class="num">8</span>枠<span class="num">15</span>番）、
+        フェンリル（<span class="num">1</span>枠<span class="num">1</span>番）。
+        <strong>内枠から無理なく流れに乗れるデルマザオウを上に取ったのはこの想定による。</strong>
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">デルマザオウ</p>
+            <p class="spec"><span>2枠3番</span><span>牝3</span><span>55.0kg</span><span>小崎綾也</span></p>
+          </div>
+          <p class="why">
+            前走08-16 新潟ダ<span class="num">1800</span>良で<span class="num">15</span>頭<span class="num">2</span>番人気<span class="num">3</span>着<span class="num">0.3</span>差（通過<span class="num">2-2-2-2</span>、上がり<span class="num">39.4</span>）。
+            <strong>直近<span class="num">3</span>走が<span class="num">3</span>着<span class="num">0.3</span>差・<span class="num">2</span>着<span class="num">0.0</span>差・<span class="num">2</span>着<span class="num">0.7</span>差とすべて<span class="num">0.7</span>差以内</strong>で、
+            ダート通算<span class="num">[0-2-1-2]</span>、ダ<span class="num">1800</span>は<span class="num">[0-0-1-0]</span>。
+            牝馬の<span class="num">55.0</span>kgで牡馬より<span class="num">2</span>kg軽く、<span class="num">2</span>枠<span class="num">3</span>番から先行できる形が中山ダ<span class="num">1800</span>では最も効く。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">マイネルゼーロス</p>
+            <p class="spec"><span>6枠12番</span><span>牡3</span><span>57.0kg</span><span>津村明秀</span></p>
+          </div>
+          <p class="why">
+            ダ<span class="num">1800</span>は<span class="num">[0-2-1-1]</span>、中山ダートは<span class="num">[0-1-0-1]</span>。
+            03-08 中山ダ<span class="num">1800</span>稍で<span class="num">14</span>頭<span class="num">2</span>番人気<span class="num">2</span>着<span class="num">0.4</span>差（通過<span class="num">5-4-3-2</span>）、
+            05-24 新潟ダ<span class="num">1800</span>稍では通過<span class="num">1-1-1-1</span>のハナから<span class="num">2</span>着<span class="num">0.5</span>差。
+            <strong>逃げ切る形が本線</strong>だが、前走から中<span class="num">15</span>週の休み明けと、
+            <span class="num">6</span>枠<span class="num">12</span>番からハナを主張すれば序盤で脚を使う点は割引。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ホウオウファミリー</p>
+            <p class="spec"><span>8枠15番</span><span>牡3</span><span>57.0kg</span><span>戸崎圭太</span></p>
+          </div>
+          <p class="why">
+            <strong>中山ダ<span class="num">1800</span>は新馬で<span class="num">16</span>頭<span class="num">1</span>番人気<span class="num">3</span>着<span class="num">0.5</span>差（通過<span class="num">3-3-2-2</span>）</strong>と、
+            今回と同じ舞台を経験済み。東京ダ<span class="num">2100</span>でも<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.6</span>差。
+            函館の芝<span class="num">2600</span>を<span class="num">2</span>走挟んで約<span class="num">10</span>週の休み明けであることと、
+            <span class="num">8</span>枠<span class="num">15</span>番で終始外を回らされる点が減点。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">8R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス（牝）</span>
+        <span class="rsub">14:00 / ダ1200m / 定量 / 16頭 &nbsp;·&nbsp; <span class="pick">◎カンレイスター</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        中山ダ<span class="num">1200</span>mは<strong>芝の上からのスタートで、外枠ほど芝を長く走ってから砂に入る</strong>。
+        <span class="num">16</span>頭のフルゲートなら<strong><span class="num">7</span>〜<span class="num">8</span>枠が有利、<span class="num">1</span>〜<span class="num">2</span>枠は砂を被り続ける不利</strong>という形になる。
+        前へ行く馬が多い。マサノピンクレディ（通過<span class="num">1-1</span>）、チェルシー（通過<span class="num">1-1</span>）、
+        コウジハラ（通過<span class="num">2-1</span>）、カンレイスター（通過<span class="num">2-1</span>・<span class="num">3-3</span>）、
+        南関で<span class="num">4</span>連勝したベルヴィヴァン（通過<span class="num">1-1-1</span>）と<span class="num">5</span>頭。
+        <strong>ハナ争いは激しくなり、テンは締まる。</strong>差してくるベアアッコチャン（<span class="num">8</span>枠<span class="num">15</span>番）には枠も展開も向く。
+        逆に<strong><span class="num">1</span>枠<span class="num">1</span>番のマサノピンクレディは、中山ダ<span class="num">1200</span>で<span class="num">[1-0-1-0]</span>の舞台実績がありながら、最も枠に恵まれない位置</strong>に入った。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">カンレイスター</p>
+            <p class="spec"><span>3枠6番</span><span>牝3</span><span>52.0kg</span><span>◇今村聖奈</span></p>
+          </div>
+          <p class="why">
+            <strong>中山ダートは<span class="num">4</span>戦して<span class="num">[1-3-0-0]</span>と、すべて連対</strong>。ダ<span class="num">1200</span>は<span class="num">[1-4-0-1]</span>。
+            04-04 中山ダ<span class="num">1200</span>稍で<span class="num">16</span>頭<span class="num">1</span>番人気<span class="num">1</span>着<span class="num">0.8</span>差（通過<span class="num">2-1</span>）、
+            03-15 中山ダ<span class="num">1200</span>良も<span class="num">2</span>着。08-02 新潟ダ<span class="num">1200</span>では<span class="num">2</span>着<span class="num">0.1</span>差（通過<span class="num">3-3</span>）。
+            減量騎手の起用で<span class="num">52.0</span>kgはメンバー最軽量。<span class="num">3</span>枠<span class="num">6</span>番は理想の外枠ではないが、この舞台実績なら枠差を補える。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">チェルシー</p>
+            <p class="spec"><span>6枠12番</span><span>牝5</span><span>53.0kg</span><span>▲上里泰陽</span></p>
+          </div>
+          <p class="why">
+            中山ダートは<span class="num">[1-5-0-4]</span>、ダ<span class="num">1200</span>は<span class="num">[1-5-0-7]</span>で、
+            <strong>中山ダ<span class="num">1200</span>だけで<span class="num">5</span>回連対</strong>している典型的なコース巧者。
+            04-19 中山ダ<span class="num">1200</span>では通過<span class="num">1-1</span>のハナから<span class="num">2</span>着<span class="num">0.5</span>差。
+            直近<span class="num">2</span>走が<span class="num">13</span>着・<span class="num">11</span>着と大敗しているのは割引だが、いずれも新潟・福島で中山ではない。
+            <span class="num">53.0</span>kgの軽ハンデと<span class="num">6</span>枠<span class="num">12</span>番の枠は味方する。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ベアアッコチャン</p>
+            <p class="spec"><span>8枠15番</span><span>牝3</span><span>54.0kg</span><span>大野拓弥</span></p>
+          </div>
+          <p class="why">
+            中山ダ<span class="num">1200</span>で<span class="num">1</span>勝（昨年12月の未勝利を通過<span class="num">12-12</span>から<span class="num">0.2</span>差差し切り）。
+            直近<span class="num">2</span>走は<span class="num">5</span>着<span class="num">0.4</span>差・<span class="num">5</span>着<span class="num">0.3</span>差と、
+            いずれも後方から上がり<span class="num">36.5</span>・<span class="num">36.3</span>で詰めている。
+            <strong>芝スタートで最も恩恵のある<span class="num">8</span>枠<span class="num">15</span>番</strong>を引き、前が競り合う流れも噛み合う。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">9R</span>
+      <span>
+        <span class="rtitle">古作特別（1勝クラス）</span>
+        <span class="rsub">14:30 / 芝1800m 内 / 定量 / 15頭 &nbsp;·&nbsp; <span class="pick">◎ゴディアーモ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        中山芝<span class="num">1800</span>mは<strong>スタンド前スタートで、<span class="num">1</span>コーナーまで約<span class="num">205</span>m</strong>。
+        内回りのため<strong>外枠から押して行くと、そのぶん脚を使わされる</strong>コースで、
+        <span class="num">15</span>頭立てなら内寄りの先行馬が最も楽をする。
+        逃げるのは<strong><span class="num">3</span>枠<span class="num">4</span>番マーゴットソラーレ</strong>。
+        全<span class="num">16</span>走のうち<span class="num">6</span>走で通過<span class="num">1-1-1-1</span>を刻んでいる生粋の先行型で、
+        <span class="num">3</span>枠なら主張は通る。
+        <strong>前走で福島芝<span class="num">1800</span>を通過<span class="num">1-1-1-1</span>から逃げ切ったペプチドドリームは<span class="num">8</span>枠<span class="num">14</span>番</strong>。
+        外から<span class="num">205</span>mでハナを取り切るには相当の脚を使う。控えれば折り合いが未知で、ここは枠が響く形。
+        スタニングヴュー（通過<span class="num">2-2-2-1</span>）も前を取りに行くため、<strong>隊列は4→5→14の順で決まり、テンは緩まない。</strong>
+        差し・好位差しに向く流れで、<span class="num">4</span>枠<span class="num">7</span>番・<span class="num">7</span>枠<span class="num">12</span>番あたりが最も動きやすい。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ゴディアーモ</p>
+            <p class="spec"><span>7枠12番</span><span>牝3</span><span>53.0kg</span><span>武豊</span></p>
+          </div>
+          <p class="why">
+            <strong>フラワーC（G3）で<span class="num">16</span>頭<span class="num">7</span>着<span class="num">0.2</span>差（上がり<span class="num">34.1</span>）</strong>と、
+            重賞で通用する脚を見せている<span class="num">3</span>戦<span class="num">1</span>勝馬。
+            新馬は<span class="num">5</span>中山の芝<span class="num">2000</span>を<span class="num">18</span>頭立てで通過<span class="num">2-2-1-1</span>から<span class="num">0.3</span>差の押し切り勝ちで、
+            <strong>中山実績は<span class="num">[1-0-0-1]</span></strong>。前走06-07 東京芝<span class="num">1600</span>は<span class="num">1</span>番人気<span class="num">4</span>着<span class="num">0.2</span>差（上がり<span class="num">34.4</span>）。
+            <span class="num">53.0</span>kgは古馬牡馬の<span class="num">58.0</span>kgより<span class="num">5</span>kg軽い。<span class="num">7</span>枠<span class="num">12</span>番は中団外を進める位置。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">デイジー</p>
+            <p class="spec"><span>4枠7番</span><span>牝5</span><span>56.0kg</span><span>戸崎圭</span></p>
+          </div>
+          <p class="why">
+            前走08-16 新潟芝<span class="num">1800</span>で<span class="num">12</span>頭<span class="num">2</span>着<span class="num">0.2</span>差（通過<span class="num">2-2</span>、上がり<span class="num">33.6</span>）。
+            <strong>芝<span class="num">1800</span>は<span class="num">[0-2-2-2]</span>で、高湯温泉特別<span class="num">2</span>着<span class="num">0.0</span>差、二本松特別<span class="num">3</span>着<span class="num">0.0</span>差</strong>と
+            この距離でクビ差の勝負を続けている。中山も01-11 芝<span class="num">1600</span>で<span class="num">3</span>着<span class="num">0.2</span>差。
+            <span class="num">4</span>枠<span class="num">7</span>番は内回り<span class="num">1800</span>で最も無駄のない枠で、先行力もある。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ペプチドドリーム</p>
+            <p class="spec"><span>8枠14番</span><span>牡3</span><span>55.0kg</span><span>横山武</span></p>
+          </div>
+          <p class="why">
+            <span class="num">2</span>戦<span class="num">1</span>勝。前走07-19 福島芝<span class="num">1800</span>を<span class="num">16</span>頭<span class="num">1</span>番人気で通過<span class="num">1-1-1-1</span>から<span class="num">0.3</span>差の逃げ切り、
+            新馬（東京芝<span class="num">1800</span>稍）も<span class="num">2</span>着<span class="num">0.1</span>差と底は見せていない。
+            <strong>評価を<span class="num">1</span>枚落としたのは枠</strong>で、<span class="num">8</span>枠<span class="num">14</span>番から<span class="num">205</span>mでハナを取り切るのは楽ではなく、
+            内の<span class="num">4</span>番マーゴットソラーレとの兼ね合い次第。控えた形は未経験。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">10R</span>
+      <span>
+        <span class="rtitle">白井特別（2勝クラス）</span>
+        <span class="rsub">15:05 / 芝1200m 外 / 定量 / 13頭 &nbsp;·&nbsp; <span class="pick">◎インプロペリア</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        中山芝<span class="num">1200</span>mは<strong>外回り<span class="num">2</span>コーナー奥のポケット発走で、<span class="num">3</span>コーナーまでほぼ下り</strong>。
+        自然にテンが速くなり、上位のレースほど前半<span class="num">33</span>秒台前半で入る。
+        今回は<strong>前へ行く馬が<span class="num">3</span>頭</strong>。前走東京芝<span class="num">1400</span>を通過<span class="num">1-1</span>で逃げ切ったインプロペリア（<span class="num">4</span>枠<span class="num">5</span>番）、
+        近<span class="num">3</span>走すべて通過<span class="num">1-1</span>のウチュウノセカイ（<span class="num">8</span>枠<span class="num">12</span>番）、
+        小倉芝<span class="num">1200</span>を通過<span class="num">1-1</span>から<span class="num">0.6</span>差で圧勝したタナスーペルノーバ（<span class="num">7</span>枠<span class="num">11</span>番）。
+        <strong>内の<span class="num">5</span>番が主導権を取り、外の<span class="num">11</span>番・<span class="num">12</span>番が並びかける形</strong>で、
+        <span class="num">13</span>頭でも前半は締まる。
+        <strong>好位差し・差しに展開が向き、外枠の差し馬に恵みが出る。</strong>
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">インプロペリア</p>
+            <p class="spec"><span>4枠5番</span><span>牝4</span><span>56.0kg</span><span>ルメール</span></p>
+          </div>
+          <p class="why">
+            <span class="num">3</span>戦<span class="num">2</span>勝。前走06-13 東京芝<span class="num">1400</span>で<span class="num">18</span>頭<span class="num">1</span>番人気、
+            <strong>通過<span class="num">1-1</span>から<span class="num">0.3</span>差の完勝（上がり<span class="num">34.4</span>）</strong>。新馬も東京芝<span class="num">1600</span>を逃げ切っている。
+            フィリーズレビュー（G2）<span class="num">12</span>着<span class="num">1.3</span>差は、休養明けで<span class="num">472</span>kgだった<span class="num">3</span>歳春の一戦。
+            前走は<span class="num">502</span>kg（<span class="num">+30</span>）と大幅増でも勝ち切っており、上積みの余地がある。
+            <strong><span class="num">4</span>枠<span class="num">5</span>番は先手も番手も選べる位置</strong>で、ルメール継続騎乗。
+            中山芝<span class="num">1200</span>は初、前走から<span class="num">12</span>週の間隔が唯一の課題。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ヴィヴァクラウン</p>
+            <p class="spec"><span>8枠13番</span><span>牡5</span><span>58.0kg</span><span>大野</span></p>
+          </div>
+          <p class="why">
+            <strong>中山芝<span class="num">1200</span>の袖ケ浦特別（2勝クラス）で<span class="num">6</span>着<span class="num">0.3</span>差、上がり<span class="num">33.3</span>は<span class="num">12</span>頭中最速</strong>。
+            06-14 函館芝<span class="num">1200</span>では通過<span class="num">12-11</span>から<span class="num">3</span>着<span class="num">0.1</span>差（上がり<span class="num">34.1</span>）。
+            前へ行く馬が<span class="num">3</span>頭いてテンが締まる今回の流れは、この差し一手の脚質に最も合う。
+            <span class="num">8</span>枠<span class="num">13</span>番は外を回るぶんの距離ロスがあるが、被されずに追える利点のほうが大きい。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ウチュウノセカイ</p>
+            <p class="spec"><span>8枠12番</span><span>牡3</span><span>56.0kg</span><span>原</span></p>
+          </div>
+          <p class="why">
+            昨年09-20、<strong>同じ<span class="num">4</span>回中山の芝<span class="num">1200</span>でカンナS（OP）を<span class="num">13</span>頭<span class="num">0.3</span>差で勝っている</strong>
+            （<span class="num">1:08.2</span>、通過<span class="num">2-2</span>）。葵S（G3）でも<span class="num">8</span>着<span class="num">0.6</span>差。
+            <strong>舞台実績はメンバー中最上位</strong>だが、近<span class="num">3</span>走は函館・札幌で通過<span class="num">1-1</span>から失速する形が続いている。
+            <span class="num">8</span>枠<span class="num">12</span>番から無理にハナを主張すると同じ轍を踏む。控える競馬ができれば一変の余地。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">サクセスカラー</p>
+            <p class="spec"><span>3枠3番</span><span>牝5</span><span>56.0kg</span><span>田辺</span></p>
+          </div>
+          <p class="why">
+            芝<span class="num">1400</span>の2勝クラスで<span class="num">3</span>着<span class="num">0.0</span>差（上がり<span class="num">32.7</span>）、
+            高尾特別<span class="num">5</span>着<span class="num">0.3</span>差（上がり<span class="num">32.9</span>）、飯豊特別<span class="num">2</span>着<span class="num">0.1</span>差。
+            <strong>末脚の絶対値はメンバー最上位</strong>。ただし芝<span class="num">1200</span>は全<span class="num">14</span>走で一度も使っておらず、
+            <span class="num">200</span>m短縮で忙しくならないかは未知。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">11R</span>
+      <span>
+        <span class="rtitle">京成杯オータムハンデ（G3）</span>
+        <span class="rsub">15:45 / 芝1600m 外 / ハンデ / 16頭 &nbsp;·&nbsp; <span class="pick">◎レザベーション</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        金曜16:10に出馬表を取り直し、<strong>枠番・馬番・確定騎手・<span class="num">16</span>頭という確定頭数は
+        金曜10:15時点と同一</strong>であることを確認した。内容の変更はない。
+        逃げ・先行勢はメタルスピード（<span class="num">7</span>枠<span class="num">13</span>番）・クランフォード（<span class="num">6</span>枠<span class="num">11</span>番）・
+        ディールメーカー（<span class="num">6</span>枠<span class="num">12</span>番）・テレサ（<span class="num">8</span>枠<span class="num">15</span>番）と<strong>外に固まった</strong>まま。
+        印は ◎レザベーション ○ディールメーカー ▲ミナデオロ △ファンダム・フォルテアンジェロ・エコロブルーム・ヴァルキリーバース。
+        <strong>着差・上がり3F・通過順・斤量による根拠は<a href="#keisei">ページ上部の京成杯オータムハンデ欄</a>に載せている。</strong>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">12R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス</span>
+        <span class="rsub">16:30 / ダート1200m / 定量 / 14頭 &nbsp;·&nbsp; <span class="pick">◎アンプイットアップ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        中山ダ<span class="num">1200</span>mは<strong>向正面のポケット発走で、3コーナーまで約<span class="num">500</span>m</strong>。
+        テンから位置を取りに行く形になり、被されない外枠のほうが立ち回りやすいコース。
+        先手を主張するのは<strong>アンプイットアップ（<span class="num">3</span>枠<span class="num">3</span>番）</strong>で、
+        中山ダ<span class="num">1200</span>の未勝利戦を通過<span class="num">1-1</span>と<span class="num">2-2</span>で2度走り、いずれも<span class="num">0.3</span>差以内。
+        ヴェネチアンキング（<span class="num">5</span>枠<span class="num">8</span>番／東京ダ<span class="num">1400</span>を通過<span class="num">1-1</span>で<span class="num">2</span>着）と
+        チュラヴェール（<span class="num">4</span>枠<span class="num">5</span>番／通過<span class="num">2-2</span>・<span class="num">3-3</span>）が続く。
+        <span class="num">14</span>頭立てで同型は<span class="num">3</span>頭。前半が極端に速くなるメンバーではなく、
+        <strong>内で先手を取れる<span class="num">3</span>番が最も楽な形</strong>。
+        差し勢はトモジャシーマ（<span class="num">8</span>枠<span class="num">14</span>番／通過<span class="num">10-9</span>・<span class="num">12-12</span>）と
+        ショウナンタハティ（<span class="num">7</span>枠<span class="num">12</span>番）で、いずれも外枠を引けたのは好材料。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">アンプイットアップ</p>
+            <p class="spec"><span>3枠3番</span><span>牡3</span><span>56.0kg</span><span>横山武史</span></p>
+          </div>
+          <p class="why">
+            <strong>中山ダ<span class="num">1200</span>mは<span class="num">[1-1-0-0]</span></strong>。
+            2026/01/25 に<span class="num">16</span>頭<span class="num">2</span>番人気で通過<span class="num">2-2</span>から<span class="num">1</span>着<span class="num">0.3</span>差、
+            2026/01/11 は通過<span class="num">1-1</span>で<span class="num">2</span>着<span class="num">0.2</span>差。<strong>この舞台では2戦とも自分の形を作れている</strong>。
+            前走07-18 福島ダ<span class="num">1150</span>も<span class="num">16</span>頭で通過<span class="num">2-3</span>から<span class="num">3</span>着<span class="num">0.1</span>差（上がり<span class="num">36.4</span>／斤<span class="num">55</span>）。
+            一方でダ<span class="num">1400</span>は<span class="num">16</span>着<span class="num">4.0</span>差・<span class="num">13</span>着<span class="num">1.3</span>差・<span class="num">15</span>着<span class="num">2.2</span>差と全滅で、
+            <strong>適距離は<span class="num">1200</span>前後にはっきり出ている</strong>。
+            <span class="num">3</span>歳<span class="num">56.0</span>kgは古馬<span class="num">58.0</span>kgに<span class="num">2</span>kg差、<span class="num">3</span>枠<span class="num">3</span>番で内から出していける。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ショウナンタハティ</p>
+            <p class="spec"><span>7枠12番</span><span>牡4</span><span>58.0kg</span><span>レーン</span></p>
+          </div>
+          <p class="why">
+            ダート短距離に矛先を向けた近<span class="num">3</span>走が
+            <span class="num">3</span>着<span class="num">0.5</span>差（新潟ダ<span class="num">1200</span>重・通過<span class="num">3-3</span>・上がり<span class="num">36.5</span>）、
+            <span class="num">3</span>着<span class="num">0.2</span>差（東京ダ<span class="num">1400</span>・上がり<span class="num">36.2</span>）、
+            <span class="num">2</span>着<span class="num">0.2</span>差（東京ダ<span class="num">1400</span>重・通過<span class="num">8-9</span>・上がり<span class="num">35.4</span>）と、
+            <strong>着差<span class="num">0.5</span>以内で止まらない形が固まった</strong>。
+            中山ダ<span class="num">1200</span>は初で、中山はダ<span class="num">1800</span>で<span class="num">7</span>着・<span class="num">9</span>着しかない点だけが割引。
+            <span class="num">7</span>枠<span class="num">12</span>番で流れに乗れる形、レーン騎乗。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">トモジャシーマ</p>
+            <p class="spec"><span>8枠14番</span><span>セ6</span><span>58.0kg</span><span>津村明秀</span></p>
+          </div>
+          <p class="why">
+            <strong>中山ダ<span class="num">1200</span>を<span class="num">6</span>回使って<span class="num">[0-1-0-5]</span></strong>——
+            <span class="num">2</span>着<span class="num">0.1</span>差（通過<span class="num">10-9</span>・上がり<span class="num">36.3</span>）、<span class="num">4</span>着<span class="num">0.4</span>差、<span class="num">4</span>着<span class="num">0.3</span>差、
+            <span class="num">5</span>着<span class="num">0.6</span>差、<span class="num">5</span>着<span class="num">0.8</span>差、<span class="num">5</span>着<span class="num">0.9</span>差。<strong>崩れないが勝ち切れない</strong>のがこの馬の形で、
+            通算<span class="num">23</span>戦<span class="num">1</span>勝。前走08-01 新潟ダ<span class="num">1200</span>は通過<span class="num">4-3</span>から<span class="num">3</span>着<span class="num">0.3</span>差。
+            <span class="num">8</span>枠<span class="num">14</span>番は外を回れる好枠で、複勝圏なら最も堅い。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">レイズレガシー</p>
+            <p class="spec"><span>6枠10番</span><span>牡3</span><span>56.0kg</span><span>田辺裕信</span></p>
+          </div>
+          <p class="why">
+            前走08-15 新潟ダ<span class="num">1200</span>の未勝利を<span class="num">15</span>頭<span class="num">1</span>番人気に応えて
+            通過<span class="num">3-3</span>から<span class="num">1</span>着<span class="num">0.7</span>差の圧勝（上がり<span class="num">36.8</span>）。
+            ダ<span class="num">1300</span>〜<span class="num">1400</span>でも<span class="num">3</span>着<span class="num">0.3</span>差（上がり<span class="num">35.9</span>）、<span class="num">3</span>着<span class="num">0.3</span>差（上がり<span class="num">36.0</span>）と
+            <strong>上がりは常に上位</strong>。<span class="num">8</span>戦で連対を外したのは<span class="num">3</span>回だけと安定している。
+            中山ダ<span class="num">1200</span>は未経験で、昇級初戦。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ---- 阪神 ---- -->
+  <p class="venue" id="sat-hanshin">阪神</p>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">1R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">09:55 / ダート1400m / 馬齢 / 11頭 &nbsp;·&nbsp; <span class="pick">◎マルモリマイベスト</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">11</span>頭立てで<strong>明確な逃げ馬がいない</strong>。前走の通過順で前にいたのはマルモリマイベスト（<span class="num">4-4</span>）と
+        ビバームス（<span class="num">5-5</span>）程度で、クリコキアナ<span class="num">11-11</span>・ラブシンフォニー<span class="num">15-15</span>と後方待機組が多い。
+        阪神ダ1400mはスタートが芝部分からで、<strong>外枠のほうが芝を長く走れる</strong>ぶん有利。
+        マルモリマイベスト（<span class="num">7</span>枠<span class="num">9</span>番）とスクワミッシュ（<span class="num">7</span>枠<span class="num">8</span>番）はその利を受ける枠に入った。
+        前半が締まらないなら、位置を取れる馬から入る。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">マルモリマイベスト</p>
+            <p class="spec"><span>7枠9番</span><span>牡2</span><span>55.0kg</span><span>泉谷楓真</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/15 中京ダ1400を13番人気で<span class="num">2</span>着<span class="num">0.5</span>差（<span class="num">4-4</span>）。
+            芝1200で<span class="num">5</span>着<span class="num">0.8</span>差・<span class="num">8</span>着<span class="num">0.9</span>差だった馬が<strong>ダート替わりで一変</strong>した形で、今回が2度目のダート。
+            同じレースでクリコキアナに<span class="num">0.3</span>差先着している。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">クリコキアナ</p>
+            <p class="spec"><span>4枠4番</span><span>牝2</span><span>52.0kg</span><span>▲森田誠也</span></p>
+          </div>
+          <p class="why">
+            同じ2026/08/15 中京ダ1400で<span class="num">3</span>着<span class="num">0.8</span>差。
+            <span class="num">11-11</span>の後方から上がり<span class="num">39.6</span>でまとめており、<strong>初ダートでこの内容なら上積みが見込める</strong>。
+            ▲森田の<span class="num">3</span>kg減で斤<span class="num">52.0</span>kgはメンバー最軽量。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ガヤーズランボー</p>
+            <p class="spec"><span>6枠7番</span><span>牡2</span><span>55.0kg</span><span>菱田裕二</span></p>
+          </div>
+          <p class="why">
+            中京ダ1400の新馬で<span class="num">3</span>着<span class="num">1.3</span>差（<span class="num">12</span>頭）。通過順<span class="num">6-3</span>と
+            <strong>道中で自分から位置を押し上げられており</strong>、初戦から動ける点を買う。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">スクワミッシュ</p>
+            <p class="spec"><span>7枠8番</span><span>牝2</span><span>55.0kg</span><span>坂井瑠星</span></p>
+          </div>
+          <p class="why">
+            新潟ダ1200の新馬を2番人気<span class="num">4</span>着<span class="num">0.5</span>差（<span class="num">7-5</span>）。
+            <span class="num">200</span>mの距離延長で、位置を取れれば。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">2R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">10:30 / 芝1800m 外 / 馬齢 / 5頭 &nbsp;·&nbsp; <span class="pick">◎ティフォシ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">5</span>頭立て。前走で逃げていたのはコパノマハロ（<span class="num">1</span>枠<span class="num">1</span>番／中京芝2000の新馬を<span class="num">1-1-1-1</span>）だけで、
+        <strong>単騎逃げが濃厚</strong>。この頭数でこの形なら前半は流れず、上がりだけの瞬発力勝負になる。
+        裏を返せば緩んだ流れを外から差す形は決まりにくく、コパノマハロの粘り込みも十分ある。
+        <strong>全馬がキャリア1戦</strong>で、比較できる材料が新馬戦1つしかない一戦である点は割り引いて読んでほしい。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ティフォシ</p>
+            <p class="spec"><span>2枠2番</span><span>牡2</span><span>55.0kg</span><span>M.デムーロ</span></p>
+          </div>
+          <p class="why">
+            中京芝1600の新馬で<span class="num">2</span>着<span class="num">0.0</span>差（<span class="num">8</span>頭、<span class="num">4-3-3</span>、上がり<span class="num">33.3</span>）。
+            <strong>上がりはメンバー最速で、勝ち馬とはハナ差</strong>。先行しながらその脚を使えており、
+            通過順から見て<span class="num">1600</span>→<span class="num">1800</span>mの延長も問題にならない。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ブックオブケルズ</p>
+            <p class="spec"><span>4枠4番</span><span>牡2</span><span>55.0kg</span><span>西村淳也</span></p>
+          </div>
+          <p class="why">
+            福島芝1800の新馬を1番人気で<span class="num">4</span>着<span class="num">0.6</span>差（<span class="num">14</span>頭、<span class="num">5-5-5-5</span>）。
+            <strong>今回と同じ1800mを経験している唯一の馬</strong>。馬体<span class="num">512</span>kgの大型で、初戦を使った上積みが見込める。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">デススパイラル</p>
+            <p class="spec"><span>3枠3番</span><span>牝2</span><span>55.0kg</span><span>松山弘平</span></p>
+          </div>
+          <p class="why">
+            新潟芝1600の新馬で<span class="num">4</span>着<span class="num">0.5</span>差（<span class="num">12</span>頭、上がり<span class="num">33.3</span>）。
+            9番人気での結果で、<strong>同じレースで1番人気だったドミナントに<span class="num">0.1</span>差先着</strong>している。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ドミナント</p>
+            <p class="spec"><span>5枠5番</span><span>牝2</span><span>55.0kg</span><span>坂井瑠星</span></p>
+          </div>
+          <p class="why">
+            そのレースで1番人気<span class="num">5</span>着<span class="num">0.6</span>差。上がり<span class="num">33.1</span>はメンバー最速だった。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">3R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">11:00 / ダート1800m / 馬齢 / 13頭 &nbsp;·&nbsp; <span class="pick">◎ラミエルノムスコ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>明確な逃げ馬がいない。</strong>前走で先頭に立っていたのはアルムランプシー（<span class="num">8</span>枠<span class="num">12</span>番／金沢の3歳戦を<span class="num">1-1-1-1</span>）だけで、
+        大外から無理に主張する形にはなりにくい。
+        内から前を取れるのはレッドフレーザー（<span class="num">1</span>枠<span class="num">1</span>番／近2走とも<span class="num">3-3</span>）と
+        サラサダンディー（<span class="num">3</span>枠<span class="num">3</span>番／阪神ダ2000を<span class="num">2-2-2-2</span>）。
+        阪神ダ1800mは1コーナーまで約<span class="num">303</span>mで、<span class="num">13</span>頭立てなら外枠でも位置は取れるが、
+        <strong>主張する馬がいないぶん前半は緩む</strong>。先行〜好位差しが有利で、後方一手の馬は届かない。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ラミエルノムスコ</p>
+            <p class="spec"><span>6枠9番</span><span>牡3</span><span>57.0kg</span><span>吉村誠之助</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/23 中京ダ1800を<strong>初ダートで<span class="num">2</span>着<span class="num">0.4</span>差</strong>（<span class="num">14</span>頭立て3番人気、<span class="num">5-5-4-4</span>、上がり<span class="num">39.4</span>、馬体<span class="num">480</span>kg）。
+            <strong>同じレースで<span class="num">13</span>番ロードファイターに<span class="num">1.1</span>秒先着している</strong>のが決め手。
+            芝でも京都芝1600（<span class="num">18</span>頭）で<span class="num">3</span>着<span class="num">0.3</span>差、京都芝1800で<span class="num">4</span>着<span class="num">0.3</span>差と地力があり、
+            <span class="num">7</span>戦して<span class="num">0.8</span>秒より大きく負けたのは<span class="num">1</span>度だけ。
+            <span class="num">9</span>番枠は前が緩むこの隊列で好位を取りやすい位置。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">レジェルテ</p>
+            <p class="spec"><span>7枠11番</span><span>牡3</span><span>57.0kg</span><span>西村淳也</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/15 新潟ダ1800で<span class="num">15</span>頭立て<span class="num">2</span>着<span class="num">0.6</span>差。
+            <strong>通過<span class="num">6-7-3-3</span>と向正面から自分で押し上げており</strong>、上がり<span class="num">38.6</span>もまとめている。
+            佐賀交流でも<span class="num">3</span>着<span class="num">0.1</span>差。ダ1800mを走れる下地はある。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">レッドフレーザー</p>
+            <p class="spec"><span>1枠1番</span><span>牡3</span><span>57.0kg</span><span>坂井瑠星</span></p>
+          </div>
+          <p class="why">
+            中京ダ1800で<span class="num">3</span>着<span class="num">0.7</span>差（<span class="num">3-3-4-3</span>）、小倉ダ1700で<span class="num">3</span>着<span class="num">0.8</span>差と、
+            <strong>ダートに替わった直近2走はいずれも3着</strong>。<span class="num">1</span>枠<span class="num">1</span>番でロスなく先行できる枠を引いた。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ジャスティンゴッホ</p>
+            <p class="spec"><span>4枠4番</span><span>牡3</span><span>56.0kg</span><span>☆田山雄基</span></p>
+          </div>
+          <p class="why">
+            <strong>阪神ダ1800mは<span class="num">[0-2-0-1]</span></strong>——重馬場で<span class="num">2</span>着<span class="num">1.2</span>差（<span class="num">4-4-4-3</span>）、新馬も同コースで<span class="num">2</span>着<span class="num">0.3</span>差。
+            前走の小倉・不良<span class="num">15</span>着<span class="num">6.6</span>差は度外視できる。☆田山の<span class="num">1</span>kg減。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">4R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">11:30 / 芝1600m 外 / 馬齢 / 18頭 &nbsp;·&nbsp; <span class="pick">◎ビッグヒーロー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>前に行く馬が内に固まった。</strong>メイショウジーニー（<span class="num">2</span>枠<span class="num">4</span>番／芝1200を<span class="num">1-2</span>・新馬を<span class="num">1-1</span>）、
+        メイショウプレマ（<span class="num">3</span>枠<span class="num">6</span>番／中京ダ1800を<span class="num">1-1-1-1</span>、京都芝1800を<span class="num">1-1</span>）、
+        アステルディーヴァ（<span class="num">3</span>枠<span class="num">5</span>番／1勝クラスを<span class="num">1-1-1-1</span>）の<span class="num">3</span>頭。
+        阪神芝1600mは外回りで3コーナーまで約<span class="num">444</span>mあり、<span class="num">18</span>頭立てでも位置取りは枠なりに落ち着く。
+        内で<span class="num">3</span>頭が主張する分ペースは緩まず、<strong>直線<span class="num">473</span>mの差し勝負</strong>になりやすい。
+        大外に置かれるホワイトフレイムス（<span class="num">8</span>枠<span class="num">18</span>番）は距離ロスと引き換えに、砂も進路も気にせず運べる。
+        なお<strong>サトノシャッツ（<span class="num">6</span>枠<span class="num">11</span>番／吉村）は未出走馬</strong>で、出走歴がなく判断材料がない。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ビッグヒーロー</p>
+            <p class="spec"><span>1枠2番</span><span>牡3</span><span>57.0kg</span><span>川田将雅</span></p>
+          </div>
+          <p class="why">
+            <span class="num">10</span>戦して<strong><span class="num">2</span>着<span class="num">5</span>回・<span class="num">3</span>着<span class="num">3</span>回、掲示板を外したことが一度もない</strong>。
+            前走・中京芝1600は1番人気で<span class="num">2</span>着<span class="num">0.2</span>差（<span class="num">12-12-11</span>、上がり<span class="num">34.2</span>）、
+            前々走も同コースで<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">5-3-3</span>、上がり<span class="num">34.8</span>）と、
+            <strong>後ろからでも前からでも同じ着差にまとめられる</strong>のがこの馬の強み。
+            阪神芝1800でも<span class="num">3</span>着<span class="num">0.6</span>差（勝ち馬は紫苑Sに出るリアライズルミナス）。
+            <span class="num">1</span>枠<span class="num">2</span>番は<span class="num">18</span>頭立てで唯一ロスなく回れる位置で、直線<span class="num">473</span>mなら内で詰まっても進路は作れる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ホワイトフレイムス</p>
+            <p class="spec"><span>8枠18番</span><span>牡3</span><span>57.0kg</span><span>松山弘平</span></p>
+          </div>
+          <p class="why">
+            <strong>阪神芝1600mは<span class="num">[0-1-1-0]</span></strong>——2026/06/13に<span class="num">18</span>頭立てで<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">6-6</span>、上がり<span class="num">33.5</span>、<span class="num">1:34.3</span>）、
+            3月にも同コースで<span class="num">3</span>着<span class="num">0.5</span>差。<strong>この舞台の上がり<span class="num">33.5</span>は出走馬中で最速</strong>。
+            馬体<span class="num">534</span>kgの大型で、大外<span class="num">18</span>番でも力で押し切れる。枠のロスだけが割引。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">アステルディーヴァ</p>
+            <p class="spec"><span>3枠5番</span><span>牝3</span><span>55.0kg</span><span>坂井瑠星</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/22 中京芝1600で<span class="num">2</span>着<span class="num">0.2</span>差（<span class="num">5-5-4</span>、上がり<span class="num">34.5</span>）。
+            その<span class="num">2</span>週前には<strong>格上の3歳以上1勝クラス（芝2000）に斤<span class="num">51</span>kgで挑んで<span class="num">1-1-1-1</span>の逃げから<span class="num">4</span>着<span class="num">0.2</span>差</strong>、上がり<span class="num">34.1</span>。
+            <span class="num">5</span>番枠から前々を取れる脚質で、内の先行争いにも加われる。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">カステッロトゥーレ</p>
+            <p class="spec"><span>7枠15番</span><span>牝3</span><span>54.0kg</span><span>☆田山雄基</span></p>
+          </div>
+          <p class="why">
+            阪神芝1600で<span class="num">7</span>着<span class="num">0.7</span>差ながら<strong>上がり<span class="num">33.5</span></strong>、京都芝1600で<span class="num">3</span>着<span class="num">0.2</span>差、中京芝1600で<span class="num">4</span>着<span class="num">0.2</span>差。
+            ☆田山の<span class="num">1</span>kg減で<span class="num">54.0</span>kg。差し届く流れなら。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">バロッカネーラ</p>
+            <p class="spec"><span>6枠12番</span><span>牝3</span><span>55.0kg</span><span>西村淳也</span></p>
+          </div>
+          <p class="why">
+            2026/04/12 阪神芝1600で<span class="num">18</span>頭立て<span class="num">3</span>着<span class="num">0.0</span>差（<span class="num">9-7</span>、上がり<span class="num">34.6</span>）。
+            <strong>この舞台でハナ差の3着</strong>という実績は上位だが、キャリア<span class="num">2</span>戦かつ中<span class="num">10</span>週。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">5R</span>
+      <span>
+        <span class="rtitle">2歳新馬</span>
+        <span class="rsub">12:20 / 芝1400m / 馬齢 / 12頭 &nbsp;·&nbsp; <span class="pick">◎ブロッサムスピア</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>全馬が未出走の新馬戦で、通過順のデータがない。</strong>隊列は書けない。
+        阪神芝1400mは向正面のポケットからのスタートで、<strong>3コーナーまでに<span class="num">440</span>mほどある</strong>ため、
+        今回の<span class="num">12</span>頭立てなら枠順そのものによる有利不利は小さい。
+        効いてくるのは内回りの直線<span class="num">356</span>mのほうで、
+        <span class="num">3</span>〜<span class="num">4</span>コーナーを内で立ち回れたぶんがそのまま着差になる。
+        <span class="num">8</span>枠の<span class="num">2</span>頭（ソフィアビルド・トレビスドンナ）は、この形では<span class="num">1</span>列外を回らされる想定。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ブロッサムスピア</p>
+            <p class="spec"><span>2枠2番</span><span>牡2</span><span>55.0kg</span><span>M.デムーロ</span></p>
+          </div>
+          <p class="why">
+            2026/09/02 栗東CWで<span class="num">6</span>F<span class="num">82.4</span>→<span class="num">3</span>F<span class="num">35.9</span>→<span class="num">1</span>F<span class="num">11.5</span>をG一杯。
+            内のテーオーグレーザー（一杯）に<span class="num">0.3</span>秒先着、外のプチプランス（馬也）に<span class="num">0.1</span>秒先着。
+            <strong><span class="num">3</span>F<span class="num">35.9</span>はこの<span class="num">12</span>頭で最速</strong>である。
+            <strong>先週いちど除外に遭って仕上げた後、今週もう一度同じ内容で追えている</strong>点が大きく、
+            短評も「先週同様に今週も中身の濃い走り。態勢十分」。
+            父リアルスティール、シルクレーシング。
+            <span class="num">2</span>枠<span class="num">2</span>番なら内回り直線<span class="num">356</span>mを最短距離で回れる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">イッソス</p>
+            <p class="spec"><span>6枠8番</span><span>牡2</span><span>55.0kg</span><span>西村淳也</span></p>
+          </div>
+          <p class="why">
+            栗東坂路で<span class="num">4</span>F<span class="num">55.0</span>→<span class="num">3</span>F<span class="num">39.0</span>→<span class="num">2</span>F<span class="num">24.9</span>→<span class="num">1</span>F<span class="num">12.4</span>を<strong>馬也のまま</strong>、
+            外のベルヴェールに<span class="num">0.2</span>秒先着。<strong>坂路のラスト<span class="num">2</span>F<span class="num">24.9</span></strong>は水準を大きく上回る数字で、
+            追わずに出している点が評価できる。父サリオス×母父オルフェーヴル、キャロットファーム×ノーザンファーム。
+            短評は「気配抜群」。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ソフィアビルド</p>
+            <p class="spec"><span>8枠11番</span><span>牡2</span><span>55.0kg</span><span>坂井瑠星</span></p>
+          </div>
+          <p class="why">
+            2025年セレクトセール<strong><span class="num">1</span>億<span class="num">2,650</span>万円</strong>で、この<span class="num">12</span>頭では突出した取引価格。
+            父Jackie's Warriorは米<span class="num">2</span>歳チャンピオン。栗東坂路で一番時計の
+            <span class="num">4</span>F<span class="num">53.7</span>→<span class="num">2</span>F<span class="num">24.9</span>→<span class="num">1</span>F<span class="num">12.6</span>。
+            ただし<strong>追い切りが木曜（09/03）にずれ込んでおり</strong>、加えて大外<span class="num">8</span>枠。素材の上位ぶんまで。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">トレビスドンナ</p>
+            <p class="spec"><span>8枠12番</span><span>牝2</span><span>55.0kg</span><span>松山弘平</span></p>
+          </div>
+          <p class="why">
+            栗東芝（稍）で<span class="num">4</span>F<span class="num">52.6</span>→<span class="num">3</span>F<span class="num">38.2</span>→<span class="num">1</span>F<span class="num">11.6</span>を馬也で併入。
+            父モーリス×母父ディープインパクト、池江厩舎。
+            CWで<span class="num">2</span>週続けて負荷をかけてからの本馬場追いで、動き自体は軽快。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">6R</span>
+      <span>
+        <span class="rtitle">2歳新馬</span>
+        <span class="rsub">12:50 / ダ1400m / 馬齢 / 13頭 &nbsp;·&nbsp; <span class="pick">◎ムスペルヘイム</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>全馬が未出走で通過順のデータがない。</strong>隊列は書けない。
+        ただしコースの枠の効き方ははっきりしている。
+        阪神ダ1400mは<strong>スタートが芝の上に置かれており、外枠ほど芝を長く走ってから砂に入る</strong>。
+        テンの速度が乗るぶん、<span class="num">13</span>頭立てのこの条件では<strong><span class="num">7</span>〜<span class="num">8</span>枠が明確に有利</strong>で、
+        逆に<span class="num">1</span>〜<span class="num">2</span>枠は芝を踏む距離が短いうえ、内に閉じ込められると砂を被り続ける。
+        デザートキャンドル（<span class="num">1</span>枠<span class="num">1</span>番）は枠でも短評でも強調材料を欠く。
+        直線は<span class="num">352</span>mで、押し切るというより
+        <strong>芝で勢いをつけた馬が<span class="num">3</span>〜<span class="num">4</span>コーナーで並びかける</strong>形になりやすい。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ムスペルヘイム</p>
+            <p class="spec"><span>3枠3番</span><span>牡2</span><span>55.0kg</span><span>幸英明</span></p>
+          </div>
+          <p class="why">
+            2026/09/02 栗東CWで<span class="num">6</span>F<span class="num">83.9</span>→<span class="num">3</span>F<span class="num">36.8</span>→<span class="num">1</span>F<span class="num">11.5</span>を<strong>仕掛け程度</strong>で、
+            内のエルダークローネ（仕掛）に<span class="num">0.2</span>秒先着。
+            <strong><span class="num">3</span>F<span class="num">36.8</span>・<span class="num">1</span>F<span class="num">11.5</span>はこの<span class="num">13</span>頭でいずれも最上位</strong>で、
+            短評も「キビキビとした脚さばきで仕掛けてからもシャープに伸びた。太め感もない」。
+            父アドマイヤマーズ×母父フェノーメノ、吉田勝己氏所有のノーザンファーム生産馬。
+            <span class="num">3</span>枠<span class="num">3</span>番は上の展開でいう「有利な外」ではないが、
+            <strong>芝スタートで置かれる心配がない仕上がり</strong>なら、内で脚を溜められるぶんが逆に活きる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ナリタライズ</p>
+            <p class="spec"><span>8枠13番</span><span>牡2</span><span>54.0kg</span><span>☆田山旺佑</span></p>
+          </div>
+          <p class="why">
+            栗東CWで<span class="num">6</span>F<span class="num">85.8</span>→<span class="num">3</span>F<span class="num">38.2</span>→ラスト<span class="num">1</span>F<span class="num">11.3</span>。
+            <strong><span class="num">1</span>F<span class="num">11.3</span>はこのレース最速</strong>で、しかも<strong>年長馬を相手にクビ先着</strong>している。
+            2024年セレクトセール<span class="num">3,850</span>万円、父イスラボニータ。
+            <strong>芝スタートの阪神ダ1400で<span class="num">8</span>枠<span class="num">13</span>番は、芝部分を最も長く走れる枠</strong>。
+            ☆<span class="num">1</span>kg減で<span class="num">54.0</span>kgという斤量利も乗る。枠の後押しはこの馬が一番大きい。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ツトム</p>
+            <p class="spec"><span>6枠9番</span><span>牡2</span><span>55.0kg</span><span>松若風馬</span></p>
+          </div>
+          <p class="why">
+            栗東CWの<span class="num">6</span>F<span class="num">81.9</span>は<strong>この<span class="num">13</span>頭で全体時計最速</strong>。
+            格上相手に手応え優勢のまま併入し、短評は「態勢整う」。
+            ラスト<span class="num">1</span>F<span class="num">11.8</span>で瞬発力は上位<span class="num">2</span>頭に譲るが、ダート短距離ならこの持続力で足りる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">7R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス</span>
+        <span class="rsub">13:20 / 芝1200m / 定量 / 16頭 &nbsp;·&nbsp; <span class="pick">◎フロムレイブン</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">4</span>回阪神<span class="num">1</span>日目、<strong>Aコースの開幕週</strong>で内の芝は最も良い状態。
+        阪神芝<span class="num">1200</span>mは<strong><span class="num">3</span>コーナーまで約<span class="num">240</span>mと短く</strong>、内枠がロスなく運べる。
+        単騎で行けそうなのはワイドシュテルケ（<span class="num">3</span>枠<span class="num">6</span>番）。
+        昨年12月の阪神芝<span class="num">1200</span>重の新馬を通過<span class="num">1-1</span>で押し切っているが、今回は約<span class="num">7</span>か月半の休み明け。
+        <span class="num">2</span>番手にベルファスト（<span class="num">4</span>枠<span class="num">7</span>番）とムーンリットアイル（<span class="num">2</span>枠<span class="num">4</span>番）が通過<span class="num">2-2</span>の位置を取り、
+        モルティフレーバー、フロムレイブンは中団から。
+        <span class="num">16</span>頭のフルゲートで前が壁になりやすいため、
+        <strong>上がり<span class="num">33</span>秒台を使える◎でも、<span class="num">8</span>枠<span class="num">16</span>番から外を回すロスは織り込む必要がある。</strong>
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">フロムレイブン</p>
+            <p class="spec"><span>8枠16番</span><span>牝3</span><span>54.0kg</span><span>岩田望来</span></p>
+          </div>
+          <p class="why">
+            前走08-09 中京芝<span class="num">1200</span>良で<span class="num">17</span>頭<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.0</span>差、
+            <strong>上がり<span class="num">33.6</span>はメンバー最速級</strong>（通過<span class="num">4-3</span>）。
+            同じレースでモルティフレーバーが<span class="num">3</span>着<span class="num">0.1</span>差、マーゴットミストは<span class="num">15</span>着<span class="num">1.1</span>差で、
+            <strong>今回のメンバーとの力関係が直接出ている</strong>。
+            芝は<span class="num">[1-2-1-3]</span>で、<strong>複勝圏を外した<span class="num">3</span>走はいずれも<span class="num">1400</span>m以上</strong>（阪神JFを含む）。短縮は歓迎。
+            <span class="num">3</span>歳牝<span class="num">54.0</span>kg。<span class="num">8</span>枠<span class="num">16</span>番の外は割引だが、地力が一枚上。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ベルファスト</p>
+            <p class="spec"><span>4枠7番</span><span>牝5</span><span>56.0kg</span><span>松若風馬</span></p>
+          </div>
+          <p class="why">
+            <strong>芝<span class="num">1200</span>は<span class="num">[0-3-2-0]</span>で、<span class="num">5</span>戦すべて<span class="num">3</span>着以内・着差<span class="num">0.2</span>〜<span class="num">0.7</span>差</strong>。
+            前走07-12 小倉で<span class="num">17</span>頭<span class="num">3</span>番人気<span class="num">2</span>着<span class="num">0.7</span>差（通過<span class="num">4-3</span>）。
+            <span class="num">16</span>戦して未勝利という勝ち切れなさが唯一にして最大の弱点だが、
+            開幕週Aコースの内めの<span class="num">4</span>枠<span class="num">7</span>番から先行できるのは大きい。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ムーンリットアイル</p>
+            <p class="spec"><span>2枠4番</span><span>牝3</span><span>54.0kg</span><span>西村淳也</span></p>
+          </div>
+          <p class="why">
+            芝<span class="num">1200</span>は<span class="num">[1-3-1-3]</span>。07-04 小倉で<span class="num">12</span>頭<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.2</span>差（通過<span class="num">2-2</span>）、
+            04-25 福島の雪うさぎ賞も<span class="num">3</span>着<span class="num">0.3</span>差（通過<span class="num">3-2</span>）。
+            前走は<span class="num">16</span>頭<span class="num">1</span>番人気で通過<span class="num">12-13</span>と後方に置かれ<span class="num">4</span>着<span class="num">0.5</span>差。
+            <strong><span class="num">2</span>枠<span class="num">4</span>番を引いて本来の先行策に戻れる</strong>のが最大の材料。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">8R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス</span>
+        <span class="rsub">13:50 / 芝2000m / 定量 / 9頭 &nbsp;·&nbsp; <span class="pick">◎キッコベッロ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">9</span>頭の少頭数。阪神芝<span class="num">2000</span>mは正面スタンド前発走で最初のコーナーまで約<span class="num">325</span>m、
+        Aコース開幕週で内が良い。<strong>明確な逃げ馬は不在。</strong>
+        ウインヘリオドール（<span class="num">2</span>枠<span class="num">2</span>番）が通過<span class="num">1-1-1-1</span>で単騎に行く可能性は高いが、
+        前走08-22 中京芝<span class="num">2200</span>も前々走08-08 中京芝<span class="num">2000</span>も自分でペースを作って<span class="num">8</span>着<span class="num">2.4</span>差・<span class="num">6</span>着<span class="num">0.4</span>差に終わっている。
+        <strong>スローに落ちれば内から立ち回れるキッコベッロとダンツウルスの決め手勝負</strong>になる。
+        <span class="num">8</span>枠<span class="num">9</span>番のアグレイビューティは、<span class="num">9</span>頭立てで外を回るロスが小さく、<strong>枠の不利をほとんど受けない</strong>。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">キッコベッロ</p>
+            <p class="spec"><span>1枠1番</span><span>牡3</span><span>55.0kg</span><span>川田将雅</span></p>
+          </div>
+          <p class="why">
+            昨秋の萩S（L）で<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.1</span>差、黄菊賞<span class="num">4</span>着<span class="num">0.2</span>差、
+            02-14 あすなろ賞（1勝クラス）で<span class="num">10</span>頭<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.4</span>差。
+            <strong>リステッドで戦ってきた地力はこのメンバーで頭ひとつ抜ける。</strong>
+            阪神芝は新馬勝ちを含め<span class="num">[1-0-0-1]</span>。
+            前走03-21 若葉S（L）から<strong>約<span class="num">5</span>か月半の休み明け</strong>が唯一の減点だが、
+            <span class="num">9</span>頭立ての<span class="num">1</span>枠<span class="num">1</span>番は最もロスのない位置で、鞍上は川田将雅。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ダンツウルス</p>
+            <p class="spec"><span>4枠4番</span><span>牡3</span><span>55.0kg</span><span>田口貫太</span></p>
+          </div>
+          <p class="why">
+            芝<span class="num">2000</span>は<span class="num">[1-1-2-2]</span>。前走08-15 中京の常滑特別（1勝クラス）で<span class="num">3</span>着<span class="num">0.7</span>差
+            （通過<span class="num">5-5-5-5</span>、上がり<span class="num">34.1</span>）、その前の小倉未勝利は芝<span class="num">2000</span>を通過<span class="num">3-3-4-2</span>から押し切っている。
+            <strong>直近<span class="num">5</span>走がすべて<span class="num">0.8</span>差以内</strong>と崩れない。
+            なお常滑特別ではピースヒロフェイス（<span class="num">6</span>枠<span class="num">6</span>番）に<span class="num">1.6</span>秒先着している。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">アグレイビューティ</p>
+            <p class="spec"><span>8枠9番</span><span>牝3</span><span>53.0kg</span><span>富田暁</span></p>
+          </div>
+          <p class="why">
+            前走08-23 中京芝<span class="num">2000</span>で<span class="num">11</span>頭<span class="num">9</span>番人気<span class="num">2</span>着<span class="num">0.2</span>差、
+            <strong>上がり<span class="num">33.8</span>はそのレースのメンバー最速</strong>（通過<span class="num">6-6-5-5</span>）。
+            <span class="num">1</span>勝はダ<span class="num">1800</span>で挙げた馬だが、芝<span class="num">2000</span>でこの脚を使えた意味は大きい。
+            <span class="num">53.0</span>kgの軽量も利く。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">9R</span>
+      <span>
+        <span class="rtitle">出石特別（2勝クラス）</span>
+        <span class="rsub">14:20 / ダ1800m / 定量 / 11頭 &nbsp;·&nbsp; <span class="pick">◎システマソラー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        阪神ダ<span class="num">1800</span>mは<strong>スタンド前スタートで<span class="num">1</span>コーナーまで約<span class="num">300</span>m</strong>、
+        コーナー<span class="num">4</span>回の持久戦。先行有利のコースだが、
+        <strong><span class="num">11</span>頭立ては<span class="num">1</span>コーナーで包まれる馬が出にくく、枠の有利不利はほぼ消える。</strong>
+        逃げ候補は<span class="num">5</span>枠<span class="num">5</span>番ソニックステップ（04-12 阪神ダ<span class="num">1800</span>を通過<span class="num">2-2-2-2</span>で勝ち、前走は通過<span class="num">1-1-1-1</span>）と
+        <span class="num">1</span>枠<span class="num">1</span>番ストラーダ（03-07 阪神ダ<span class="num">1800</span>を通過<span class="num">1-1-1-1</span>から<span class="num">0.4</span>差で押し切り）。
+        <strong>この<span class="num">2</span>頭以外に主張する馬がおらず、テンは締まらない。</strong>
+        テイエムパイロット（通過<span class="num">3-3-3-3</span>）が<span class="num">3</span>番手を取る形で、隊列は早々に固まる。
+        <strong>前が止まりにくい平均〜スローの流れ</strong>だが、中団から動ける実力上位馬なら位置は関係なく差せる。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">システマソラー</p>
+            <p class="spec"><span>6枠6番</span><span>牡3</span><span>55.0kg</span><span>川田</span></p>
+          </div>
+          <p class="why">
+            <strong>ダ<span class="num">1800</span>は<span class="num">[1-3-0-1]</span>で、負けた<span class="num">3</span>回はいずれも<span class="num">2</span>着<span class="num">0.1</span>〜<span class="num">0.2</span>差</strong>。
+            05-17 京都ダ<span class="num">1800</span>で<span class="num">2</span>着<span class="num">0.2</span>差（勝ったのが今回の▲ジャイアンバローズ）、
+            06-13 阪神ダ<span class="num">1800</span>で<span class="num">2</span>着<span class="num">0.1</span>差、04-12 中山ダ<span class="num">1800</span>でも<span class="num">2</span>着<span class="num">0.1</span>差。
+            前走07-05 小倉ダ<span class="num">1700</span>不良は<span class="num">16</span>頭<span class="num">1</span>番人気に応え、
+            <strong>通過<span class="num">11-11-7-4</span>から上がり<span class="num">36.5</span>で<span class="num">0.4</span>差の圧勝</strong>。
+            <span class="num">3</span>歳<span class="num">55.0</span>kgは古馬<span class="num">58.0</span>kgと<span class="num">3</span>kg差で、川田の継続騎乗。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">クロノスバレット</p>
+            <p class="spec"><span>7枠8番</span><span>牡4</span><span>58.0kg</span><span>松山</span></p>
+          </div>
+          <p class="why">
+            <strong>阪神ダ<span class="num">1800</span>は<span class="num">[1-0-0-2]</span></strong>で、03-07に<span class="num">1</span>勝クラスを<span class="num">0.1</span>差勝ち（通過<span class="num">5-5-4-4</span>、上がり<span class="num">36.1</span>）。
+            2勝クラスでも06-21 阪神ダ<span class="num">1800</span>重で<span class="num">3</span>着<span class="num">0.7</span>差、
+            前走08-09 中京ダ<span class="num">1800</span>で<span class="num">4</span>着<span class="num">0.4</span>差（通過<span class="num">5-5-5-4</span>）と大きくは崩れない。
+            <span class="num">520</span>kg（<span class="num">+8</span>）と馬体も戻ってきた。松山とのコンビは<span class="num">7</span>戦目。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ジャイアンバローズ</p>
+            <p class="spec"><span>2枠2番</span><span>牡3</span><span>55.0kg</span><span>岩田望</span></p>
+          </div>
+          <p class="why">
+            05-17 京都ダ<span class="num">1800</span>の<span class="num">1</span>勝クラスを、通過<span class="num">5-5-7-4</span>から<span class="num">0.2</span>差で快勝
+            （<span class="num">2</span>着が◎システマソラー）。この<span class="num">1</span>戦だけを見れば本命と互角。
+            <strong>割引は<span class="num">16</span>週の休み明けで、全<span class="num">5</span>走に中<span class="num">10</span>週を超えた実績がない点</strong>。
+            <span class="num">518</span>〜<span class="num">538</span>kgの大型馬で、当日の仕上がりを馬体重で確認したい。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ショーダンサー</p>
+            <p class="spec"><span>6枠7番</span><span>牡4</span><span>58.0kg</span><span>国分優</span></p>
+          </div>
+          <p class="why">
+            ダ<span class="num">1800</span>の2勝クラスで<span class="num">2</span>着<span class="num">0.1</span>差、大津特別<span class="num">3</span>着<span class="num">0.4</span>差、
+            04-05 阪神ダ<span class="num">1800</span>重で<span class="num">3</span>着<span class="num">0.6</span>差と底堅い。
+            <span class="num">19</span>週の休み明けと、<span class="num">440</span>kg前後の小柄な馬体でこのクラスの持久戦を勝ち切れるかが課題。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">10R</span>
+      <span>
+        <span class="rtitle">西宮ステークス（3勝クラス）</span>
+        <span class="rsub">14:55 / 芝1800m 外 / 定量 / 7頭 &nbsp;·&nbsp; <span class="pick">◎サウンドムーブ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        阪神芝<span class="num">1800</span>m外回りは<strong>向正面スタート、コーナーが緩く直線<span class="num">473</span>m</strong>。
+        <strong><span class="num">7</span>頭立てで、しかも逃げ馬が<span class="num">1</span>頭もいない。</strong>
+        通過<span class="num">2-2</span>を刻むのはエイカイマッケンロとコルレオニスだが、
+        いずれもハナに立った実績はほとんどなく、<strong>前半は<span class="num">36</span>秒台まで緩むスローペースが濃厚</strong>。
+        <span class="num">7</span>頭なら外枠でも被されず、道中の位置取りも自由が利くため、
+        <strong>枠順の有利不利はこのレースに限ってほぼ意味を持たない。</strong>
+        決め手勝負になり、上がり<span class="num">33</span>秒台を使える馬から入る。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">サウンドムーブ</p>
+            <p class="spec"><span>7枠7番</span><span>牡3</span><span>55.0kg</span><span>川田</span></p>
+          </div>
+          <p class="why">
+            <strong>皐月賞（G1）で<span class="num">18</span>頭<span class="num">6</span>着<span class="num">0.5</span>差</strong>（通過<span class="num">8-6-7-6</span>、上がり<span class="num">34.1</span>）。
+            シンザン記念（G3）は<span class="num">16</span>番枠から<span class="num">2</span>着<span class="num">0.1</span>差、
+            スプリングS（G2）も<span class="num">16</span>番枠から<span class="num">4</span>着<span class="num">0.2</span>差（上がり<span class="num">34.4</span>）と、
+            <strong>大外枠でG2・G3を上位で駆けている</strong>ぶん、<span class="num">7</span>頭立ての<span class="num">7</span>番は苦にならない。
+            前走07-04 小倉・博多S（3勝）は<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.5</span>差。
+            <span class="num">3</span>歳<span class="num">55.0</span>kgで古馬<span class="num">58.0</span>kgと<span class="num">3</span>kg差、実績はメンバー中で頭ひとつ抜けている。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">コルレオニス</p>
+            <p class="spec"><span>3枠3番</span><span>牡5</span><span>58.0kg</span><span>Ｍデムーロ</span></p>
+          </div>
+          <p class="why">
+            <strong>阪神芝<span class="num">1600</span>外の花のみちS（3勝）で<span class="num">14</span>頭<span class="num">3</span>着<span class="num">0.3</span>差</strong>（通過<span class="num">2-2</span>、上がり<span class="num">34.0</span>）。
+            京都芝<span class="num">1600</span>の石清水Sでも<span class="num">4</span>着<span class="num">0.2</span>差、分倍河原S<span class="num">5</span>着<span class="num">0.7</span>差。
+            芝<span class="num">1800</span>は05-25 東京の調布特別を<span class="num">0.4</span>差で勝っており、
+            <strong>関西の外回りマイル〜<span class="num">1800</span>が本領</strong>。
+            前走08-09 新潟・佐渡S<span class="num">10</span>着<span class="num">1.0</span>差は通過<span class="num">2-2</span>から失速したもので、
+            スローで折り合える今回は形が違う。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">レディーミコノス</p>
+            <p class="spec"><span>6枠6番</span><span>牝4</span><span>56.0kg</span><span>田山</span></p>
+          </div>
+          <p class="why">
+            芝<span class="num">1800</span>は<span class="num">[1-1-1-4]</span>。10-13 京都芝<span class="num">1800</span>の堀川特別で<span class="num">2</span>着<span class="num">0.1</span>差（上がり<span class="num">33.4</span>）、
+            01-05 逢坂山特別で<span class="num">3</span>着<span class="num">0.1</span>差、
+            <strong>センテニアルパークS（京都芝<span class="num">1800</span>・<span class="num">18</span>頭）で<span class="num">5</span>着<span class="num">0.4</span>差</strong>と、
+            3勝クラスの<span class="num">1800</span>で崩れていない。牝馬<span class="num">56.0</span>kgの<span class="num">2</span>kg減も効く。
+            前走08-22 新潟・長岡S<span class="num">12</span>着<span class="num">1.1</span>差は芝<span class="num">1600</span>で忙しかった一戦。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">オールセインツ</p>
+            <p class="spec"><span>1枠1番</span><span>セ5</span><span>58.0kg</span><span>富田</span></p>
+          </div>
+          <p class="why">
+            昨年07-20 小倉記念（G3）で<span class="num">16</span>頭<span class="num">5</span>着<span class="num">0.6</span>差、
+            中山・迎春S（3勝・芝<span class="num">2200</span>）で<span class="num">17</span>番枠から<span class="num">4</span>着<span class="num">0.4</span>差。
+            前走08-01 中京・豊橋S<span class="num">8</span>着<span class="num">0.5</span>差でも上がり<span class="num">33.0</span>は<span class="num">11</span>頭中最速。
+            ただし<strong>芝<span class="num">1800</span>は全<span class="num">13</span>走で経験がなく</strong>、
+            <span class="num">2000</span>〜<span class="num">2400</span>を主戦場にしてきた馬。スロー想定は歓迎だが距離は忙しい。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">11R</span>
+      <span>
+        <span class="rtitle">エニフステークス（L）</span>
+        <span class="rsub">15:30 / ダート1400m / ハンデ / 12頭 &nbsp;·&nbsp; <span class="pick">◎ルークススペイ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        金曜16:10に出馬表を取り直し、<strong>枠番・馬番・確定騎手・<span class="num">12</span>頭という確定頭数は
+        金曜10:15時点と同一</strong>であることを確認した。内容の変更はない。
+        明確な逃げ馬はマニバドラ（<span class="num">5</span>枠<span class="num">5</span>番）ただ<span class="num">1</span>頭で、<strong>単騎逃げの公算</strong>という見立ても変わらない。
+        印は ◎ルークススペイ ○ノーブルロジャー ▲ペイシャケイプ △マニバドラ・ゴッドブルービー。
+        <strong>着差・上がり3F・通過順・斤量による根拠は<a href="#enif">ページ上部のエニフステークス欄</a>に載せている。</strong>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">12R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス</span>
+        <span class="rsub">16:15 / ダート1400m / 定量 / 12頭 &nbsp;·&nbsp; <span class="pick">◎ハグレジョー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        阪神ダ<span class="num">1400</span>mは<strong>芝の部分からスタートして<span class="num">1</span>コーナーまで約<span class="num">450</span>m</strong>。
+        外枠のほうが芝を長く走れてテンの速度が乗るため、<strong>短距離の1勝クラスでは外枠が素直に有利</strong>になる。
+        先手を主張するのはフィアーブル（<span class="num">4</span>枠<span class="num">4</span>番／京都ダ<span class="num">1400</span>の未勝利を通過<span class="num">1-1</span>で<span class="num">0.6</span>差圧勝）と
+        リーガルスプレンダ（<span class="num">1</span>枠<span class="num">1</span>番／前走も通過<span class="num">1-1</span>）で、いずれも内枠。
+        エイシンマールス（<span class="num">2</span>枠<span class="num">2</span>番）も通過<span class="num">3-2</span>・<span class="num">2-1</span>で行く馬なので、
+        <strong>内の<span class="num">3</span>頭で先行争いが起き、砂を被る位置に固まる</strong>。
+        <span class="num">12</span>頭立てで隊列は落ち着くが、
+        <strong>好位の外を取れるハグレジョー（<span class="num">6</span>枠<span class="num">8</span>番）が最も損のない位置</strong>。
+        初ダートのエイシンティザー（<span class="num">8</span>枠<span class="num">12</span>番）も、芝部分を長く使えるぶん忙しくなりにくい。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ハグレジョー</p>
+            <p class="spec"><span>6枠8番</span><span>牡3</span><span>56.0kg</span><span>菱田裕二</span></p>
+          </div>
+          <p class="why">
+            <strong>ダ<span class="num">1400</span>mは<span class="num">[1-1-2-1]</span></strong>。
+            2026/03/21 阪神ダ<span class="num">1400</span>の1勝クラスで<span class="num">16</span>頭<span class="num">6</span>番人気ながら
+            通過<span class="num">7-4</span>から<span class="num">3</span>着<span class="num">0.1</span>差（上がり<span class="num">36.0</span>）、
+            前走05-03 京都ダ<span class="num">1400</span>も<span class="num">2</span>番人気で通過<span class="num">8-7</span>から<span class="num">3</span>着<span class="num">0.1</span>差（上がり<span class="num">36.5</span>）。
+            間に挟んだ<strong>バイオレットS（OP・阪神ダ<span class="num">1400</span>重）で<span class="num">5</span>着<span class="num">0.8</span>差</strong>と、
+            この相手なら格が一枚上。<span class="num">3</span>歳<span class="num">56.0</span>kgで古馬<span class="num">58.0</span>kgに<span class="num">2</span>kg差。
+            <strong>前走から中<span class="num">17</span>週の休み明け</strong>が唯一の減点材料で、休み明けの実績はまだない。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">エイシンマールス</p>
+            <p class="spec"><span>2枠2番</span><span>牡4</span><span>58.0kg</span><span>松山弘平</span></p>
+          </div>
+          <p class="why">
+            <strong>阪神ダ<span class="num">1400</span>mは<span class="num">[0-2-1-1]</span></strong>——
+            2026/06/21 重馬場で<span class="num">2</span>着<span class="num">0.4</span>差（通過<span class="num">7-7</span>）、
+            2026/02/28 で<span class="num">3</span>着<span class="num">0.2</span>差（通過<span class="num">3-2</span>・上がり<span class="num">36.8</span>）。
+            京都ダ<span class="num">1400</span>でも<span class="num">2</span>着<span class="num">0.1</span>差があり、<strong>この距離での安定度はメンバー最上位</strong>。
+            ただし<span class="num">15</span>戦<span class="num">1</span>勝と勝ち味に遅く、前走08-15 中京ダ<span class="num">1400</span>は<span class="num">4</span>番人気<span class="num">10</span>着<span class="num">1.3</span>差。
+            <strong>枠順で評価を下げた1頭</strong>で、芝スタートの外枠有利なコースで<span class="num">2</span>枠<span class="num">2</span>番。
+            内で砂を被り、先行争いに巻き込まれる形になるため◎からは外した。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">エイシンティザー</p>
+            <p class="spec"><span>8枠12番</span><span>牡3</span><span>56.0kg</span><span>岩田望来</span></p>
+          </div>
+          <p class="why">
+            前走08-15 中京ダ<span class="num">1800</span>で<span class="num">16</span>頭<span class="num">1</span>番人気に推され、
+            <strong>初ダートで通過<span class="num">10-9-5-4</span>から<span class="num">4</span>着<span class="num">0.3</span>差</strong>（上がり<span class="num">38.7</span>）。
+            芝ではメルボルンT（1勝クラス）<span class="num">3</span>着<span class="num">0.1</span>差、城崎特別<span class="num">3</span>着<span class="num">0.2</span>差、
+            チャーチルダウンズC（G3）出走と<strong>相手なりに走れる格</strong>がある。
+            ダ<span class="num">1400</span>は初で<span class="num">400</span>mの短縮だが、<span class="num">8</span>枠<span class="num">12</span>番なら芝部分を長く走れて位置を取りやすい。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">フィアーブル</p>
+            <p class="spec"><span>4枠4番</span><span>牝3</span><span>54.0kg</span><span>吉村誠之助</span></p>
+          </div>
+          <p class="why">
+            2025/10/19 京都ダ<span class="num">1400</span>の未勝利を<span class="num">1</span>番人気で通過<span class="num">1-1</span>から<span class="num">1</span>着<span class="num">0.6</span>差の逃げ切り。
+            <strong>自分の形に持ち込めたときの数字は上位</strong>。
+            ただし1勝クラスではダ<span class="num">1400</span>で<span class="num">6</span>着<span class="num">1.1</span>差・<span class="num">9</span>着<span class="num">1.0</span>差と足りておらず、
+            <span class="num">3</span>か月半ぶりの実戦。同型が<span class="num">2</span>頭いてすんなり行けるかも読みにくい。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- ---- 札幌 ---- -->
+  <p class="venue" id="sat-sapporo">札幌</p>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">1R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">09:50 / ダート1700m / 馬齢 / 12頭 &nbsp;·&nbsp; <span class="pick">◎サトノフルーク</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げるのはシンゼンノト（<span class="num">2</span>枠<span class="num">2</span>番）。前走・札幌ダ1700を<span class="num">1-1-1-1</span>で
+        <span class="num">3</span>着<span class="num">0.6</span>差にまとめており、<strong>内枠から単騎で行ける</strong>。
+        札幌ダ1700mは1コーナーまで約<span class="num">240</span>mと短く、内枠の先行馬がそのまま隊列を作る。
+        <strong><span class="num">12</span>頭中ダート経験があるのは<span class="num">2</span>頭だけ</strong>で、芝からの替わり組は道中の位置取りが読めない。
+        前が楽に運べる形なので、後方に構える馬には忙しい流れになる。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">サトノフルーク</p>
+            <p class="spec"><span>7枠9番</span><span>牡2</span><span>55.0kg</span><span>佐々木大輔</span></p>
+          </div>
+          <p class="why">
+            札幌芝1800の新馬で1番人気<span class="num">2</span>着<span class="num">0.6</span>差（<span class="num">10</span>頭、<span class="num">3-3-4-3</span>、上がり<span class="num">34.8</span>）。
+            <strong>勝ったノヴァヴェローチェは札幌2歳Sに登録してきた馬</strong>で、相手関係を踏まえれば出走馬中で内容は抜けている。
+            ダートは初めてで、そこだけが未知数。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">シンゼンノト</p>
+            <p class="spec"><span>2枠2番</span><span>牡2</span><span>52.0kg</span><span>▲遠藤汰月</span></p>
+          </div>
+          <p class="why">
+            前走・札幌ダ1700で<span class="num">3</span>着<span class="num">0.6</span>差（<span class="num">1-1-1-1</span>）。
+            <strong>今回と同じコース・同じ距離で連対圏に迫った唯一の1頭</strong>で、ダートは<span class="num">3</span>戦して<span class="num">3</span>着・<span class="num">3</span>着・<span class="num">5</span>着。
+            ▲遠藤の<span class="num">3</span>kg減で斤<span class="num">52.0</span>kgも効く。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">キュータンチャン</p>
+            <p class="spec"><span>6枠7番</span><span>牡2</span><span>55.0kg</span><span>丹内祐次</span></p>
+          </div>
+          <p class="why">
+            新潟ダ1200で<span class="num">5</span>着<span class="num">1.0</span>差（<span class="num">15</span>頭、<span class="num">4-5</span>）。
+            馬体<span class="num">516</span>kg（<span class="num">+14</span>）の大型で、<span class="num">1200</span>→<span class="num">1700</span>mの延長は持ち味に合う。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ロジアコース</p>
+            <p class="spec"><span>8枠11番</span><span>牡2</span><span>55.0kg</span><span>浜中俊</span></p>
+          </div>
+          <p class="why">
+            函館芝1800の重馬場で<span class="num">7</span>着<span class="num">0.9</span>差（<span class="num">2-2-2-3</span>）。前で運べる脚質で、ダート替わりが合えば。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">2R</span>
+      <span>
+        <span class="rtitle">2歳未勝利</span>
+        <span class="rsub">10:20 / 芝1200m / 馬齢 / 11頭 &nbsp;·&nbsp; <span class="pick">◎ミハテヌユメ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げ候補はミハテヌユメ（<span class="num">8</span>枠<span class="num">11</span>番／前走<span class="num">1-1</span>）とゴートゥービッツン（<span class="num">2</span>枠<span class="num">2</span>番／前走<span class="num">1-2</span>）。
+        札幌芝1200mは1コーナーまで約<span class="num">270</span>mで、<strong>大外から先手を主張すると外を回らされる</strong>。
+        内<span class="num">2</span>番のゴートゥービッツンが先手を取り、ミハテヌユメは無理をせず<span class="num">2</span>〜<span class="num">3</span>番手に控える形が現実的。
+        <span class="num">11</span>頭の少頭数で、前半が締まらなければ前残り。
+        上がり最速級のハミングリップス（<span class="num">6</span>枠<span class="num">6</span>番／上がり<span class="num">34.5</span>）は展開待ちになる。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ミハテヌユメ</p>
+            <p class="spec"><span>8枠11番</span><span>牝2</span><span>53.0kg</span><span>◇小林美駒</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/30 札幌芝1200を<span class="num">14</span>頭立て5番人気で<span class="num">3</span>着<span class="num">0.3</span>差（<span class="num">1-1</span>の逃げ、上がり<span class="num">35.8</span>）。
+            走破時計<span class="num">1:10.4</span>は、この夏の札幌・2歳未勝利の芝1200では上位の数字。
+            <strong>ただし大外<span class="num">11</span>番</strong>を引き、前走と同じ逃げの形は取りにくくなった。そこだけが割引材料。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">スクレイプバイ</p>
+            <p class="spec"><span>8枠10番</span><span>牡2</span><span>55.0kg</span><span>横山琉人</span></p>
+          </div>
+          <p class="why">
+            2026/08/16 札幌芝1200で<span class="num">2</span>着<span class="num">0.6</span>差（<span class="num">8</span>頭、<span class="num">4-2</span>、上がり<span class="num">35.1</span>）。
+            芝1500の新馬で<span class="num">10</span>着<span class="num">3.1</span>差だった馬が<strong>1200mへの短縮で一変</strong>した。
+            同じレースでゴートゥービッツンに<span class="num">0.1</span>差先着。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ゴートゥービッツン</p>
+            <p class="spec"><span>2枠2番</span><span>牝2</span><span>52.0kg</span><span>▲遠藤汰月</span></p>
+          </div>
+          <p class="why">
+            <strong>枠順を見て単穴に引き上げた。</strong><span class="num">5</span>戦すべて芝1200mを使われ、前走は<span class="num">8</span>頭立てで
+            <span class="num">3</span>着<span class="num">0.7</span>差（<span class="num">1-2</span>）。
+            <span class="num">2</span>番枠で内から先手を取れる位置に入り、斤<span class="num">52.0</span>kgの<span class="num">3</span>kg減も乗る。
+            外の2頭が譲る形なら、そのまま粘り込む目がある。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ハミングリップス</p>
+            <p class="spec"><span>6枠6番</span><span>牝2</span><span>55.0kg</span><span>藤懸貴志</span></p>
+          </div>
+          <p class="why">
+            札幌芝1200の新馬で<span class="num">5</span>着<span class="num">1.2</span>差（<span class="num">12</span>頭、<span class="num">8-8</span>）。上がり<span class="num">34.5</span>はメンバー最速。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">3R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">10:50 / ダート1000m / 馬齢 / 12頭 &nbsp;·&nbsp; <span class="pick">◎アイビーミャーオ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げ争いはニンジャトットリ（<span class="num">1</span>枠<span class="num">1</span>番／ダ1200で<span class="num">1-1</span>が続く）と
+        ナブッコ（<span class="num">7</span>枠<span class="num">9</span>番／前走・札幌ダ1000を<span class="num">1-1</span>）。
+        札幌ダ1000mは向正面の直線からの発走でコーナーは<span class="num">1</span>つだけ、3コーナーまで約<span class="num">240</span>m。
+        <strong>内の<span class="num">1</span>番が先手を取り、外の<span class="num">9</span>番は主張すると余計に脚を使う</strong>。
+        アイビーミャーオ（<span class="num">4</span>枠<span class="num">4</span>番／<span class="num">2-2</span>）、ペイシャクロス（<span class="num">2</span>枠<span class="num">2</span>番／<span class="num">3-4</span>）、
+        サンライズロイ（<span class="num">8</span>枠<span class="num">11</span>番／<span class="num">3-2</span>）が続く隊列。
+        <span class="num">12</span>頭中<strong><span class="num">8</span>頭がダ1000mを経験済み</strong>という、経験値の差が出にくい一戦。テンの速さがそのまま順位になる。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">アイビーミャーオ</p>
+            <p class="spec"><span>4枠4番</span><span>牝3</span><span>53.0kg</span><span>◇小林美駒</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/23 札幌ダ1000で<strong><span class="num">12</span>頭立て1番人気<span class="num">2</span>着<span class="num">0.0</span>差</strong>（<span class="num">2-2</span>、上がり<span class="num">35.6</span>、<span class="num">0:59.2</span>、馬体<span class="num">448</span>kg<span class="num">+4</span>）。
+            その前の札幌ダ1000も<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">2-2</span>、<span class="num">0:58.8</span>）で、<strong>このコースは<span class="num">[0-2-0-0]</span></strong>。
+            <span class="num">2</span>番手を取り切れる先行力があり、<span class="num">4</span>番枠なら内の逃げ馬を見ながら流れに乗れる。
+            ◇小林美の<span class="num">2</span>kg減で斤<span class="num">53.0</span>kgも後押し。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">メイショウマドンナ</p>
+            <p class="spec"><span>5枠5番</span><span>牝3</span><span>55.0kg</span><span>吉田隼人</span></p>
+          </div>
+          <p class="why">
+            <strong>そのアイビーミャーオと同じ8/23のレースで<span class="num">3</span>着<span class="num">0.0</span>差</strong>（<span class="num">5-5</span>、上がり<span class="num">35.0</span>、<span class="num">0:59.2</span>）。
+            時計は同一で、<strong>上がりはこちらが<span class="num">0.6</span>秒速い</strong>。小倉ダ1000でも<span class="num">2</span>着<span class="num">0.4</span>差があり、ダ1000は<span class="num">[0-1-2-1]</span>。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ナブッコ</p>
+            <p class="spec"><span>7枠9番</span><span>牡3</span><span>53.0kg</span><span>★河原田菜々</span></p>
+          </div>
+          <p class="why">
+            2026/08/15 札幌ダ1000で<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">1-1</span>の逃げ、<span class="num">0:59.5</span>）、小倉ダ1000でも<span class="num">3</span>着<span class="num">0.1</span>差。
+            <strong>ただし<span class="num">9</span>番枠</strong>で、内の<span class="num">1</span>番と先手を争うと3コーナーまで<span class="num">240</span>mで脚を使う。★河原田の<span class="num">4</span>kg減は大きい。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ペイシャクロス</p>
+            <p class="spec"><span>2枠2番</span><span>牝3</span><span>54.0kg</span><span>☆長浜鴻緒</span></p>
+          </div>
+          <p class="why">
+            ダ1000mを<span class="num">4</span>回使って<span class="num">4</span>着<span class="num">0.7</span>差・<span class="num">4</span>着<span class="num">0.6</span>差・<span class="num">3</span>着<span class="num">0.4</span>差。
+            前走は馬体<span class="num">+16</span>kgの<span class="num">474</span>kg。<span class="num">2</span>番枠で内を回れる。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">4R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">11:20 / ダート1700m / 馬齢 / 14頭 &nbsp;·&nbsp; <span class="pick">◎メイショウセンドウ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げ候補はモズヴイ（<span class="num">3</span>枠<span class="num">3</span>番／前走・札幌ダ1700を<span class="num">1-1-1-2</span>）と、
+        芝で<span class="num">1-1-1-1</span>を続けてきたエイシンリーガル（<span class="num">6</span>枠<span class="num">9</span>番／ダートは初）。
+        札幌ダ1700mは1コーナーまで約<span class="num">242</span>mと短く、<strong>内枠の先行馬がそのまま隊列を作る</strong>。
+        アズライトアスール（<span class="num">4</span>枠<span class="num">6</span>番／前走<span class="num">5-4-3-2</span>）が内から好位を取れる。
+        <span class="num">14</span>頭中<strong>ダート未経験が<span class="num">4</span>頭</strong>いて、その分だけ前半の隊列は乱れやすい。
+        ロジクリスエス（<span class="num">3</span>枠<span class="num">4</span>番／<span class="num">13-13-13-11</span>）のような後方待機には忙しい流れ。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">メイショウセンドウ</p>
+            <p class="spec"><span>4枠5番</span><span>牡3</span><span>57.0kg</span><span>横山和生</span></p>
+          </div>
+          <p class="why">
+            <strong>札幌ダ1700mは<span class="num">[0-2-0-1]</span>、洋芝開催のダ1700全体では<span class="num">2</span>着<span class="num">3</span>回。</strong>
+            前走2026/08/22は<span class="num">14</span>頭立て2番人気で<span class="num">2</span>着<span class="num">0.3</span>差、通過<span class="num">10-10-2-1</span>——
+            <strong>向正面から一気に先頭まで押し上げて、なお上がり<span class="num">36.9</span></strong>という強い競馬をしている。
+            その2週前も同コースで<span class="num">2</span>着<span class="num">0.1</span>差（<span class="num">7-8-7-3</span>）。
+            <span class="num">5</span>番枠は1角まで<span class="num">242</span>mのこのコースで最も無理なく好位を取れる位置で、勝ち切るなら今回。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">アズライトアスール</p>
+            <p class="spec"><span>4枠6番</span><span>牡3</span><span>53.0kg</span><span>★河原田菜々</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/29 札幌ダ1700を13番人気で<span class="num">2</span>着<span class="num">1.3</span>差（<span class="num">5-4-3-2</span>、上がり<span class="num">38.8</span>）。
+            <strong>斤<span class="num">53</span>kgに減った途端の一変</strong>で、今回も★河原田の<span class="num">4</span>kg減で同じ<span class="num">53.0</span>kg。
+            <span class="num">6</span>番枠から前々で運べる。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ダンツアラーム</p>
+            <p class="spec"><span>6枠10番</span><span>牝3</span><span>55.0kg</span><span>黛弘人</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/30 札幌ダ1700で<span class="num">5</span>着<span class="num">0.9</span>差（<span class="num">12-12-11-9</span>、上がり<span class="num">38.2</span>、馬体<span class="num">+10</span>kg）。
+            <strong>後方から唯一まとめた上がり</strong>で、<span class="num">12</span>戦目にして馬体増と内容が上向いてきた。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">フィーユレアル</p>
+            <p class="spec"><span>5枠8番</span><span>牝3</span><span>52.0kg</span><span>▲遠藤汰月</span></p>
+          </div>
+          <p class="why">
+            2026/07/12 福島ダ1700で<span class="num">3</span>着<span class="num">0.6</span>差（<span class="num">6-5-6-3</span>）。
+            <strong>そのときと同じ<span class="num">52.0</span>kg</strong>で、メンバー最軽量。<span class="num">55</span>kgだった前走の<span class="num">9</span>着<span class="num">2.6</span>差とは前提が違う。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">5R</span>
+      <span>
+        <span class="rtitle">2歳新馬</span>
+        <span class="rsub">12:10 / 芝1500m / 馬齢 / 14頭 &nbsp;·&nbsp; <span class="pick">◎ローズファミリー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <strong>全馬が未出走の新馬戦で、通過順のデータが一頭ぶんも存在しない。</strong>隊列は断定できない。
+        言えるのはコースの形のほうで、札幌芝1500mは向正面のポケットからのスタート、
+        <strong>直線<span class="num">266</span>mはJRA<span class="num">10</span>場で最短</strong>。
+        <span class="num">14</span>頭立てでこの直線だと、後ろから差す形はまず間に合わない。
+        内で先行できた馬がそのまま持ち込む決着になりやすく、
+        アルーリングボーイ（<span class="num">8</span>枠<span class="num">13</span>番）とコーズサム（<span class="num">8</span>枠<span class="num">14</span>番）の
+        大外<span class="num">2</span>頭は、それだけで割引が要る。
+        なお出走<span class="num">14</span>頭のうち<span class="num">10</span>頭が<span class="num">9</span>月<span class="num">2</span>日に
+        <strong>同じ札幌芝（馬場・重）で追い切っており</strong>、時計の横比較がそのまま効くのはこのレースの利点である。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ローズファミリー</p>
+            <p class="spec"><span>2枠2番</span><span>牝2</span><span>52.0kg</span><span>▲大久保友雅</span></p>
+          </div>
+          <p class="why">
+            2026/09/02 札幌芝（重）で<span class="num">5</span>F<span class="num">64.7</span>→<span class="num">3</span>F<span class="num">35.2</span>→ラスト<span class="num">1</span>F<span class="num">11.3</span>。
+            <strong>同じ日に同じ札幌芝（重）を追った<span class="num">10</span>頭のなかで、<span class="num">3</span>F<span class="num">35.2</span>も<span class="num">1</span>F<span class="num">11.3</span>もいずれも最速</strong>である。
+            しかも内のショウナンガレオンに<span class="num">5</span>Fで<span class="num">0.4</span>秒先行して併入、
+            外のアンミツ（一杯）には<span class="num">5</span>F併せで<span class="num">0.4</span>秒先着と、時計だけでなく併せ馬の中身も伴っている。
+            父タワーオブロンドン×母父モーリス。
+            直線<span class="num">266</span>mの札幌で<span class="num">2</span>枠<span class="num">2</span>番は先行して押し切るのに最も無駄がない位置で、
+            <strong>▲<span class="num">3</span>kg減の<span class="num">52.0</span>kg</strong>も加わる。枠と仕上がりが同じ方向を向いた。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ポーラールート</p>
+            <p class="spec"><span>3枠3番</span><span>牝2</span><span>55.0kg</span><span>北村友一</span></p>
+          </div>
+          <p class="why">
+            母ジェットセッティングは愛<span class="num">1000</span>ギニーとマトロンS（愛G1）を勝った<strong>G1馬</strong>。
+            父キタサンブラックで、サンデーレーシング×ノーザンファームの<span class="num">1</span>口<span class="num">175</span>万円という高額募集馬である。
+            札幌芝（重）の<span class="num">5</span>F<span class="num">70.2</span>→<span class="num">3</span>F<span class="num">37.8</span>→<span class="num">1</span>F<span class="num">11.8</span>は時計自体地味だが、
+            <strong>フローレンスフーガを<span class="num">4</span>Fで<span class="num">1.4</span>秒追走して<span class="num">0.1</span>秒先着</strong>、
+            バトルナイト（強め）を<span class="num">5</span>Fで<span class="num">0.6</span>秒追走して併入と、追走から差す形で中身は濃い。
+            <span class="num">3</span>枠<span class="num">3</span>番も内で立ち回れる枠。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">アンミツ</p>
+            <p class="spec"><span>6枠10番</span><span>牝2</span><span>52.0kg</span><span>▲和田陽希</span></p>
+          </div>
+          <p class="why">
+            札幌芝（重）で<span class="num">5</span>F<span class="num">65.1</span>→<span class="num">3</span>F<span class="num">35.6</span>→<span class="num">1</span>F<span class="num">11.7</span>で、
+            時計は◎ローズファミリーに次ぐ<span class="num">2</span>番目。ただし<strong>併せた<span class="num">2</span>頭にいずれも<span class="num">0.4</span>秒遅れ</strong>、
+            短評も「ラストは息切れ」。<span class="num">52.0</span>kgの軽さと「新馬向きの性格で実戦向き」という評価のぶんまで。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">グレーターマーク</p>
+            <p class="spec"><span>1枠1番</span><span>牝2</span><span>53.0kg</span><span>◇小林美駒</span></p>
+          </div>
+          <p class="why">
+            札幌ダ（重）で<span class="num">3</span>歳馬リピースに<span class="num">5</span>Fで<span class="num">2</span>秒先行し、<span class="num">1</span>F併せで<span class="num">0.5</span>秒先着。
+            「<strong><span class="num">3</span>歳馬に追いつかれてからしぶとさを発揮</strong>」と短評にあり、先週の芝も動けている。
+            <span class="num">1</span>枠<span class="num">1</span>番は直線<span class="num">266</span>mの札幌で最短距離。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">6R</span>
+      <span>
+        <span class="rtitle">3歳未勝利</span>
+        <span class="rsub">12:40 / 芝2000m / 馬齢 / 16頭 &nbsp;·&nbsp; <span class="pick">◎マンサニージャ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        逃げるのはポリメトリック（<span class="num">5</span>枠<span class="num">9</span>番）。
+        2026/03/21 中京芝2000を通過<span class="num">1-1-1-1</span>で運んだ<strong>この<span class="num">16</span>頭で唯一の逃げ経験馬</strong>で、
+        ほかにハナを主張する馬が見当たらない。
+        先行できるのはウインポーシャ（<span class="num">2</span>枠<span class="num">3</span>番／04-18福島芝2000を<span class="num">2-2-2-1</span>）と
+        アルペングロー（<span class="num">8</span>枠<span class="num">16</span>番／06-28函館芝2000を<span class="num">3-4-4-4</span>）くらいで、
+        <strong>単騎逃げが濃厚。前半は流れず隊列は落ち着く。</strong>
+        札幌の直線は<span class="num">266</span>mでJRA最短。<span class="num">16</span>頭立てでこのペースなら
+        <strong>後方一気は届きにくく、好位でロスなく我慢した馬が残る</strong>。
+        ワダツミ（<span class="num">2</span>枠<span class="num">4</span>番）とサトノリアファル（<span class="num">5</span>枠<span class="num">10</span>番）の後方待機組は、
+        枠は良くても展開の恩恵を受けにくい。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">マンサニージャ</p>
+            <p class="spec"><span>4枠8番</span><span>牝3</span><span>55.0kg</span><span>丹内祐次</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/22 <strong>札幌芝2000で<span class="num">16</span>頭立て<span class="num">2</span>着<span class="num">0.1</span>差</strong>
+            （<span class="num">9-9-8-3</span>、上がり<span class="num">36.4</span>、馬体<span class="num">434</span>kg）。
+            <strong>今回と同じ競馬場・同じ距離・同じ頭数</strong>で、中団から<span class="num">3</span>番手まで押し上げて詰め切った内容である。
+            2026/06/27 函館芝1800も<span class="num">3</span>着<span class="num">0.1</span>差、2026/03/14 中山芝1600も<span class="num">3</span>着<span class="num">0.2</span>差で、
+            <span class="num">11</span>戦して掲示板を外したのは<span class="num">4</span>回だけ。勝ち切れないが崩れない。
+            上の展開どおり<strong>単騎逃げで流れが落ち着くなら、この馬の好位差しが最も噛み合う</strong>。
+            <span class="num">4</span>枠<span class="num">8</span>番は<span class="num">16</span>頭立ての中央で、直線<span class="num">266</span>mの札幌で外を回らされずに済む。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ワダツミ</p>
+            <p class="spec"><span>2枠4番</span><span>牝3</span><span>53.0kg</span><span>◇小林美駒</span></p>
+          </div>
+          <p class="why">
+            前走2026/08/30 札幌芝2000で<span class="num">16</span>頭立て<span class="num">4</span>着<span class="num">0.2</span>差。
+            通過は<span class="num">16-16-15-15</span>の最後方で、そこから<strong>上がり<span class="num">34.9</span></strong>——このレースで最も速い脚である。
+            札幌芝2000は08-02の<span class="num">5</span>着<span class="num">0.7</span>差から08-30の<span class="num">4</span>着<span class="num">0.2</span>差へ着実に詰めてきた。
+            ただし<strong>単騎逃げでペースが緩むと届かない脚質</strong>で、その一点だけで本命には推せない。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">フローレンスフーガ</p>
+            <p class="spec"><span>3枠5番</span><span>牡3</span><span>57.0kg</span><span>古川吉洋</span></p>
+          </div>
+          <p class="why">
+            芝2000で08-22札幌<span class="num">3</span>着<span class="num">0.5</span>差（<span class="num">13-13-13-5</span>、上がり<span class="num">36.3</span>）、
+            06-28函館<span class="num">3</span>着<span class="num">0.1</span>差、05-09新潟<span class="num">3</span>着<span class="num">0.2</span>差。
+            <strong>芝2000の<span class="num">6</span>戦すべてで掲示板</strong>を確保している。<span class="num">480</span>kg台の雄大な馬体。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">アート</p>
+            <p class="spec"><span>7枠14番</span><span>牡3</span><span>57.0kg</span><span>鮫島克駿</span></p>
+          </div>
+          <p class="why">
+            前走08-30 札幌芝2000で<span class="num">5</span>着<span class="num">0.3</span>差（<span class="num">12-12-12-12</span>、上がり<span class="num">35.5</span>）。
+            中<span class="num">1</span>週の詰まった間隔と、<span class="num">7</span>枠<span class="num">14</span>番で外を回らされる点が割引。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ヒメヒオウギ</p>
+            <p class="spec"><span>4枠7番</span><span>牝3</span><span>51.0kg</span><span>★河原田菜々</span></p>
+          </div>
+          <p class="why">
+            08-16 札幌芝2000で<span class="num">4</span>着<span class="num">0.7</span>差（<span class="num">7-6-7-5</span>、上がり<span class="num">35.8</span>）、
+            07-04 函館芝1800も<span class="num">4</span>着<span class="num">0.1</span>差。
+            <span class="num">12</span>戦で<span class="num">4</span>着が<span class="num">7</span>回という詰めの甘さはあるが、
+            今回は<strong>★<span class="num">4</span>kg減で<span class="num">51.0</span>kg</strong>のメンバー最軽量。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">7R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス（牝）</span>
+        <span class="rsub">13:10 / 芝1800m / 定量 / 12頭 &nbsp;·&nbsp; <span class="pick">◎エイカイコバチ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">2</span>回札幌<span class="num">5</span>日目、Cコース。<span class="num">12</span>頭立て。
+        <strong>逃げるのはクイーンズワーフ（<span class="num">1</span>枠<span class="num">1</span>番）でほぼ間違いない。</strong>
+        通過<span class="num">1-1-1-1</span>の逃げを何度も打っており、07-26 札幌芝<span class="num">1500</span>でも通過<span class="num">1-1-1</span>で運んでいる。
+        最内を引いたことで無理なくハナを取れ、ほかに主張する馬もいないため<strong>単騎</strong>。
+        <span class="num">2</span>番手以下はアドマイヤシュラ（<span class="num">6</span>枠<span class="num">8</span>番、通過<span class="num">2-2-2-2</span>）、
+        ジェルブロア（<span class="num">5</span>枠<span class="num">6</span>番、通過<span class="num">4-4-4-3</span>）が続き、エイカイコバチは<span class="num">4</span>〜<span class="num">5</span>番手。
+        札幌芝<span class="num">1800</span>mは<strong>最初のコーナーまで約<span class="num">185</span>mと短く</strong>、外枠は序盤で位置を取りに行く必要がある。
+        ◎が<span class="num">7</span>枠<span class="num">10</span>番に入ったのは明確な減点だが、洋芝での連続好走と、
+        <strong>単騎逃げでもペースは上がらず前が壁になりにくい隊列</strong>を踏まえ、印は動かさなかった。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">エイカイコバチ</p>
+            <p class="spec"><span>7枠10番</span><span>牝3</span><span>53.0kg</span><span>小沢大仁</span></p>
+          </div>
+          <p class="why">
+            08-15 札幌芝<span class="num">2000</span>で<span class="num">15</span>頭<span class="num">7</span>番人気<span class="num">2</span>着<span class="num">0.0</span>差（通過<span class="num">4-4-3-4</span>、上がり<span class="num">35.5</span>）、
+            <span class="num">6</span>日前の08-09 札幌芝<span class="num">2000</span>でも<span class="num">3</span>着<span class="num">0.2</span>差。
+            <strong>芝<span class="num">2000</span>は<span class="num">[1-1-2-2]</span>、札幌芝は<span class="num">[0-1-1-0]</span>で洋芝では一度も崩れていない。</strong>
+            芝<span class="num">1800</span>は<span class="num">[0-0-1-1]</span>と実績が薄いが、05-23 京都芝<span class="num">1800</span>でも<span class="num">3</span>着<span class="num">0.5</span>差。
+            <span class="num">53.0</span>kg。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">アドマイヤシュラ</p>
+            <p class="spec"><span>6枠8番</span><span>牝3</span><span>53.0kg</span><span>佐々木大輔</span></p>
+          </div>
+          <p class="why">
+            <strong>◎と同じ08-15 札幌芝<span class="num">2000</span>で<span class="num">15</span>頭<span class="num">2</span>番人気<span class="num">3</span>着<span class="num">0.1</span>差</strong>（通過<span class="num">2-2-2-2</span>）。
+            ◎の前につけて<span class="num">0.1</span>差の入線で、力は互角とみてよい。
+            芝<span class="num">1800</span>は昨秋の京都新馬を通過<span class="num">4-3</span>から<span class="num">1</span>着<span class="num">0.1</span>差で勝った舞台。
+            前走は馬体<span class="num">+18</span>kgの<span class="num">446</span>kgで走っており、絞れてくれば上積みがある。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ジェルブロア</p>
+            <p class="spec"><span>5枠6番</span><span>牝4</span><span>56.0kg</span><span>北村友一</span></p>
+          </div>
+          <p class="why">
+            芝<span class="num">1800</span>は<span class="num">[1-1-1-2]</span>。前走08-23 札幌芝<span class="num">1800</span>で<span class="num">11</span>頭<span class="num">4</span>番人気<span class="num">3</span>着<span class="num">0.5</span>差
+            （通過<span class="num">4-4-4-3</span>、上がり<span class="num">35.2</span>）、07-12 福島の織姫賞では<span class="num">2</span>着<span class="num">0.1</span>差。
+            <strong>同じ札幌芝<span class="num">1800</span>を使った直後で、コース替わりのない今回は上積みを見込める。</strong>
+            <span class="num">56.0</span>kgで◎○より<span class="num">3</span>kg重い点だけ割引。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">8R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス</span>
+        <span class="rsub">13:40 / ダ1700m / 定量 / 13頭 &nbsp;·&nbsp; <span class="pick">◎レッドフロイデ</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        <span class="num">13</span>頭立て。札幌ダ<span class="num">1700</span>mは<strong>最初のコーナーまで約<span class="num">240</span>mと短く、内枠が有利</strong>。
+        ハナを主張するのは<strong><span class="num">2</span>頭</strong>。リテラシー（<span class="num">2</span>枠<span class="num">2</span>番）は08-01 札幌ダ<span class="num">1700</span>稍の未勝利を通過<span class="num">1-1-1-1</span>で押し切っており、
+        ピエナオルカ（<span class="num">7</span>枠<span class="num">10</span>番）は通過<span class="num">1-1-1-1</span>の逃げが<span class="num">4</span>走ある。
+        <strong>内のリテラシーが行き切れば、外のピエナオルカは押して並びかける形になり、テンは締まる。</strong>
+        前走を通過<span class="num">2-2-1-1</span>で<span class="num">1.3</span>差圧勝したベルアズーロ（<span class="num">5</span>枠<span class="num">7</span>番）も前に行きたい口で、逃げ・先行が<span class="num">3</span>頭。
+        ペースは緩まず、<strong>好位から差す形が有利</strong>になる。
+        ◎を<span class="num">3</span>枠<span class="num">3</span>番の先行差し、▲を後方からの差しに置いたのはこの想定による。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">レッドフロイデ</p>
+            <p class="spec"><span>3枠3番</span><span>牡3</span><span>51.0kg</span><span>★河原田菜々</span></p>
+          </div>
+          <p class="why">
+            ダ<span class="num">1700</span>は<span class="num">[1-0-1-0]</span>。07-04 函館ダ<span class="num">1700</span>で<span class="num">13</span>頭<span class="num">1</span>番人気<span class="num">1</span>着<span class="num">0.1</span>差（通過<span class="num">4-3-2-2</span>）、
+            前走08-29 札幌ダ<span class="num">1700</span>稍でも<span class="num">10</span>頭<span class="num">4</span>番人気<span class="num">3</span>着<span class="num">0.1</span>差（通過<span class="num">3-2-3-5</span>、上がり<span class="num">37.3</span>）。
+            <strong>ダート通算<span class="num">[1-1-4-2]</span>、<span class="num">8</span>戦のうち<span class="num">6</span>回が<span class="num">3</span>着以内</strong>と着順の下限が高い。
+            <span class="num">51.0</span>kgはメンバー最軽量で、内めの<span class="num">3</span>枠<span class="num">3</span>番から先行できる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ミスティマウンテン</p>
+            <p class="spec"><span>7枠11番</span><span>セ4</span><span>58.0kg</span><span>佐々木大輔</span></p>
+          </div>
+          <p class="why">
+            <strong>札幌ダートは<span class="num">3</span>戦して<span class="num">[1-1-1-0]</span>と全部が<span class="num">3</span>着以内</strong>。ダ<span class="num">1700</span>は<span class="num">[1-1-1-1]</span>。
+            前走08-15 札幌ダ<span class="num">1700</span>で<span class="num">11</span>頭<span class="num">2</span>番人気<span class="num">3</span>着<span class="num">0.3</span>差（通過<span class="num">4-4-3-2</span>）。
+            コース適性はメンバー最上位だが、<strong><span class="num">58.0</span>kgは◎より<span class="num">7</span>kg重く</strong>、
+            <span class="num">7</span>枠<span class="num">11</span>番で外を回らされる分もある。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ハイライトニング</p>
+            <p class="spec"><span>4枠4番</span><span>セ3</span><span>55.0kg</span><span>横山和生</span></p>
+          </div>
+          <p class="why">
+            前走08-15 札幌ダ<span class="num">1700</span>で<span class="num">11</span>頭<span class="num">6</span>番人気<span class="num">2</span>着<span class="num">0.1</span>差。
+            <strong>上がり<span class="num">36.5</span>はそのレースのメンバー最速</strong>で、通過<span class="num">8-8-5-4</span>から差し切り寸前まで詰めた
+            （<span class="num">3</span>着が○ミスティマウンテン）。
+            ダ<span class="num">1700</span>は<span class="num">[0-1-0-1]</span>と実績は浅いが、<span class="num">4</span>枠<span class="num">4</span>番の内めと、前が競り合う流れは味方する。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">9R</span>
+      <span>
+        <span class="rtitle">Fビレッジ特別（1勝クラス）</span>
+        <span class="rsub">14:10 / 芝2000m Cコース / 定量 / 14頭 &nbsp;·&nbsp; <span class="pick">◎ハルフロンティア</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        札幌芝<span class="num">2000</span>mは<strong><span class="num">1</span>コーナーまで約<span class="num">400</span>m</strong>あり、枠に関係なく位置を取り直せる。
+        今週は<strong>Cコース使用で内目の芝が生きており</strong>、洋芝ぶん上がりはかかる（同開催の<span class="num">2000</span>m戦はいずれも上がり<span class="num">34</span>秒台後半〜<span class="num">35</span>秒台）。
+        <strong>逃げるのは<span class="num">4</span>枠<span class="num">6</span>番ハルフロンティア</strong>。近<span class="num">5</span>走のうち<span class="num">4</span>走で通過<span class="num">1-1-1-1</span>を刻んでおり、
+        <strong>他に前を主張する馬がいないため単騎の公算が大きい。</strong>
+        番手はカージオイド（通過<span class="num">2-2-2-2</span>）。
+        差し・追い込みはメイショウテンク（通過<span class="num">13-13-12-10</span>）、コワンニシタガウ（通過<span class="num">11-11-11-7</span>）と後ろに構えるタイプで、
+        <strong>マイペースの単騎逃げが決まれば前が止まらない</strong>。
+        <span class="num">14</span>頭立てで隊列は縦長にならず、直線<span class="num">266</span>mでの差し切りは楽ではない。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ハルフロンティア</p>
+            <p class="spec"><span>4枠6番</span><span>牡4</span><span>58.0kg</span><span>鮫島駿</span></p>
+          </div>
+          <p class="why">
+            07-11 函館芝<span class="num">2000</span>の北斗特別を、
+            <strong>通過<span class="num">1-1-1-1</span>から上がり<span class="num">34.7</span>で<span class="num">0.4</span>差の逃げ切り</strong>。
+            前走08-23 札幌芝<span class="num">2000</span>のルスツ特別も同じく通過<span class="num">1-1-1-1</span>で<span class="num">2</span>着<span class="num">0.8</span>差に粘っている。
+            <strong>洋芝<span class="num">2000</span>を逃げた<span class="num">2</span>戦が<span class="num">[1-1-0-0]</span></strong>。
+            <span class="num">510</span>kg前後で馬体も安定。<span class="num">4</span>枠<span class="num">6</span>番なら無理なくハナへ行ける。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">メイショウテンク</p>
+            <p class="spec"><span>4枠5番</span><span>牡3</span><span>55.0kg</span><span>吉田隼</span></p>
+          </div>
+          <p class="why">
+            08-09 札幌芝<span class="num">2000</span>で<span class="num">1</span>番人気<span class="num">2</span>着<span class="num">0.1</span>差（通過<span class="num">9-9-9-7</span>、上がり<span class="num">34.8</span>）。
+            前走ルスツ特別も<span class="num">4</span>着<span class="num">0.9</span>差ながら<strong>上がり<span class="num">34.6</span>は<span class="num">13</span>頭中の最速級</strong>で、
+            <span class="num">2</span>走続けて◎ハルフロンティアの直後から差を詰めている。
+            京都新聞杯（G2）で<span class="num">16</span>頭<span class="num">5</span>着<span class="num">0.5</span>差の実績があり、<span class="num">55.0</span>kgの斤量利も持つ。
+            届くかどうかは、前の単騎逃げがどこまで緩むか次第。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">マイネルシンベリン</p>
+            <p class="spec"><span>6枠9番</span><span>牡3</span><span>55.0kg</span><span>丹内</span></p>
+          </div>
+          <p class="why">
+            洋芝は<span class="num">[0-3-1-1]</span>。前走08-23 札幌芝<span class="num">1800</span>で<span class="num">2</span>着<span class="num">0.5</span>差、
+            08-09 石狩特別<span class="num">3</span>着<span class="num">0.2</span>差、07-18 函館・湯浜特別<span class="num">2</span>着<span class="num">0.1</span>差と
+            <strong>北海道の<span class="num">1800</span>で<span class="num">3</span>戦連続の掲示板</strong>。
+            通過<span class="num">3-3-2-2</span>で運べる先行力があり、前が止まらない流れなら圏内に残せる。
+            <span class="num">2000</span>mは04-18 福島・ひめさゆり賞<span class="num">5</span>着<span class="num">0.9</span>差の<span class="num">1</span>回だけで、距離延長が唯一の未知数。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">10R</span>
+      <span>
+        <span class="rtitle">札幌スポニチ賞（2勝クラス）</span>
+        <span class="rsub">14:45 / 芝1200m Cコース / 定量 / 16頭 &nbsp;·&nbsp; <span class="pick">◎ビービーエフォート</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        札幌芝<span class="num">1200</span>mは向正面発走で<strong>直線が<span class="num">266</span>mしかない</strong>。
+        普通なら前有利のコースだが、<strong>今開催の同条件<span class="num">2</span>戦はいずれも差しが決まっている</strong>
+        （08-15 知床特別＝<span class="num">2</span>〜<span class="num">4</span>着が通過<span class="num">11-11</span>・<span class="num">6-6</span>・<span class="num">4-4</span>、
+        08-30 HBC賞＝<span class="num">3</span>着が通過<span class="num">14-11</span>で上がり<span class="num">34.2</span>）。
+        <span class="num">16</span>頭フルゲートで前に行く馬が多いためで、今回も同じ形。
+        ファビュラススター（通過<span class="num">1-1</span>）、ベビーズブレス（通過<span class="num">2-1</span>）、
+        ツルノマイハシ（通過<span class="num">2-2</span>）、ストレイトアスク（通過<span class="num">2-2</span>）と<strong>前受けが<span class="num">4</span>頭</strong>。
+        <strong>テンは<span class="num">33</span>秒台に入り、上がりがかかる。好位差し〜差しが有利。</strong>
+        Cコース替わりで内の馬場は生きているが、前が競り合う以上、内で包まれるより<span class="num">5</span>〜<span class="num">7</span>枠から動ける位置のほうが良い。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ビービーエフォート</p>
+            <p class="spec"><span>6枠11番</span><span>牝4</span><span>56.0kg</span><span>鮫島駿</span></p>
+          </div>
+          <p class="why">
+            前走08-22 札幌芝<span class="num">1200</span>のオールスターJ第1戦で
+            <strong><span class="num">14</span>頭<span class="num">2</span>着<span class="num">0.1</span>差</strong>（通過<span class="num">5-5</span>、上がり<span class="num">34.7</span>）。
+            中山芝<span class="num">1200</span>の2勝クラスでも<span class="num">2</span>着<span class="num">0.0</span>差・<span class="num">3</span>着<span class="num">0.1</span>差と、
+            <strong>芝<span class="num">1200</span>の2勝クラスで<span class="num">3</span>回<span class="num">0.1</span>差以内</strong>。
+            好位から差す形が今回の流れに最も合い、<span class="num">6</span>枠<span class="num">11</span>番は動きやすい位置。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">セイプリーズ</p>
+            <p class="spec"><span>8枠16番</span><span>牝4</span><span>56.0kg</span><span>古川吉</span></p>
+          </div>
+          <p class="why">
+            前走08-15、<strong>同じ札幌芝<span class="num">1200</span>の知床特別で<span class="num">16</span>頭<span class="num">2</span>着<span class="num">0.1</span>差</strong>。
+            通過<span class="num">11-11</span>の後方から<strong>上がり<span class="num">34.6</span>＝<span class="num">16</span>頭中最速</strong>で差してきた内容で、
+            今回はメンバーの<span class="num">4</span>頭がそのレースの再戦相手（<span class="num">3</span>着ストレイトアスク・<span class="num">4</span>着スムースベルベット・
+            <span class="num">5</span>着ベビーズブレス・<span class="num">6</span>着ブルボンクイーン）にあたり、着差の裏づけがある。
+            <span class="num">8</span>枠<span class="num">16</span>番は外を回すロスがあるが、被されずに脚を溜められる利点と表裏。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ツルノマイハシ</p>
+            <p class="spec"><span>3枠6番</span><span>牝3</span><span>54.0kg</span><span>佐々木</span></p>
+          </div>
+          <p class="why">
+            前走08-29 札幌芝<span class="num">1200</span>稍重の<span class="num">1</span>勝クラスを、<span class="num">16</span>頭<span class="num">1</span>番人気に応えて
+            通過<span class="num">2-2</span>から<span class="num">0.1</span>差で押し切り（<span class="num">1:09.4</span>）。
+            函館芝<span class="num">1200</span>でも<span class="num">2</span>着<span class="num">0.1</span>差・<span class="num">4</span>着<span class="num">0.2</span>差で、<strong>洋芝<span class="num">1200</span>は<span class="num">[2-1-0-1]</span></strong>。
+            <span class="num">3</span>歳牝馬<span class="num">54.0</span>kgは古馬牡馬の<span class="num">58.0</span>kgと<span class="num">4</span>kg差。
+            前受けする脚質だけに、テンが速くなる今回は前走ほど楽ではない。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">ファビュラススター</p>
+            <p class="spec"><span>7枠14番</span><span>牡5</span><span>58.0kg</span><span>池添</span></p>
+          </div>
+          <p class="why">
+            前走08-30 札幌芝<span class="num">1200</span>のHBC賞で<span class="num">16</span>頭<span class="num">2</span>着<span class="num">0.0</span>差。
+            通過<span class="num">1-1</span>のハナからハナ差まで粘った内容は評価できるが、
+            <strong>今回は同型が<span class="num">4</span>頭</strong>いて、前走のように楽に行かせてはもらえない。
+            <span class="num">522</span>kg（<span class="num">+18</span>）と大幅増でこの走りだった点は、上積みとして見ておく。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc" open>
+    <summary>
+      <span class="rno">11R</span>
+      <span>
+        <span class="rtitle">札幌2歳ステークス（G3）</span>
+        <span class="rsub">15:20 / 芝1800m / 馬齢 / 9頭 &nbsp;·&nbsp; <span class="pick">◎ショウナンガレオン</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        金曜16:10に出馬表を取り直し、<strong>枠番・馬番・確定騎手・<span class="num">9</span>頭という確定頭数は
+        金曜10:15時点と同一</strong>であることを確認した。ノヴァヴェローチェの回避を含めて内容の変更はない。
+        逃げ馬はコスモハナミズキ（<span class="num">4</span>枠<span class="num">4</span>番）<strong>1頭だけ</strong>で単騎逃げ濃厚、
+        <span class="num">9</span>頭立て・<span class="num">1</span>コーナーまで約<span class="num">185</span>mという条件から<strong>内〜中の先行勢が残る</strong>という見立ても変わらない。
+        印は ◎ショウナンガレオン ○ハヤブサカツオー ▲イドム △コスモハナミズキ・テンカタイヘイ。
+        <strong>着差・上がり3F・通過順・馬齢重量による根拠は<a href="#sapporo">ページ上部の札幌2歳ステークス欄</a>に載せている。</strong>
+      </div>
+    </div>
+  </details>
+
+  <details class="rc">
+    <summary>
+      <span class="rno">12R</span>
+      <span>
+        <span class="rtitle">3歳以上1勝クラス（牝馬限定）</span>
+        <span class="rsub">16:05 / ダート1700m / 定量 / 13頭 &nbsp;·&nbsp; <span class="pick">◎ミルボナー</span></span>
+      </span>
+    </summary>
+    <div class="body">
+      <div class="pace">
+        <b>展開</b>
+        札幌ダ<span class="num">1700</span>mは<strong>正面スタンド前発走で<span class="num">1</span>コーナーまで約<span class="num">240</span>m</strong>。
+        テンで無理をすると最後まで響くコースで、外枠は位置取りのぶんロスが出る。
+        先手を主張するのはクラインシュミット（<span class="num">1</span>枠<span class="num">1</span>番／地方で通過<span class="num">1-2-1-1</span>・<span class="num">1-1</span>の逃げ切り<span class="num">3</span>勝）、
+        ジーティーアリア（<span class="num">6</span>枠<span class="num">8</span>番／函館ダ<span class="num">1700</span>で通過<span class="num">1-1-2-1</span>）、
+        リピース（<span class="num">7</span>枠<span class="num">10</span>番／函館ダ<span class="num">1700</span>で通過<span class="num">1-1-1-1</span>から<span class="num">3</span>着<span class="num">0.0</span>差）の<span class="num">3</span>頭。
+        <strong>内の<span class="num">1</span>番がすんなり出て、外の<span class="num">8</span>番・<span class="num">10</span>番が押していく形</strong>になり、
+        <span class="num">13</span>頭立てでも前半は緩まない。
+        <strong>3〜4コーナーで押し上げられる中団の内が最も有利</strong>で、
+        ミルボナー（<span class="num">3</span>枠<span class="num">3</span>番）はその位置を取れる。
+        逆に先行して粘りたいヴェールミューズは<span class="num">8</span>枠<span class="num">12</span>番で、外から被せていく形になる。
+      </div>
+
+      <div class="horses">
+        <div class="horse honmei">
+          <div class="mark">◎</div>
+          <div>
+            <p class="name">ミルボナー</p>
+            <p class="spec"><span>3枠3番</span><span>牝3</span><span>53.0kg</span><span>鮫島克駿</span></p>
+          </div>
+          <p class="why">
+            前走08-22 <strong>同じ札幌ダ<span class="num">1700</span>の1勝クラスで<span class="num">10</span>頭<span class="num">4</span>番人気<span class="num">2</span>着<span class="num">0.1</span>差</strong>。
+            通過<span class="num">9-9-3-2</span>と後方から<span class="num">3</span>コーナーで一気に押し上げ、上がり<span class="num">38.1</span>でまとめた。
+            通算<span class="num">6</span>戦<span class="num">[1-2-2-1]</span>で、掲示板を外したのは阪神ダ<span class="num">1800</span>の<span class="num">7</span>着<span class="num">0.7</span>差だけ。
+            未勝利勝ち（京都ダ<span class="num">1800</span>）は通過<span class="num">1-1-1-1</span>の逃げ切り<span class="num">0.5</span>差で、
+            <strong>前でも後ろでも競馬ができる自在さ</strong>がこのメンバーでは強み。
+            <span class="num">3</span>歳牝<span class="num">53.0</span>kgは古馬牝<span class="num">56.0</span>kgに<span class="num">3</span>kg差、<span class="num">3</span>枠<span class="num">3</span>番で内を立ち回れる。
+          </p>
+        </div>
+
+        <div class="horse taikou">
+          <div class="mark">○</div>
+          <div>
+            <p class="name">ヴェールミューズ</p>
+            <p class="spec"><span>8枠12番</span><span>牝3</span><span>53.0kg</span><span>斎藤新</span></p>
+          </div>
+          <p class="why">
+            前走08-30 札幌ダ<span class="num">1700</span>の1勝クラスで<span class="num">12</span>頭<span class="num">2</span>番人気
+            <span class="num">3</span>着<span class="num">0.3</span>差（通過<span class="num">3-3-3-3</span>・上がり<span class="num">38.0</span>）。
+            <strong>この舞台は<span class="num">3</span>走して<span class="num">3</span>着<span class="num">0.3</span>差・<span class="num">6</span>着<span class="num">0.5</span>差・<span class="num">4</span>着<span class="num">1.0</span>差と着実に詰めている</strong>。
+            中京ダ<span class="num">1800</span>の未勝利は<span class="num">1</span>番人気で通過<span class="num">2-2-2-2</span>から<span class="num">1</span>着<span class="num">1.0</span>差の圧勝。
+            中<span class="num">1</span>週の間隔と、<span class="num">8</span>枠<span class="num">12</span>番から先行位置を取りに行くロスが割引材料。
+          </p>
+        </div>
+
+        <div class="horse anaba">
+          <div class="mark">▲</div>
+          <div>
+            <p class="name">ジーティーアリア</p>
+            <p class="spec"><span>6枠8番</span><span>牝3</span><span>53.0kg</span><span>北村友一</span></p>
+          </div>
+          <p class="why">
+            札幌ダ<span class="num">1700</span>で<span class="num">4</span>着<span class="num">0.5</span>差（通過<span class="num">3-3-1-1</span>）・<span class="num">4</span>着<span class="num">0.2</span>差（通過<span class="num">3-3-3-3</span>）と、
+            <strong><span class="num">2</span>走とも<span class="num">0.5</span>差以内でまとめている</strong>。
+            未勝利勝ちは阪神ダ<span class="num">1400</span>の重馬場を通過<span class="num">2-2</span>から<span class="num">1</span>着<span class="num">0.1</span>差。
+            先行力はメンバー上位だが、<span class="num">6</span>枠<span class="num">8</span>番から<span class="num">1</span>枠<span class="num">1</span>番・<span class="num">7</span>枠<span class="num">10</span>番と主導権を争うと
+            函館ダ<span class="num">1700</span>不良（通過<span class="num">1-1-2-1</span>→<span class="num">7</span>着<span class="num">1.5</span>差）の二の舞になりかねない。
+          </p>
+        </div>
+
+        <div class="horse">
+          <div class="mark">△</div>
+          <div>
+            <p class="name">サウンドルーチェ</p>
+            <p class="spec"><span>5枠6番</span><span>牝4</span><span>52.0kg</span><span>★河原田菜々</span></p>
+          </div>
+          <p class="why">
+            <strong>札幌ダ<span class="num">1700</span>は<span class="num">[1-1-0-2]</span></strong>——
+            2025/08/16 未勝利を<span class="num">1</span>着<span class="num">0.3</span>差、2025/08/31 の1勝クラスは通過<span class="num">4-4-4-2</span>から<span class="num">2</span>着<span class="num">0.1</span>差。
+            前走08-22 も<span class="num">10</span>番人気で<span class="num">5</span>着<span class="num">0.6</span>差と大きくは負けていない。
+            <span class="num">17</span>戦<span class="num">1</span>勝で決め手を欠くが、★<span class="num">3</span>kg減の<span class="num">52.0</span>kgはメンバー最軽量タイ。
+          </p>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <footer>
+    <h3>更新について</h3>
+    <p>
+      このページは同じURLのまま毎週書き換えます。ブックマークしておけば、更新後もリンクは変わりません。
+      更新は <code>keiba-race-yosou</code> スキルが netkeiba から出馬表と全出走歴を取り直して行います。
+      木曜16時に出走馬・除外が確定して全レースの予想を作り、<strong>金曜10時に土日11Rの枠順</strong>、
+      <strong>金曜16時に土曜の残りのレースの枠順</strong>、<strong>土曜10時15分に日曜の枠順</strong>を反映します。
+      馬体重と当日オッズは各レースの発走約30分前から入ります。
+      平場は範囲を分けて順に書き足していくため、更新直後は一部のレースがまだ空いていることがあります。
+    </p>
+
+    <h3>データについて</h3>
+    <p>
+      出典は netkeiba の出馬表（shutuba）と、各馬の<strong>全出走歴</strong>（過去5走ではなく全キャリア）。
+      脚質の判定に使っている「平均序盤位置」は、全出走の通過順の1点目を出走頭数で割った値の平均で、
+      <span class="num">0</span>に近いほど前、<span class="num">1</span>に近いほど後方から運ぶ馬です。
+      着差・上がり3F・通過順・時計はレース結果に記録された数値をそのまま用いています。
+      <strong>今回はオッズを載せていません。</strong>枠順発表直後で予想オッズが再計算前だったためで、
+      当日オッズは発走前の更新で反映します。
+    </p>
+
+    <p class="disclaim">
+      競馬は本質的に不確実で、どれだけデータを積んでも的中は保証できません。
+      このページは根拠の整理であって、購入の推奨ではありません。
+      馬券の判断はご自身で行い、賭け金は失っても支障のない範囲に留めてください。
+    </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
