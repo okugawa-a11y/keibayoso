@@ -415,6 +415,61 @@
     .horse { grid-template-columns: 24px 1fr; gap: 0 9px; }
     .mark { font-size: 19px; }
   }
+
+  /* ---------- 成績（答え合わせ） ---------- */
+  .record { margin: 56px 0 0; padding: 26px 0 0; border-top: 2px solid var(--ink); }
+  .record h2 {
+    font-family: var(--serif); font-size: 25px; font-weight: 600;
+    margin: 0 0 14px; letter-spacing: .04em;
+  }
+  .record h3 {
+    font-family: var(--cond); font-size: 11.5px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--turf);
+    margin: 30px 0 8px; padding-top: 14px; border-top: 1px solid var(--rule-soft);
+  }
+  .record .scope {
+    font-size: 13.5px; line-height: 1.85; color: var(--ink-2);
+    background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--vermilion); padding: 13px 15px; margin: 0 0 8px;
+  }
+  .record table {
+    width: 100%; border-collapse: collapse; margin: 4px 0 6px;
+    font-size: 13.5px; font-variant-numeric: tabular-nums;
+  }
+  .record thead th {
+    font-family: var(--cond); font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    color: var(--ink-3); text-align: right; padding: 5px 7px;
+    border-bottom: 1px solid var(--rule); white-space: nowrap;
+  }
+  .record thead th:first-child { text-align: left; }
+  .record tbody th {
+    text-align: left; font-weight: 600; color: var(--ink);
+    padding: 7px 7px; border-bottom: 1px solid var(--rule-soft); white-space: nowrap;
+  }
+  .record tbody td {
+    text-align: right; padding: 7px 7px; color: var(--ink-2);
+    border-bottom: 1px solid var(--rule-soft); white-space: nowrap;
+  }
+  .record tbody td.n { color: var(--ink-3); }
+  .record .den { font-size: 11.5px; color: var(--ink-3); }
+  .record .num.up { color: var(--turf); }
+  .record .num.down { color: var(--vermilion); }
+  .record table.cmp tbody tr:last-child th,
+  .record table.cmp tbody tr:last-child td { border-bottom: 2px solid var(--ink); }
+  .record .big {
+    font-family: var(--cond); font-size: 27px; font-weight: 700;
+    margin: 6px 0 8px; color: var(--ink); letter-spacing: .01em;
+  }
+  .record .big .sub {
+    display: block; font-family: var(--sans); font-size: 12px;
+    font-weight: 400; color: var(--ink-3); margin-top: 4px; letter-spacing: 0;
+  }
+  .record .note { font-size: 12.5px; line-height: 1.85; color: var(--ink-3); margin: 6px 0 0; }
+  .record .verdict {
+    font-size: 14px; line-height: 1.9; color: var(--ink);
+    background: var(--vermilion-soft); border: 1px solid var(--vermilion);
+    padding: 14px 16px; margin: 14px 0 0;
+  }
 </style>
 
 <div class="wrap">
@@ -9908,6 +9963,117 @@
       </div>
     </div>
   </details>
+
+
+
+
+  <!-- ============ 成績（答え合わせ） ============ -->
+  <section class="record">
+    <h2>成績</h2>
+
+    <p class="scope">
+      集計対象は <strong>2026年9月5日（土）の36レース・455頭</strong>。
+      <strong>9月6日（日）は未取得</strong>で、この表に入っていません
+      （Playwright のプロファイルが他プロセスに掴まれたままで netkeiba に到達できず、日曜の着順が取れていません）。
+      取消・除外の<span class="num">3</span>頭は人気・オッズが付かないため母数から除いています。
+    </p>
+
+    <h3>印別成績</h3>
+    <table>
+      <thead><tr><th>印</th><th>母数</th><th>勝率</th><th>連対率</th><th>複勝率</th></tr></thead>
+      <tbody>
+      <tr><th>◎</th><td class="n">36</td><td><span class="num">22.2</span>%<span class="den">（8/36）</span></td><td><span class="num">38.9</span>%<span class="den">（14/36）</span></td><td><span class="num">63.9</span>%<span class="den">（23/36）</span></td></tr>
+      <tr><th>○</th><td class="n">36</td><td><span class="num">11.1</span>%<span class="den">（4/36）</span></td><td><span class="num">38.9</span>%<span class="den">（14/36）</span></td><td><span class="num">44.4</span>%<span class="den">（16/36）</span></td></tr>
+      <tr><th>▲</th><td class="n">36</td><td><span class="num">11.1</span>%<span class="den">（4/36）</span></td><td><span class="num">27.8</span>%<span class="den">（10/36）</span></td><td><span class="num">47.2</span>%<span class="den">（17/36）</span></td></tr>
+      <tr><th>△</th><td class="n">50</td><td><span class="num">8.0</span>%<span class="den">（4/50）</span></td><td><span class="num">20.0</span>%<span class="den">（10/50）</span></td><td><span class="num">28.0</span>%<span class="den">（14/50）</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">
+      △は1レースあたり0〜4頭と数が一定でないため、母数が他の印と揃いません。
+      複勝率は3着以内で数えています。7頭以下の2レースは実際の複勝の払戻対象が2着までのため、
+      それに合わせて厳密に数えると◎は<span class="num">61.1</span>%（<span class="num">22</span>/<span class="num">36</span>）です。
+    </p>
+
+    <h3>◎の回収率</h3>
+    <p class="big">
+      単勝 <span class="num down">56.1</span>%
+      <span class="sub">100円均一・<span class="num">36</span>点購入／払戻<span class="num">2,020</span>円・投資<span class="num">3,600</span>円</span>
+    </p>
+    <p class="note">
+      <strong>複勝回収率は算出できません。</strong>記録している結果データに複勝の払戻金が入っておらず、
+      単勝オッズしか保存していないためです。推定値は載せません。次回から払戻表も併せて取得します。
+    </p>
+
+    <h3>人気補正 ― ここが本体</h3>
+    <p class="note">
+      ◎の複勝率が高くても、◎に人気馬を選んでいれば当然そうなります。
+      <strong>◎と同じ人気構成の馬を機械的に買った場合</strong>と比べて初めて、選別に価値があったかが分かります。
+      基準値は外部から持たず、この36レース455頭の実データから出しています。
+    </p>
+
+    <table>
+      <thead><tr><th>人気</th><th>◎の頭数</th><th>全体の頭数</th><th>勝率</th><th>複勝率</th><th>単勝回収</th></tr></thead>
+      <tbody>
+      <tr><th>1番人気</th><td class="n">22</td><td class="n">36</td><td><span class="num">19.4</span>%</td><td><span class="num">63.9</span>%</td><td><span class="num">39.7</span>%</td></tr>
+      <tr><th>2番人気</th><td class="n">8</td><td class="n">36</td><td><span class="num">27.8</span>%</td><td><span class="num">58.3</span>%</td><td><span class="num">145.8</span>%</td></tr>
+      <tr><th>3番人気</th><td class="n">3</td><td class="n">36</td><td><span class="num">8.3</span>%</td><td><span class="num">52.8</span>%</td><td><span class="num">42.2</span>%</td></tr>
+      <tr><th>4番人気</th><td class="n">2</td><td class="n">36</td><td><span class="num">11.1</span>%</td><td><span class="num">36.1</span>%</td><td><span class="num">82.8</span>%</td></tr>
+      <tr><th>6番人気</th><td class="n">1</td><td class="n">35</td><td><span class="num">5.7</span>%</td><td><span class="num">28.6</span>%</td><td><span class="num">108.6</span>%</td></tr>
+      </tbody>
+    </table>
+    <p class="note">◎<span class="num">36</span>頭のうち<span class="num">22</span>頭が1番人気。<strong>◎の6割は市場の1番人気と一致しています。</strong></p>
+
+    <table class="cmp">
+      <thead><tr><th>指標</th><th>◎の実績</th><th>同じ人気構成の期待値</th><th>差</th></tr></thead>
+      <tbody>
+      <tr><th>勝率</th><td><span class="num">22.2</span>%<span class="den">（8/36）</span></td><td><span class="num">19.5</span>%</td><td><span class="num up">+2.7</span>pt</td></tr>
+      <tr><th>連対率</th><td><span class="num">38.9</span>%<span class="den">（14/36）</span></td><td><span class="num">38.3</span>%</td><td><span class="num up">+0.6</span>pt</td></tr>
+      <tr><th>複勝率</th><td><span class="num">63.9</span>%<span class="den">（23/36）</span></td><td><span class="num">59.2</span>%</td><td><span class="num up">+4.7</span>pt</td></tr>
+      <tr><th>単勝回収率</th><td><span class="num">56.1</span>%</td><td><span class="num">67.8</span>%</td><td><span class="num down">-11.7</span>pt</td></tr>
+      </tbody>
+    </table>
+
+    <p class="verdict">
+      <strong>現時点では、市場を上回っている証拠はありません。</strong>
+      複勝率・勝率はわずかに上ですが、いずれも偶然の幅（複勝率で<span class="num">0.57</span>σ）に収まります。
+      <strong>単勝回収率は基準値を<span class="num">11.7</span>ポイント下回りました。</strong>
+      ◎の<span class="num">36</span>点を単勝で買っていれば、同じ人気の馬をただ機械的に買うより損をしていたということです。
+    </p>
+    <p class="note">
+      なお、単勝の控除率は約<span class="num">20</span>%あるので、期待値そのものが<span class="num">80</span>%前後に沈むのは普通のことです。
+      加えてこの土曜は1番人気の単勝回収率が<span class="num">39.7</span>%と総崩れで、
+      ◎の<span class="num">22</span>頭をそこに置いた影響が大きく出ています。
+      <strong>◎固有の欠陥とまでは言えませんが、選別によるプラスも出ていません。</strong>
+    </p>
+    <p class="note">
+      基準値の母集団から◎自身（1番人気36頭のうち22頭）を除いて計算し直すと、
+      複勝率の差は<span class="num">+12.9</span>pt（<span class="num">1.54</span>σ）、
+      勝率の差は<span class="num">+6.4</span>pt に広がります。ただしこの場合の1番人気の母数は<span class="num">14</span>頭しかなく、
+      こちらも有意ではありません。<strong>単勝回収率が基準値を下回る点は、どちらの数え方でも変わりません
+      （除外版でも<span class="num">-9.1</span>pt）。</strong>
+    </p>
+
+    <h3>レース格別の◎</h3>
+    <table>
+      <thead><tr><th>格</th><th>母数</th><th>勝率</th><th>複勝率</th></tr></thead>
+      <tbody>
+      <tr><th>重賞・OP・L</th><td class="n">4</td><td><span class="num">50.0</span>%<span class="den">（2/4）</span></td><td><span class="num">50.0</span>%<span class="den">（2/4）</span></td></tr>
+      <tr><th>特別</th><td class="n">6</td><td><span class="num">16.7</span>%<span class="den">（1/6）</span></td><td><span class="num">83.3</span>%<span class="den">（5/6）</span></td></tr>
+      <tr><th>平場</th><td class="n">26</td><td><span class="num">19.2</span>%<span class="den">（5/26）</span></td><td><span class="num">61.5</span>%<span class="den">（16/26）</span></td></tr>
+      </tbody>
+    </table>
+    <p class="note">母数が<span class="num">4</span>〜<span class="num">26</span>レースしかなく、格ごとの差はこの段階では読み取れません。</p>
+
+    <h3>この数字をどう見るか</h3>
+    <p class="note">
+      <strong>1週分（実質は土曜のみの36レース）では何も判断できません。</strong>
+      複勝率の<span class="num">2</span>σ幅は、36レースで±<span class="num">16.4</span>pt、72レース（土日1週）で±<span class="num">11.6</span>pt、
+      288レース（約<span class="num">4</span>週）で±<span class="num">5.8</span>pt、720レース（約<span class="num">10</span>週）で±<span class="num">3.7</span>pt です。
+      いま出ている<span class="num">+4.7</span>pt という差を「本物」と言うには、
+      <strong>最低でも<span class="num">10</span>週ぶん（約<span class="num">700</span>レース）の蓄積</strong>が要ります。
+      それまでは、良い週も悪い週も標本の揺れとして扱います。
+    </p>
+  </section>
 
   <footer>
     <h3>更新について</h3>
